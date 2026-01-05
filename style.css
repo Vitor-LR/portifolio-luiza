@@ -22,6 +22,8 @@ html {
 body {
     background: var(--bg-color);
     color: var(--text-color);
+    overflow-x: hidden;
+    word-wrap: break-word;
 }
 
 .bx-menu {
@@ -42,10 +44,13 @@ body {
     justify-content: space-between;
     align-items: center;
     z-index: 1000;
-    flex-wrap: nowrap;
-    /* PROÍBE a quebra de linha */
-    white-space: nowrap;
-    /* Garante que o nome não quebre em duas linhas */
+    flex-wrap: wrap;
+}
+
+.logo-img {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
 }
 
 .logo-img img {
@@ -59,7 +64,6 @@ body {
     vertical-align: middle;
     line-height: normal;
     flex-shrink: 0;
-
 }
 
 
@@ -138,7 +142,9 @@ span {
     color: white;
     border: none;
     text-wrap: nowrap;
-    width: 37vh;
+    max-width: 100%;
+    width: auto;
+    min-width: fit-content;
     display: inline-flex;
     gap: 8px;
     overflow: visible;
@@ -150,14 +156,14 @@ span {
 
 section {
     min-height: auto;
-    padding: 10rem 15%;
+    padding: clamp(3rem, 10vw, 10rem) clamp(2rem, 15vw, 15%);
 }
 
 .home {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 15rem;
+    gap: clamp(2rem, 15vw, 15rem);
     background-color: var(--second-bg-color);
 }
 
@@ -170,26 +176,29 @@ section {
 }
 
 .home-content h1 {
-    font-size: 8rem;
+    font-size: clamp(3rem, 8vw, 8rem);
     font-weight: 700;
     margin-top: 1.5rem;
-    line-height: 1;
+    line-height: 1.2;
+    word-wrap: break-word;
 }
 
 .home-content h3 {
     margin: 1rem 0;
-    font-size: 4rem;
+    font-size: clamp(2rem, 4vw, 4rem);
 }
 
 .home-content h2 {
     margin: 1rem 0;
-    font-size: 3rem;
+    font-size: clamp(1.8rem, 3vw, 3rem);
+    word-wrap: break-word;
 }
 
 .home-content p {
-    font-size: 1.8rem;
+    font-size: clamp(1.4rem, 1.8vw, 1.8rem);
     font-weight: 500;
     line-height: 1.8;
+    word-wrap: break-word;
 }
 
 .home-img img {
@@ -198,8 +207,9 @@ section {
     object-fit: cover;
     box-shadow: 0 0 25px var(--main-color);
     transition: 0.4s ease-in-out;
-    min-width: 19vw;
-    max-width: 30vh;
+    width: 100%;
+    max-width: 400px;
+    min-width: 0;
 }
 
 .home-img img:hover {
@@ -276,17 +286,18 @@ section {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 10rem;
+    gap: clamp(2rem, 10vw, 10rem);
     background-color: var(--second-bg-color);
 }
 
 .about-img img {
-    min-width: 19vw;
-    max-width: 40vh;
+    width: 100%;
+    max-width: 400px;
     height: auto;
     border-radius: 16px;
     box-shadow: 0 0 25px var(--main-color);
     transition: 0.4s ease-in-out;
+    min-width: 0;
 }
 
 .about-img img:hover {
@@ -296,15 +307,16 @@ section {
 }
 
 .about-content h2 {
-    font-size: 7rem;
+    font-size: clamp(3rem, 7vw, 7rem);
     text-align: center;
-
+    word-wrap: break-word;
 }
 
 .about-content p {
-    font-size: 1.8rem;
-    width: 45vw;
-
+    font-size: clamp(1.6rem, 1.8vw, 1.8rem);
+    max-width: 600px;
+    width: 100%;
+    word-wrap: break-word;
 }
 
 hr {
@@ -340,9 +352,9 @@ hr {
 
 .heading {
     text-align: center;
-    font-size: 4rem;
+    font-size: clamp(2.5rem, 4vw, 4rem);
     margin: 1rem 0;
-
+    word-wrap: break-word;
 }
 
 
@@ -355,12 +367,13 @@ hr {
 .services p {
     color: var(--text-color);
     align-items: center;
-    font-size: 2.5rem;
+    font-size: clamp(1.6rem, 2.5vw, 2.5rem);
     display: flex;
     justify-content: left;
     max-width: 100%;
     text-align: left;
     margin: 30px;
+    word-wrap: break-word;
 }
 
 .ajuda {
@@ -369,16 +382,18 @@ hr {
 
 .ajuda h1 {
     color: var(--text-color);
-    font-size: 4rem;
+    font-size: clamp(2.5rem, 4vw, 4rem);
     text-align: center;
     margin-bottom: 20px;
+    word-wrap: break-word;
 }
 
 .ajuda h2 {
     color: var(--text-color);
-    font-size: 2.5rem;
+    font-size: clamp(1.8rem, 2.5vw, 2.5rem);
     text-align: center;
     margin-bottom: 60px;
+    word-wrap: break-word;
 }
 
 .ajuda h3 {
@@ -391,25 +406,28 @@ hr {
 .ajuda p {
     color: var(--text-color);
     align-items: center;
-    font-size: 2.5rem;
+    font-size: clamp(1.6rem, 2.5vw, 2.5rem);
     display: flex;
     justify-content: left;
     max-width: 100%;
     text-align: left;
     margin: 30px;
+    word-wrap: break-word;
 }
 
 
 .services h2 {
     color: var(--text-color);
-    font-size: 4rem;
+    font-size: clamp(2.5rem, 4vw, 4rem);
+    word-wrap: break-word;
 }
 
 .services h3 {
     color: var(--text-color);
-    font-size: 3rem;
+    font-size: clamp(2rem, 3vw, 3rem);
     text-align: center;
     margin-bottom: 60px;
+    word-wrap: break-word;
 }
 
 .services h4 {
@@ -433,41 +451,40 @@ hr {
     /* Centraliza o container horizontalmente */
 }
 
+.baixocard {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
 .baixocard h1 {
     align-items: center;
-    font-size: 4rem;
+    font-size: clamp(2.5rem, 4vw, 4rem);
     display: flex;
     justify-content: left;
-    width: 700px;
     text-align: left;
-    margin-left: 15rem;
     margin-top: 5rem;
     margin-bottom: 2rem;
-    margin-right: 15rem;
-    max-width: 80%;
+    word-wrap: break-word;
 }
 
 .baixocard p {
     align-items: center;
-    font-size: 2rem;
+    font-size: clamp(1.6rem, 2vw, 2rem);
     display: flex;
     justify-content: left;
-    max-width: 80%;
     text-align: left;
-    margin-left: 15rem;
-    margin-right: 15rem;
+    word-wrap: break-word;
 }
 
 .baixocard h2 {
     align-items: center;
-    font-size: 2.5rem;
+    font-size: clamp(1.8rem, 2.5vw, 2.5rem);
     display: flex;
     justify-content: left;
-    max-width: 80%;
     text-align: left;
-    margin-left: 15rem;
-    margin-right: 15rem;
     margin-bottom: 20px;
+    word-wrap: break-word;
 }
 
 .service-box {
@@ -526,9 +543,10 @@ hr {
     align-items: center;
     text-align: center;
     padding: 2.5rem;
-    font-size: 2.5rem;
+    font-size: clamp(1.6rem, 2.5vw, 2.5rem);
     font-weight: 500;
     line-height: 1.8;
+    word-wrap: break-word;
 }
 
 .projects {
@@ -538,15 +556,16 @@ hr {
 
 .projects-box {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     place-items: center;
     gap: 3rem;
     row-gap: 5rem;
 }
 .projects-box1 {
     display: flex;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    place-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: stretch;
     gap: 3rem;
     row-gap: 5rem;
 }
@@ -565,6 +584,10 @@ hr {
     overflow: hidden;
     box-shadow: 0 0 5px var(--main-color);
     transition: 0.3s ease;
+    min-width: 0;
+    flex: 1 1 300px;
+    max-width: 100%;
+    word-wrap: break-word;
 }
 
 .project-card:hover {
@@ -581,12 +604,13 @@ hr {
 }
 
 .project-card h3 {
-    font-size: 2.5rem;
-
+    font-size: clamp(1.8rem, 2.5vw, 2.5rem);
+    word-wrap: break-word;
 }
 
 .project-card p {
-    font-size: 1.6rem;
+    font-size: clamp(1.4rem, 1.6vw, 1.6rem);
+    word-wrap: break-word;
 }
 
 .contact {
@@ -596,6 +620,7 @@ hr {
 .contact h2 {
     margin-bottom: 3rem;
     color: var(--text-color);
+    word-wrap: break-word;
 }
 
 .contact p {
@@ -604,9 +629,10 @@ hr {
     align-items: center;
     text-align: center;
     padding: 1rem;
-    font-size: 1.8rem;
+    font-size: clamp(1.4rem, 1.8vw, 1.8rem);
     font-weight: 500;
     line-height: 1.8;
+    word-wrap: break-word;
 }
 
 .contact form {
@@ -690,37 +716,46 @@ hr {
 }
 
 .faq h1 {
-    font-size: 2rem;
+    font-size: clamp(1.6rem, 2vw, 2rem);
     display: flex;
     justify-content: left;
     margin-top: 35px;
     margin-bottom: 35px;
     width: 95%;
+    word-wrap: break-word;
 }
 
 .faq h2 {
-    font-size: 5rem;
+    font-size: clamp(3rem, 5vw, 5rem);
     margin-bottom: 5rem;
+    word-wrap: break-word;
 }
 
 .project-card-faq {
+    display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
-    background-color: var(--bg-color);
+    background-color: #dbe2b1;
     border: 2px solid var(--main-color);
     border-radius: 3rem;
-    padding: 5rem 2rem;
+    padding: 3rem 2rem;
     overflow: hidden;
     box-shadow: 0 0 5px var(--main-color);
     transition: 0.3s ease;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    place-items: center;
-    gap: 3rem;
-    font-size: 16px;
-    background-color: #dbe2b1;
+    min-width: 0;
+    word-wrap: break-word;
+}
+
+.project-card-faq h3 {
+    font-size: clamp(1.6rem, 2vw, 2rem);
+    word-wrap: break-word;
+}
+
+.project-card-faq p {
+    font-size: clamp(1.4rem, 1.6vw, 1.6rem);
+    word-wrap: break-word;
 }
 
 
@@ -733,9 +768,30 @@ hr {
     padding: 20px;
 }
 
-@media(max-width:1285px) {
+/* Tablet and below */
+@media(max-width: 1024px) {
     #menu-icon {
         display: block;
+    }
+
+    .header {
+        padding: 2rem 5%;
+        gap: 1rem;
+        height: auto;
+        min-height: 80px;
+    }
+
+    .logo {
+        font-size: clamp(1.8rem, 3vw, 3rem);
+    }
+
+    .logo-img {
+        flex-shrink: 0;
+    }
+
+    .logo-img img {
+        max-width: 50px;
+        height: 50px;
     }
 
     .navbar {
@@ -756,7 +812,6 @@ hr {
         font-size: 2rem;
         margin: 3rem 0;
         color: var(--text-color);
-
     }
 
     .navbar.active {
@@ -764,40 +819,258 @@ hr {
     }
 
     .gradient-btn {
-        display: none;
+        font-size: 1.4rem;
+        padding: 0.8rem 1.5rem;
+        max-width: 200px;
     }
 
     .home {
         flex-direction: column-reverse;
         margin: 5rem 0;
-        gap: 5rem;
+        gap: 3rem;
     }
 
     .home-content {
         align-items: center;
         text-align: center;
+        padding-top: 2rem;
     }
 
     .home-img img {
-        width: 56vw;
+        width: 100%;
+        max-width: 300px;
     }
 
     .about {
         flex-direction: column-reverse;
         text-align: center;
+        gap: 3rem;
     }
 
-    .about h2 {
+    .about-content {
+        align-items: center;
+    }
+
+    .about-content p {
         text-align: center;
-        margin: 2rem 0;
     }
 
-    .about img {
-        width: 52vw;
+    .about-img img {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .projects-box1 {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .project-card {
+        width: 100%;
+        max-width: 500px;
     }
 
     .contact form {
         flex-direction: column;
+    }
+
+    .projects-box {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+}
+
+/* Mobile */
+@media(max-width: 767px) {
+    html {
+        font-size: 55%;
+    }
+
+    .header {
+        padding: 1.5rem 3%;
+        gap: 0.5rem;
+        height: auto;
+        min-height: 70px;
+    }
+
+    .logo {
+        font-size: 1.6rem;
+        margin-right: 10px;
+    }
+
+    .logo-img {
+        flex-shrink: 0;
+    }
+
+    .logo-img img {
+        max-width: 40px;
+        height: 40px;
+        margin-right: 8px;
+    }
+
+    .gradient-btn {
+        font-size: 1.2rem;
+        padding: 0.6rem 1rem;
+        max-width: 160px;
+    }
+
+    .gradient-btn img {
+        height: 18px;
+    }
+
+    section {
+        padding: 3rem 5%;
+    }
+
+    .home {
+        gap: 2rem;
+        margin: 3rem 0;
+    }
+
+    .home-content {
+        padding-top: 1rem;
+    }
+
+    .home-img img {
+        max-width: 250px;
+    }
+
+    .social-icons a {
+        font-size: 2.5rem;
+        padding: 0.8rem;
+        margin: 2rem 0.3rem;
+        height: 45px;
+    }
+
+    .btn {
+        padding: 0.8rem 2rem;
+        font-size: 1.6rem;
+    }
+
+    .about {
+        gap: 2rem;
+    }
+
+    .about-img img {
+        max-width: 250px;
+    }
+
+    .projects-box1 {
+        gap: 2rem;
+        row-gap: 3rem;
+    }
+
+    .project-card {
+        padding: 20px;
+        flex: 1 1 100%;
+    }
+
+    .services p,
+    .ajuda p {
+        margin: 20px 10px;
+        font-size: 1.6rem;
+    }
+
+    .services h2,
+    .ajuda h1 {
+        font-size: 2.5rem;
+    }
+
+    .services h3,
+    .ajuda h2 {
+        font-size: 2rem;
+        margin-bottom: 30px;
+    }
+
+    .baixocard {
+        padding: 1.5rem;
+    }
+
+    .baixocard h1 {
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    .faq h2 {
+        font-size: 3rem;
+        margin-bottom: 3rem;
+    }
+
+    .project-card-faq {
+        padding: 2rem 1.5rem;
+    }
+
+    .projects-box {
+        gap: 2rem;
+        row-gap: 3rem;
+    }
+
+    .contact p {
+        padding: 0.5rem;
+        font-size: 1.6rem;
+    }
+
+    .footer {
+        padding: 30px 0;
+    }
+
+    .footer ul li {
+        margin-left: 10px;
+        display: block;
+        margin-bottom: 10px;
+    }
+}
+
+/* Very small mobile */
+@media(max-width: 500px) {
+    html {
+        font-size: 50%;
+    }
+
+    .header {
+        padding: 1rem 2%;
+    }
+
+    .gradient-btn {
+        font-size: 1rem;
+        padding: 0.5rem 0.8rem;
+        max-width: 140px;
+    }
+
+    .gradient-btn img {
+        height: 16px;
+    }
+
+    section {
+        padding: 2rem 3%;
+    }
+
+    .home-img img {
+        max-width: 200px;
+    }
+
+    .about-img img {
+        max-width: 200px;
+    }
+
+    .project-card {
+        padding: 15px;
+    }
+
+    .baixocard {
+        padding: 1rem;
+    }
+
+    form div {
+        max-width: 100%;
+    }
+
+    form input[type="text"],
+    form input[type="email"],
+    form input[type="number"],
+    form textarea {
+        padding: 15px;
+        font-size: 18px;
     }
 }
 
