@@ -141,7 +141,7 @@ span {
     width: 37vh;
     display: inline-flex;
     gap: 8px;
-    overflow:visible;
+    overflow: visible;
 }
 
 .gradient-btn:hover {
@@ -149,7 +149,7 @@ span {
 }
 
 section {
-    min-height: 100vh;
+    min-height: auto;
     padding: 10rem 15%;
 }
 
@@ -543,6 +543,13 @@ hr {
     gap: 3rem;
     row-gap: 5rem;
 }
+.projects-box1 {
+    display: flex;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    place-items: center;
+    gap: 3rem;
+    row-gap: 5rem;
+}
 
 .project-card {
     display: flex;
@@ -674,17 +681,21 @@ hr {
 
 .faq {
     background-color: var(--second-bg-color);
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    text-align: left;
+
+
 }
 
 .faq h1 {
-    align-items: center;
     font-size: 2rem;
     display: flex;
     justify-content: left;
-    text-align: left;
     margin-top: 35px;
     margin-bottom: 35px;
-    width: 900px;
+    width: 95%;
 }
 
 .faq h2 {
