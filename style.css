@@ -646,7 +646,7 @@ hr {
     color: var(--text-color);
     background-color: var(--bg-color);
     border-radius: 2rem;
-    border: 2px solid var(--main-color);
+    border: none;
     margin: 1.5rem 0;
     resize: none;
 }
