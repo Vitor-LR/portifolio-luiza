@@ -32,19 +32,18 @@ body {
 
 .header {
     position: fixed;
-    gap: 64px;
+    gap: 0;
     height: 96px;
     width: 100%;
     top: 0;
     left: 0;
-    padding: 4rem 15%;
+    padding: 1rem 5%;
     background: rgba(248, 245, 231, 0.8);
     backdrop-filter: blur(10px);
     display: flex;
     justify-content: space-between;
     align-items: center;
     z-index: 1000;
-    flex-wrap: wrap;
 }
 
 .logo-img {
@@ -202,14 +201,14 @@ section {
 }
 
 .home-img img {
-    height: auto;
     border-radius: 20px;
     object-fit: cover;
     box-shadow: 0 0 25px var(--main-color);
     transition: 0.4s ease-in-out;
     width: 100%;
-    max-width: 400px;
-    min-width: 0;
+    max-width: 30dvh;
+    min-width: 30dvh;
+    margin-top: 50px;
 }
 
 .home-img img:hover {
@@ -231,6 +230,7 @@ section {
     margin: 3rem 0.5rem;
     transition: 0, 3s ease-in-out;
     height: 50px;
+    width: 50px;
 }
 
 .social-icons a:hover {
@@ -836,10 +836,6 @@ hr {
         padding-top: 2rem;
     }
 
-    .home-img img {
-        width: 100%;
-        max-width: 300px;
-    }
 
     .about {
         flex-direction: column-reverse;
@@ -931,9 +927,6 @@ hr {
         padding-top: 1rem;
     }
 
-    .home-img img {
-        max-width: 250px;
-    }
 
     .social-icons a {
         font-size: 2.5rem;
@@ -1035,6 +1028,8 @@ hr {
         font-size: 1rem;
         padding: 0.5rem 0.8rem;
         max-width: 140px;
+          align-items: center;      /* centraliza verticalmente */
+  justify-content: center;  /* centraliza horizontalmente */
     }
 
     .gradient-btn img {
@@ -1043,10 +1038,6 @@ hr {
 
     section {
         padding: 2rem 3%;
-    }
-
-    .home-img img {
-        max-width: 200px;
     }
 
     .about-img img {
