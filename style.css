@@ -410,7 +410,7 @@ hr {
     color: var(--text-color);
     font-size: clamp(1.8rem, 2.5vw, 2.5rem);
     text-align: center;
-    margin-bottom: 60px;
+    margin-bottom: 25px;
     word-wrap: break-word;
 }
 
