@@ -141,7 +141,7 @@ span {
     color: white;
     border: none;
     text-wrap: nowrap;
-    max-width: 100%;
+    max-width: 10%;
     width: auto;
     min-width: fit-content;
     display: inline-flex;
@@ -387,8 +387,26 @@ hr {
     margin-bottom: 20px;
     word-wrap: break-word;
 }
+.ajuda1 {
+    background-color: var(--bg-color);
+}
+
+.ajuda1 h1 {
+    color: var(--text-color);
+    font-size: clamp(2.5rem, 4vw, 4rem);
+    text-align: center;
+    margin-bottom: 20px;
+    word-wrap: break-word;
+}
 
 .ajuda h2 {
+    color: var(--text-color);
+    font-size: clamp(1.8rem, 2.5vw, 2.5rem);
+    text-align: center;
+    margin-bottom: 60px;
+    word-wrap: break-word;
+}
+.ajuda1 h2 {
     color: var(--text-color);
     font-size: clamp(1.8rem, 2.5vw, 2.5rem);
     text-align: center;
@@ -404,6 +422,17 @@ hr {
 }
 
 .ajuda p {
+    color: var(--text-color);
+    align-items: center;
+    font-size: clamp(1.6rem, 2.5vw, 2.5rem);
+    display: flex;
+    justify-content: left;
+    max-width: 100%;
+    text-align: left;
+    margin: 30px;
+    word-wrap: break-word;
+}
+.ajuda1 p {
     color: var(--text-color);
     align-items: center;
     font-size: clamp(1.6rem, 2.5vw, 2.5rem);
@@ -449,42 +478,6 @@ hr {
     max-width: 100px;
     margin: 0 auto;
     /* Centraliza o container horizontalmente */
-}
-
-.baixocard {
-    padding: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.baixocard h1 {
-    align-items: center;
-    font-size: clamp(2.5rem, 4vw, 4rem);
-    display: flex;
-    justify-content: left;
-    text-align: left;
-    margin-top: 5rem;
-    margin-bottom: 2rem;
-    word-wrap: break-word;
-}
-
-.baixocard p {
-    align-items: center;
-    font-size: clamp(1.6rem, 2vw, 2rem);
-    display: flex;
-    justify-content: left;
-    text-align: left;
-    word-wrap: break-word;
-}
-
-.baixocard h2 {
-    align-items: center;
-    font-size: clamp(1.8rem, 2.5vw, 2.5rem);
-    display: flex;
-    justify-content: left;
-    text-align: left;
-    margin-bottom: 20px;
-    word-wrap: break-word;
 }
 
 .service-box {
@@ -556,7 +549,7 @@ hr {
 
 .projects-box {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     place-items: center;
     gap: 3rem;
     row-gap: 5rem;
@@ -597,6 +590,7 @@ hr {
 }
 
 .project-card img {
+    margin-top: 5%;
     width: 50%;
     border-radius: 2rem;
     object-fit: cover;
@@ -709,10 +703,6 @@ hr {
     background-color: var(--second-bg-color);
     display: flex;
     flex-direction: column;
-    align-items: left;
-    text-align: left;
-
-
 }
 
 .faq h1 {
@@ -729,6 +719,7 @@ hr {
     font-size: clamp(3rem, 5vw, 5rem);
     margin-bottom: 5rem;
     word-wrap: break-word;
+    text-align: center;
 }
 
 .project-card-faq {
@@ -751,11 +742,14 @@ hr {
 .project-card-faq h3 {
     font-size: clamp(1.6rem, 2vw, 2rem);
     word-wrap: break-word;
+    max-width: 60%;
+    margin-bottom: 10px;
 }
 
 .project-card-faq p {
     font-size: clamp(1.4rem, 1.6vw, 1.6rem);
     word-wrap: break-word;
+    max-width: 60%;
 }
 
 
@@ -975,15 +969,6 @@ hr {
         margin-bottom: 30px;
     }
 
-    .baixocard {
-        padding: 1.5rem;
-    }
-
-    .baixocard h1 {
-        margin-top: 2rem;
-        margin-bottom: 1rem;
-    }
-
     .faq h2 {
         font-size: 3rem;
         margin-bottom: 3rem;
@@ -1046,10 +1031,6 @@ hr {
 
     .project-card {
         padding: 15px;
-    }
-
-    .baixocard {
-        padding: 1rem;
     }
 
     form div {
