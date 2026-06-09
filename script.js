@@ -100,15 +100,20 @@
     // Adiciona a classe base de reveal em cada item
     revealItems.forEach(el => el.classList.add('reveal'));
 
-    // Stagger: aplica atraso progressivo nos filhos de grupos
-    // (assim os cards/itens entram um após o outro, em vez de todos juntos)
+    /* Stagger: guarda o atraso (em ms) de cada item em um data-attribute.
+       IMPORTANTE: NÃO setamos `transition-delay` inline aqui — se setássemos,
+       esse delay vazaria para qualquer transition futura no elemento (hover,
+       focus, etc.), deixando o hover "preguiçoso" pra responder ao mouse.
+       Em vez disso, na hora que o item entra na viewport, usamos setTimeout
+       pra adicionar a classe `is-visible` com o atraso desejado. O efeito
+       visual de stagger fica idêntico, mas o elemento nunca carrega delay. */
     function staggerChildren(parentSelector, childSelector, stepMs) {
         document.querySelectorAll(parentSelector).forEach(parent => {
             const children = childSelector
                 ? parent.querySelectorAll(childSelector)
                 : parent.children;
             Array.from(children).forEach((child, i) => {
-                child.style.transitionDelay = `${i * stepMs}ms`;
+                child.dataset.revealDelay = i * stepMs;
             });
         });
     }
@@ -127,26 +132,22 @@
         return;
     }
 
-    // Observer: marca cada item como visível quando entra na viewport
+    // Observer: marca cada item como visível quando entra na viewport,
+    // respeitando o delay do stagger via setTimeout (não via CSS transition-delay).
     const observer = new IntersectionObserver(function (entries) {
         entries.forEach(entry => {
             if (!entry.isIntersecting) return;
 
             const el = entry.target;
-            el.classList.add('is-visible');
-            observer.unobserve(el);
+            const delay = parseInt(el.dataset.revealDelay, 10) || 0;
 
-            /* Limpa o transition-delay inline (aplicado pelo stagger) depois
-               que a animação de entrada termina. Sem isso, qualquer transition
-               futura no elemento — como o :hover dos botões e cards — herda
-               o delay do stagger e fica "preguiçosa" pra responder ao mouse. */
-            const cleanup = (e) => {
-                // O evento dispara para opacity E transform; basta agir uma vez
-                if (e.propertyName !== 'opacity') return;
-                el.style.transitionDelay = '';
-                el.removeEventListener('transitionend', cleanup);
-            };
-            el.addEventListener('transitionend', cleanup);
+            if (delay > 0) {
+                setTimeout(() => el.classList.add('is-visible'), delay);
+            } else {
+                el.classList.add('is-visible');
+            }
+
+            observer.unobserve(el);
         });
     }, {
         threshold: 0.1,
