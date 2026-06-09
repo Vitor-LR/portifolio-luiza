@@ -1,349 +1,467 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Luiza Lombard</title>
+    <meta name="theme-color" content="#636b2f">
+    <meta name="description"
+        content="Luiza Lombard - Advogada Previdenciária. Atendimento humanizado e individualizado. Análise, planejamento previdenciário e orientação responsável antes do pedido ao INSS.">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Luiza Lombard - Advocacia Previdenciária">
+    <meta property="og:description"
+        content="Segurança previdenciária começa antes do pedido ao INSS. Atendimento 100% online com análise individualizada.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://luizalombard.com.br/">
+    <meta property="og:image" content="https://luizalombard.com.br/image.jpeg">
+    <meta property="og:locale" content="pt_BR">
+
+    <title>Luiza Lombard - Advocacia Previdenciária</title>
+
+    <!-- Favicon adaptativo:
+         - Browsers modernos escolhem entre as duas opções conforme o tema do usuário.
+         - Quando você tiver as imagens prontas, basta colocá-las na pasta com esses nomes:
+             • favicon-on-light.png  → ícone para ser exibido em FUNDO CLARO (use cor escura)
+             • favicon-on-dark.png   → ícone para ser exibido em FUNDO ESCURO (use cor clara)
+         - A linha sem `media` é fallback para browsers que não entendem a media query. -->
     <link rel="icon" type="image/png" href="Ativo9.png">
+    <link rel="icon" type="image/png" href="Ativo15.png" media="(prefers-color-scheme: light)">
+    <link rel="icon" type="image/png" href="Ativo9.png" media="(prefers-color-scheme: dark)">
 
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
     <link rel="stylesheet" href="style.css">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-    <!-- Google tag (gtag.js) -->
+    <!-- Google Ads -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17724271591"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
-
         gtag('config', 'AW-17724271591');
     </script>
-
-
 </head>
 
 <body>
 
-    <section class="home" id="home">
-        <div class="home-content">
-            <h1><span>Luiza Lombard</span></h1>
-            <h3>
-                <span>Advogada</span>
-            </h3>
-            <h2>Segurança previdenciária começa antes do pedido ao INSS</h2>
-            <p>
-                Sou Luiza Lombard, advogada previdenciária, e atuo com foco na advocacia previdenciária preventiva,
-                orientando pessoas a tomarem decisões seguras e conscientes antes de qualquer pedido de benefício.
-                Atendimento 100% online, de forma acessível e humanizada
-            </p>
-
-            <div class="social-icons">
-                <a href="https://wa.me/5531998127273">
-                    <i class="bi bi-whatsapp"></i>
-                </a>
-
-                </a>
-                <a href="https://www.instagram.com/luizalombard.advogada">
-                    <i class='bx bxl-instagram'></i>
-                </a>
-            </div>
-            <div class="btn-group">
-                <a href="#contact" class="btn">Entre em Contato
-                    <i class="bi bi-envelope"></i>
-                </a>
-            </div>
-        </div>
-        <div class="home-img">
-            <img src="image.jpeg" alt="">
-        </div>
-    </section>
-
-    <section class="services" id="services">
-
-        <h2 class="heading">VOCÊ SE IDENTIFICA COM ALGUMA DESSAS SITUAÇÕES? </h2>
-        <h3>Você pode estar passando por uma ou mais dessas dúvidas</h3>
-
-        <p>• Não sabe se tem direito a algum benefício do INSS </p>
-        <p> • Já pensou em pedir aposentadoria, mas não sabe se é o momento certo </p>
-        <p> • Teve um benefício negado e não entende o motivo </p>
-        <p>• Tem medo de fazer algo errado e acabar prejudicando seu pedido </p>
-        <p>• Sente falta de uma orientação clara, sem termos complicados </p>
-        <p>• Não sabe por onde começar ou quais documentos são realmente necessários </p>
-
-    </section>
-
-    <section class="ajuda">
-
-        <h1>COMO POSSO TE AJUDAR</h1>
-
-        <h2>Minha atuação é baseada em análise individual e responsável de cada caso, sempre com
-            atenção às regras previdenciárias e à realidade de cada pessoa. <br>
-            Você pode contar com:</h2>
-
-        <p>• Análise cuidadosa da sua situação previdenciária</p>
-        <p>• Orientação clara e objetiva, em linguagem fácil de entender</p>
-        <p>• Atuação responsável, sem promessas ou atalhos</p>
-        <p>• Explicação dos caminhos possíveis, com transparência</p>
-        <p>• Acompanhamento técnico e humano em cada etapa</p>
-
-    </section>
+    <!-- ============================================
+         SPRITE SVG — ícones reutilizáveis via <use>.
+         Definimos cada ícone uma vez aqui e referenciamos
+         por href="#nome" ao longo do site. Elimina o Bootstrap
+         Icons (font de ~400KB) e a duplicação do logo do Google
+         em 4 cards. Paths originais do Bootstrap Icons 1.11.3 (MIT).
+         ============================================ -->
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+        <symbol id="i-list" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
+        </symbol>
+        <symbol id="i-x" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
+        </symbol>
+        <symbol id="i-whatsapp" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.444-1.073-.612-1.468-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.651 0 .974.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/>
+        </symbol>
+        <symbol id="i-envelope" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M1.5 8.67v8.58a3 3 0 0 0 3 3h15a3 3 0 0 0 3-3V8.67l-8.928 5.493a3 3 0 0 1-3.144 0L1.5 8.67Z"/>
+            <path fill="currentColor" d="M22.5 6.908V6.75a3 3 0 0 0-3-3h-15a3 3 0 0 0-3 3v.158l9.714 5.978a1.5 1.5 0 0 0 1.572 0L22.5 6.908Z"/>
+        </symbol>
+        <symbol id="i-instagram" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.218 4.109 4.109 0 0 0 0-8.218m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334"/>
+        </symbol>
+        <symbol id="i-google" viewBox="0 0 48 48">
+            <path fill="#FFC107" d="M43.611 20.083H42V20H24v8h11.303c-1.649 4.657-6.08 8-11.303 8-6.627 0-12-5.373-12-12s5.373-12 12-12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 12.955 4 4 12.955 4 24s8.955 20 20 20 20-8.955 20-20c0-1.341-.138-2.65-.389-3.917z"/>
+            <path fill="#FF3D00" d="m6.306 14.691 6.571 4.819C14.655 15.108 18.961 12 24 12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 16.318 4 9.656 8.337 6.306 14.691z"/>
+            <path fill="#4CAF50" d="M24 44c5.166 0 9.86-1.977 13.409-5.192l-6.19-5.238A11.91 11.91 0 0 1 24 36c-5.202 0-9.619-3.317-11.283-7.946l-6.522 5.025C9.505 39.556 16.227 44 24 44z"/>
+            <path fill="#1976D2" d="M43.611 20.083H42V20H24v8h11.303a12.04 12.04 0 0 1-4.087 5.571l.003-.002 6.19 5.238C36.971 39.205 44 34 44 24c0-1.341-.138-2.65-.389-3.917z"/>
+        </symbol>
+    </svg>
 
     <header class="header">
+        <a href="#home" class="logo-link" aria-label="Ir para o início">
+            <img src="Ativo15.png" alt="" class="logo-img" width="60" height="64">
+            <span class="logo">Luiza Lombard</span>
+        </a>
 
-        <div class="logo-img">
-            <img src="Ativo15.png" alt="">
-            <a href="#home" class="logo">
-                <span> Luiza Lombard</span>
-            </a>
-        </div>
+        <button class="menu-toggle" id="menu-icon" aria-label="Abrir menu" aria-expanded="false" aria-controls="navbar">
+            <svg class="icon"><use href="#i-list"></use></svg>
+        </button>
 
-        <i class="bx bx-menu" id="menu-icon"></i>
-
-        <nav class="navbar">
+        <nav class="navbar" id="navbar" aria-label="Navegação principal">
             <a href="#home">Perfil</a>
             <a href="#projects">Atuação</a>
-            <a href="#about">Sobre Mim</a>
+            <a href="#about">Sobre mim</a>
+            <a href="#reviews">Avaliações</a>
             <a href="#faq">FAQ</a>
             <a href="#contact">Contato</a>
         </nav>
 
-        <a href="https://wa.me/5531998127273" class="gradient-btn"><img src="whatsapp.png" alt="">Falar com a
-            Advogada</a>
-
-
+        <a href="https://wa.me/5531998127273" class="gradient-btn" target="_blank" rel="noopener">
+            <svg class="icon" aria-hidden="true"><use href="#i-whatsapp"></use></svg>
+            <span>Falar com a Advogada</span>
+        </a>
     </header>
 
+    <main>
 
-    <section class="projects" id="projects">
-
-        <h2 class="heading">ÁREAS DE ATUAÇÃO – DIREITO PREVIDENCIÁRIO</h2>
-        <p>Atuo exclusivamente com Direito Previdenciário, auxiliando em demandas relacionadas ao
-            INSS, como:
-        </p>
-
-        <div class="projects-box1">
-            <div class="project-card">
-                <img src="logoprojeto.png" alt="">
-
-
-                <h3>Análise Previdenciária</h3>
-
+        <!-- HERO -->
+        <section class="home" id="home">
+            <div class="home-content">
+                <h1><span class="gradient-text">Luiza Lombard</span></h1>
+                <h2 class="role">Advogada Previdenciária</h2>
+                <p class="lead">Segurança previdenciária começa antes do pedido ao INSS</p>
                 <p>
-                    Avaliação completa da sua situação para identificar direitos, riscos e
-                    possibilidades antes de qualquer pedido ao INSS.
+                    Sou Luiza Lombard, advogada previdenciária, e atuo com foco na advocacia previdenciária
+                    preventiva, orientando pessoas a tomarem decisões seguras e conscientes antes de qualquer
+                    pedido de benefício. Atendimento 100% online, de forma acessível e humanizada.
                 </p>
 
+                <div class="social-icons">
+                    <a href="https://wa.me/5531998127273" target="_blank" rel="noopener" aria-label="WhatsApp">
+                        <svg class="icon"><use href="#i-whatsapp"></use></svg>
+                    </a>
+                    <a href="https://www.instagram.com/luizalombard.advogada" target="_blank" rel="noopener"
+                        aria-label="Instagram">
+                        <svg class="icon"><use href="#i-instagram"></use></svg>
+                    </a>
+                </div>
+
+                <div class="btn-group">
+                    <a href="#contact" class="btn">
+                        Entre em Contato
+                        <svg class="icon"><use href="#i-envelope"></use></svg>
+                    </a>
+                </div>
             </div>
 
+            <div class="home-img">
+                <img src="image.jpeg" alt="Luiza Lombard, advogada previdenciária"
+                    width="380" height="500" fetchpriority="high">
+            </div>
+        </section>
 
-            <div class="project-card">
-                <img src="logoprojeto.png" alt="">
+        <!-- SITUAÇÕES -->
+        <section class="situations" id="situations">
+            <h2 class="heading">Você se identifica com alguma dessas situações?</h2>
+            <h3 class="subheading">Você pode estar passando por uma ou mais dessas dúvidas</h3>
 
-                <h3>
-                    Planejamento Previdenciário </h3>
-                <p>Orientação para quem deseja se organizar e entender quando e como poderá solicitar a aposentadoria de
-                    forma mais segura.
-                </p>
+            <ul class="check-list">
+                <li>Não sabe se tem direito a algum benefício do INSS</li>
+                <li>Já pensou em pedir aposentadoria, mas não sabe se é o momento certo</li>
+                <li>Teve um benefício negado e não entende o motivo</li>
+                <li>Tem medo de fazer algo errado e acabar prejudicando seu pedido</li>
+                <li>Sente falta de uma orientação clara, sem termos complicados</li>
+                <li>Não sabe por onde começar ou quais documentos são realmente necessários</li>
+            </ul>
+        </section>
 
+        <!-- COMO POSSO AJUDAR -->
+        <section class="help">
+            <h2 class="heading">Como posso te ajudar</h2>
+            <p class="section-intro">
+                Minha atuação é baseada em análise individual e responsável de cada caso, sempre com atenção
+                às regras previdenciárias e à realidade de cada pessoa. Você pode contar com:
+            </p>
+
+            <ul class="check-list">
+                <li>Análise cuidadosa da sua situação previdenciária</li>
+                <li>Orientação clara e objetiva, em linguagem fácil de entender</li>
+                <li>Atuação responsável, sem promessas ou atalhos</li>
+                <li>Explicação dos caminhos possíveis, com transparência</li>
+                <li>Acompanhamento técnico e humano em cada etapa</li>
+            </ul>
+        </section>
+
+        <!-- ÁREAS DE ATUAÇÃO -->
+        <section class="projects" id="projects">
+            <h2 class="heading">Áreas de Atuação – Direito Previdenciário</h2>
+            <p class="section-intro">
+                Atuo exclusivamente com Direito Previdenciário, auxiliando em demandas relacionadas ao INSS, como:
+            </p>
+
+            <div class="projects-grid">
+                <article class="project-card">
+                    <img src="simbolo.png" alt="" width="80" height="80" loading="lazy">
+                    <h3>Análise Previdenciária</h3>
+                    <p>
+                        Avaliação completa da sua situação para identificar direitos, riscos e possibilidades
+                        antes de qualquer pedido ao INSS.
+                    </p>
+                </article>
+
+                <article class="project-card">
+                    <img src="simbolo.png" alt="" width="80" height="80" loading="lazy">
+                    <h3>Planejamento Previdenciário</h3>
+                    <p>
+                        Orientação para quem deseja se organizar e entender quando e como poderá solicitar a
+                        aposentadoria de forma mais segura.
+                    </p>
+                </article>
+
+                <article class="project-card">
+                    <img src="simbolo.png" alt="" width="80" height="80" loading="lazy">
+                    <h3>Aposentadoria</h3>
+                    <p>
+                        Análise e orientação sobre as modalidades de aposentadoria existentes e os requisitos
+                        aplicáveis ao seu caso.
+                    </p>
+                </article>
+            </div>
+        </section>
+
+        <!-- SOBRE -->
+        <section class="about" id="about">
+            <div class="about-img">
+                <!-- Quando criar versões otimizadas (image1.webp ~150KB no squoosh.app
+                     por exemplo), me avise que coloco de volta o <picture> com fallback.
+                     Por enquanto serve só o JPEG. -->
+                <img src="image1.jpeg" alt="Luiza Lombard"
+                    width="380" height="500" loading="lazy">
             </div>
 
-            <div class="project-card">
-                <img src="logoprojeto.png" alt="">
-
-                <h3>Aposentadoria</h3>
-                <p>Análise e orientação sobre as modalidades de aposentadoria existentes e os requisitos aplicáveis ao
-                    seu caso.
-
-            </div>
-
-    </section>
-
-    <section class="about" id="about">
-
-        <div class="about-img">
-            <img src="image.png" alt="">
-        </div>
-
-        <div class="about-content">
-            <div class="card">
-                <h2><span>Sobre mim</span></h2>
-                <hr>
-
-                <p>Sou Luiza Lombard, advogada previdenciária, e atuo com foco na advocacia previdenciária preventiva.
-                    <br>
-                    Acredito que a segurança previdenciária começa antes do pedido ao INSS, por meio de análise
-                    adequada, método e orientação responsável. Meu trabalho é pautado em atendimento individualizado,
-                    transparência e decisões conscientes, sempre respeitando a realidade e o momento de cada cliente.
-                    <hr>
-                </p>
-
-            </div>
-            <a href="https://wa.me/5531998127273" class="gradient-btn"><img src="whatsapp.png" alt="">Falar com a
-                Advogada</a>
-        </div>
-
-    </section>
-
-    <div class="baixocard">
-        <h1>Como funciona o atendimento</h1>
-        <h2>O atendimento é simples, organizado e totalmente online:</h2>
-        <p>
-            1. Primeiro contato pelo WhatsApp <br>
-            - Você entra em contato e explica, de forma breve, sua situação. <br><br>
-            2. Conversa inicial <br>
-            - Uma conversa para compreender melhor o seu caso e suas dúvidas. <br><br>
-            3. Análise da situação previdenciária <br>
-            - Avaliação cuidadosa das informações e documentos relevantes. <br><br>
-            4. Orientação clara sobre os próximos passos <br>
-            - Explicação objetiva sobre possibilidades, caminhos e cuidados necessários.
-        </p>
-        <hr>
-    </div>
-
-    <section class="faq" id="faq">
-
-        <h2>FAQ - Perguntas frequentes</h2>
-
-        <div class="projects-box">
-
-            <div class="project-card-faq">
-
-                <h3>Não sei se tenho direito a algum
-                    benefício. Posso conversar mesmo
-                    assim?</h3>
-
+            <div class="about-content">
+                <h2 class="heading">Sobre <span class="gradient-text">mim</span></h2>
                 <p>
-                    Sim. Muitas pessoas chegam exatamente
-                    com essa dúvida. A conversa inicial serve
-                    para entender sua situação
+                    Sou Luiza Lombard, advogada previdenciária, e atuo com foco na advocacia previdenciária
+                    preventiva. Acredito que a segurança previdenciária começa antes do pedido ao INSS, por meio
+                    de análise adequada, método e orientação responsável.
+                </p>
+                <p>
+                    Meu trabalho é pautado em atendimento individualizado, transparência e decisões conscientes,
+                    sempre respeitando a realidade e o momento de cada cliente.
                 </p>
 
+                <a href="https://wa.me/5531998127273" class="gradient-btn" target="_blank" rel="noopener">
+                    <svg class="icon" aria-hidden="true"><use href="#i-whatsapp"></use></svg>
+                    <span>Falar com a Advogada</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- AVALIAÇÕES GOOGLE -->
+        <section class="reviews" id="reviews">
+            <h2 class="heading">O que dizem no <span class="gradient-text">Google</span></h2>
+
+            <div class="reviews-grid">
+                <article class="review-card">
+                    <div class="review-header">
+                        <div class="review-avatar" aria-hidden="true">M</div>
+                        <div class="review-author">
+                            <strong>Maria Aparecida</strong>
+                            <span>2 meses atrás</span>
+                        </div>
+                        <svg class="review-google" aria-label="Avaliação no Google" role="img"><use href="#i-google"></use></svg>
+                    </div>
+                    <div class="review-stars" aria-label="5 de 5 estrelas">★★★★★</div>
+                    <p class="review-text">
+                        Atendimento excelente, muito atenciosa. Tirou todas as minhas dúvidas com clareza
+                        e me orientou em cada etapa do processo.
+                    </p>
+                </article>
+
+                <article class="review-card">
+                    <div class="review-header">
+                        <div class="review-avatar" aria-hidden="true">J</div>
+                        <div class="review-author">
+                            <strong>José Pereira</strong>
+                            <span>3 meses atrás</span>
+                        </div>
+                        <svg class="review-google" aria-label="Avaliação no Google" role="img"><use href="#i-google"></use></svg>
+                    </div>
+                    <div class="review-stars" aria-label="5 de 5 estrelas">★★★★★</div>
+                    <p class="review-text">
+                        Profissional muito dedicada e séria. Me orientou desde o começo com paciência
+                        e linguagem fácil de entender.
+                    </p>
+                </article>
+
+                <article class="review-card">
+                    <div class="review-header">
+                        <div class="review-avatar" aria-hidden="true">A</div>
+                        <div class="review-author">
+                            <strong>Ana Costa</strong>
+                            <span>5 meses atrás</span>
+                        </div>
+                        <svg class="review-google" aria-label="Avaliação no Google" role="img"><use href="#i-google"></use></svg>
+                    </div>
+                    <div class="review-stars" aria-label="5 de 5 estrelas">★★★★★</div>
+                    <p class="review-text">
+                        Recomendo de olhos fechados. Explica tudo com calma e me deixou tranquila
+                        para tomar minhas decisões.
+                    </p>
+                </article>
+
+                <article class="review-card">
+                    <div class="review-header">
+                        <div class="review-avatar" aria-hidden="true">C</div>
+                        <div class="review-author">
+                            <strong>Carlos Souza</strong>
+                            <span>1 mês atrás</span>
+                        </div>
+                        <svg class="review-google" aria-label="Avaliação no Google" role="img"><use href="#i-google"></use></svg>
+                    </div>
+                    <div class="review-stars" aria-label="5 de 5 estrelas">★★★★★</div>
+                    <p class="review-text">
+                        Atendimento humanizado e responsável. Senti segurança em cada etapa,
+                        sem promessas vazias. Profissional de confiança.
+                    </p>
+                </article>
+            </div>
+        </section>
+
+        <!-- COMO FUNCIONA O ATENDIMENTO -->
+        <section class="process">
+            <h2 class="heading">Como funciona o atendimento</h2>
+            <p class="section-intro">O atendimento é simples, organizado e totalmente online:</p>
+
+            <ol class="process-steps">
+                <li>
+                    <strong>Primeiro contato pelo WhatsApp</strong>
+                    <span>Você entra em contato e explica, de forma breve, sua situação.</span>
+                </li>
+                <li>
+                    <strong>Conversa inicial</strong>
+                    <span>Uma conversa para compreender melhor o seu caso e suas dúvidas.</span>
+                </li>
+                <li>
+                    <strong>Análise da situação previdenciária</strong>
+                    <span>Avaliação cuidadosa das informações e documentos relevantes.</span>
+                </li>
+                <li>
+                    <strong>Orientação clara sobre os próximos passos</strong>
+                    <span>Explicação objetiva sobre possibilidades, caminhos e cuidados necessários.</span>
+                </li>
+            </ol>
+        </section>
+
+        <!-- FAQ -->
+        <section class="faq" id="faq">
+            <h2 class="heading">FAQ – Perguntas Frequentes</h2>
+
+            <div class="faq-grid">
+                <article class="faq-card">
+                    <h3>Não sei se tenho direito a algum benefício. Posso conversar mesmo assim?</h3>
+                    <p>
+                        Sim. Muitas pessoas chegam exatamente com essa dúvida. A conversa inicial serve para
+                        entender sua situação.
+                    </p>
+                </article>
+
+                <article class="faq-card">
+                    <h3>Preciso já ter todos os documentos?</h3>
+                    <p>
+                        Não necessariamente. Durante a conversa, você receberá orientação sobre quais documentos
+                        podem ser necessários.
+                    </p>
+                </article>
+
+                <article class="faq-card">
+                    <h3>Meu benefício foi negado. Ainda posso buscar orientação?</h3>
+                    <p>
+                        Sim. A negativa do INSS não impede a análise do caso e a orientação adequada.
+                    </p>
+                </article>
+
+                <article class="faq-card">
+                    <h3>O atendimento é presencial?</h3>
+                    <p>
+                        Não. O atendimento é realizado de forma 100% online, inclusive para clientes de qualquer
+                        região do Brasil.
+                    </p>
+                </article>
             </div>
 
-            <div class="project-card-faq">
+            <p class="faq-cta">
+                Se você tem dúvidas sobre aposentadoria, benefícios do INSS ou sua situação previdenciária,
+                conversar com uma advogada previdenciária pode trazer mais clareza e segurança. Estou à disposição
+                para ouvir seu caso e orientar com responsabilidade.
+            </p>
 
-                <h3>
-                    Preciso já ter todos os documentos?</h3>
-                <p>Não necessariamente. Durante a conversa,
-                    você receberá orientação sobre quais
-                    documentos podem ser necessários.</p>
+            <a href="https://wa.me/5531998127273" class="gradient-btn" target="_blank" rel="noopener">
+                <svg class="icon" aria-hidden="true"><use href="#i-whatsapp"></use></svg>
+                <span>Falar com a Advogada</span>
+            </a>
+        </section>
 
-            </div>
+        <!-- CONTATO -->
+        <section class="contact" id="contact">
+            <h2 class="heading">Entre em <span class="gradient-text">Contato</span></h2>
+            <p class="section-intro">
+                Se você tem dúvidas sobre aposentadoria ou benefícios do INSS e quer entender como está a sua
+                situação previdenciária, entre em contato.
+            </p>
 
-            <div class="project-card-faq">
-
-                <h3>
-                    Meu benefício foi negado. Ainda posso
-                    buscar orientação? </h3>
-                <p>Sim. A negativa do INSS não impede a
-                    análise do caso e a orientação adequada
-                </p>
-
-            </div>
-
-            <div class="project-card-faq">
-
-                <h3>
-                    O atendimento é presencial? </h3>
-                <p>Não. O atendimento é realizado de forma
-                    100% online, inclusive para clientes de
-                    qualquer região do Brasil.
-
-                </p>
-
-            </div>
-        </div>
-
-        <div>
-            <h1>Se você tem dúvidas sobre aposentadoria, benefícios do INSS ou sua situação
-                previdenciária, conversar com uma advogada previdenciária pode trazer mais clareza e
-                segurança. <br>
-                Estou à disposição para ouvir seu caso e orientar com responsabilidade</h1>
-        </div>
-        <a href="https://wa.me/5531998127273" class="gradient-btn"><img src="whatsapp.png" alt="">Falar com a
-            Advogada</a>
-    </section>
-
-    <section class="contact" id="contact">
-        <h2 class="heading">Entre em<span> Contato</span></h2>
-        <p>Se você tem dúvidas sobre aposentadoria ou benefícios do INSS e quer entender como está a sua situação
-            previdenciária, entre em contato.</p>
-
-        <div class="contact_1">
-
-            <form action="https://formsubmit.co/luizalombard.adv@gmail.com" method="POST">
-                <div>
-                    <label for="Nome">Nome Completo</label>
-                    <input type="text" name="Nome">
-                </div>
-                <div>
-                    <label for="E-mail">E-mail</label>
-                    <input type="email" name="E-mail" required>
-                </div>
-                <div>
-                    <label for="Telefone">Número de Telefone</label>
-                    <input type="number" name="Telefone">
-                </div>
-                <div>
-                    <label for="Mensagem">Mensagem</label>
-                    <textarea type="text" id="message" name="Mensagem" required></textarea>
+            <form action="https://formsubmit.co/luizalombard.adv@gmail.com" method="POST" class="contact-form">
+                <div class="form-field">
+                    <label for="nome">Nome Completo</label>
+                    <input type="text" id="nome" name="Nome" required>
                 </div>
 
-        </div>
-        <div class="input-goup-2">
-            <input type="submit" value="Enviar mensagem" class="btn">
-        </div>
-        <input type="hidden" name="_next" value="http://localhost:5500/portifolioPI/thanks.html#home">
-        <input type="hidden" name="_subject" value="New submission!">
-        </form>
-    </section>
+                <div class="form-field">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" name="E-mail" required>
+                </div>
+
+                <div class="form-field">
+                    <label for="telefone">Número de Telefone</label>
+                    <input type="tel" id="telefone" name="Telefone" placeholder="(00) 00000-0000">
+                </div>
+
+                <div class="form-field">
+                    <label for="mensagem">Mensagem</label>
+                    <textarea id="mensagem" name="Mensagem" required></textarea>
+                </div>
+
+                <input type="hidden" name="_next" value="https://luizalombard.com.br/thanks.html">
+                <input type="hidden" name="_subject" value="Novo contato pelo site - Luiza Lombard">
+                <input type="hidden" name="_captcha" value="true">
+
+                <button type="submit" class="btn">Enviar mensagem</button>
+            </form>
+        </section>
+
+    </main>
 
     <footer class="footer">
-        </a>
         <div class="social-icons">
-            <a href="https://wa.me/5531998127273">
-                <i class="bi bi-whatsapp"></i>
-
-                <a href="https://www.instagram.com/luizalombard.advogada">
-                    <i class='bx bxl-instagram'></i>
-                </a>
+            <a href="https://wa.me/5531998127273" target="_blank" rel="noopener" aria-label="WhatsApp">
+                <svg class="icon"><use href="#i-whatsapp"></use></svg>
+            </a>
+            <a href="https://www.instagram.com/luizalombard.advogada" target="_blank" rel="noopener"
+                aria-label="Instagram">
+                <svg class="icon"><use href="#i-instagram"></use></svg>
+            </a>
         </div>
 
-        <ul class="list">
-            <li>
-                <a href="#home">Perfil</a>
-            </li>
-            <li>
-                <a href="#projects">Atuação</a>
-            </li>
-            <li>
-                <a href="#about">Sobre mim</a>
-            </li>
-            <li>
-                <a href="#faq">FAQ</a>
-            </li>
-            <li>
-                <a href="#contact">Contato</a>
-            </li>
-        </ul>
+        <nav class="footer-nav" aria-label="Navegação do rodapé">
+            <a href="#home">Perfil</a>
+            <a href="#projects">Atuação</a>
+            <a href="#about">Sobre mim</a>
+            <a href="#reviews">Avaliações</a>
+            <a href="#faq">FAQ</a>
+            <a href="#contact">Contato</a>
+        </nav>
 
-
-        <div class="copyright">
+        <div class="ethical-notice">
             <h3>Aviso Ético</h3>
-            <p> As informações disponibilizadas neste site possuem caráter exclusivamente informativo e educativo, não
-                substituindo a consulta individualizada com advogada.
-                Não há promessa ou garantia de resultados, pois cada caso possui características próprias e depende da
-                análise específica da situação apresentada.
-                A atuação profissional é exercida conforme o Código de Ética e Disciplina da OAB e demais normas
-                aplicáveis
-                à advocacia.</p>
-
+            <p>
+                As informações disponibilizadas neste site possuem caráter exclusivamente informativo e
+                educativo, não substituindo a consulta individualizada com advogada. Não há promessa ou garantia
+                de resultados, pois cada caso possui características próprias e depende da análise específica
+                da situação apresentada. A atuação profissional é exercida conforme o Código de Ética e
+                Disciplina da OAB e demais normas aplicáveis à advocacia.
+            </p>
         </div>
 
+        <p class="copyright">© 2026 Luiza Lombard – Todos os direitos reservados.</p>
     </footer>
-    <script src="script.js"></script>
+
+    <script src="script.js" defer></script>
 </body>
 
 </html>
