@@ -7,6 +7,37 @@
     'use strict';
 
     /* ============================================
+       0. TEMA CLARO / ESCURO
+       O bootstrap inline no <head> já aplica o tema salvo antes da
+       pintura (evita "flash"). Aqui tratamos o botão e a cor do tema.
+       ============================================ */
+    (function theme() {
+        const toggle = document.getElementById('theme-toggle');
+        const meta = document.querySelector('meta[name="theme-color"]');
+        const COLORS = { light: '#636b2f', dark: '#2c2a26' };
+
+        function apply(t) {
+            const dark = t === 'dark';
+            document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+            if (meta) meta.setAttribute('content', dark ? COLORS.dark : COLORS.light);
+            if (toggle) toggle.setAttribute('aria-pressed', String(dark));
+        }
+
+        let saved = null;
+        try { saved = localStorage.getItem('theme'); } catch (e) {}
+        apply(saved === 'dark' ? 'dark' : 'light');
+
+        if (toggle) {
+            toggle.addEventListener('click', function () {
+                const dark = document.documentElement.getAttribute('data-theme') === 'dark';
+                const next = dark ? 'light' : 'dark';
+                try { localStorage.setItem('theme', next); } catch (e) {}
+                apply(next);
+            });
+        }
+    })();
+
+    /* ============================================
        1. MENU MOBILE
        ============================================ */
     const menuToggle = document.getElementById('menu-icon');
@@ -58,10 +89,37 @@
         window.addEventListener('resize', function () {
             clearTimeout(resizeTimer);
             resizeTimer = setTimeout(() => {
-                if (window.innerWidth > 1024) closeMenu();
+                if (window.innerWidth > 1180) closeMenu();
             }, 150);
         });
     }
+
+
+    /* ============================================
+       1b. NAV ATIVO (scroll-spy)
+       Marca o link da seção visível com .active (destaque sutil).
+       Roda independente de "menos movimento" (é só cor, não animação).
+       ============================================ */
+    (function navScrollSpy() {
+        const sections = document.querySelectorAll('main section[id]');
+        const navAnchors = document.querySelectorAll('.navbar a[href^="#"]');
+        if (!sections.length || !navAnchors.length || !('IntersectionObserver' in window)) return;
+
+        const map = {};
+        navAnchors.forEach(a => { map[a.getAttribute('href').slice(1)] = a; });
+
+        const navObs = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                const active = map[entry.target.id];
+                if (!active) return;
+                navAnchors.forEach(a => a.classList.remove('active'));
+                active.classList.add('active');
+            });
+        }, { rootMargin: '-45% 0px -50% 0px' });
+
+        sections.forEach(s => navObs.observe(s));
+    })();
 
 
     /* ============================================

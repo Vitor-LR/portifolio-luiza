@@ -1,0 +1,6 @@
+# robots.txt — Luiza Lombard Advocacia Previdenciária
+
+User-agent: *
+Allow: /
+
+Sitemap: https://luizalombard.com.br/sitemap.xml

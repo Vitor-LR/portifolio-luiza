@@ -14,10 +14,10 @@
 }
 
 html {
-    font-size: 62.5%;
+    font-size: 59%;
     scroll-behavior: smooth;
     overflow-x: hidden;
-    scroll-padding-top: 100px;
+    scroll-padding-top: 82px;
 }
 
 :root {
@@ -29,6 +29,7 @@ html {
     --main-color: #636b2f;
     --main-color-dark: #274703;
     --white: #ffffff;
+    --surface: #ffffff;
     --gradient: linear-gradient(270deg, #636b2f 10%, #274703 100%);
     --shadow-soft: 0 0 25px rgba(99, 107, 47, 0.25);
     --shadow-strong: 0 0 25px rgba(99, 107, 47, 0.5);
@@ -82,8 +83,8 @@ a {
     top: 0;
     left: 0;
     width: 100%;
-    height: 96px;
-    padding: 1rem 5%;
+    height: 76px;
+    padding: 0.8rem 5%;
     background: rgba(248, 245, 231, 0.85);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
@@ -107,8 +108,8 @@ a {
 }
 
 .logo-img {
-    width: 60px;
-    height: 64px;
+    width: 52px;
+    height: 56px;
     object-fit: contain;
 }
 
@@ -129,8 +130,56 @@ a {
     line-height: 1;
 }
 
+/* Grupo à direita do header: botão de tema + hambúrguer */
+.header-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-shrink: 0;
+    /* mais espaço entre o botão "Falar com a Advogada" e o de tema */
+    margin-left: clamp(1.5rem, 3vw, 3rem);
+    /* empurra o botão bem para a direita, próximo da borda */
+    margin-right: -2.5%;
+}
+
+.theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 4.2rem;
+    height: 4.2rem;
+    background: transparent;
+    border: 2px solid var(--card-accent);
+    border-radius: 50%;
+    color: var(--main-color);
+    cursor: pointer;
+    transition: border-color 0.3s ease, color 0.3s ease, background 0.3s ease, transform 0.3s ease;
+}
+
+.theme-toggle:hover,
+.theme-toggle:focus-visible {
+    border-color: var(--main-color);
+    background: var(--second-bg-color);
+    transform: scale(1.06);
+}
+
+.theme-toggle .icon { width: 2rem; height: 2rem; }
+.theme-toggle .ic-sun { display: none; }
+.theme-toggle .ic-moon { display: inline-block; }
+[data-theme="dark"] .theme-toggle .ic-sun { display: inline-block; }
+[data-theme="dark"] .theme-toggle .ic-moon { display: none; }
+
+.navbar {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
 .navbar a {
     display: inline-block;
+    white-space: nowrap;
     font-size: 1.7rem;
     font-weight: 500;
     color: var(--text-color);
@@ -145,6 +194,11 @@ a {
     color: var(--main-color);
     border-bottom-color: var(--main-color);
     transform: scale(1.08);
+}
+
+/* Seção ativa (scroll-spy): só muda a cor, sem traço embaixo */
+.navbar a.active {
+    color: var(--main-color);
 }
 
 /* ----- Buttons -----
@@ -416,7 +470,7 @@ section {
 }
 
 .project-card img {
-    width: 80px;
+    width: 56px;
     height: auto;
     margin: 0 auto 1.5rem;
     object-fit: contain;
@@ -573,7 +627,7 @@ section {
 
 .review-card {
     position: relative;
-    background-color: var(--white);
+    background-color: var(--surface);
     border: 1px solid rgba(99, 107, 47, 0.2);
     border-radius: 1.5rem;
     padding: 2rem 2rem 2rem 2rem;
@@ -747,7 +801,7 @@ section {
     font-size: 1.5rem;
     font-family: inherit;
     color: var(--text-color);
-    background-color: var(--white);
+    background-color: var(--surface);
     border: 1px solid rgba(99, 107, 47, 0.3);
     border-radius: 1rem;
     box-shadow: 0 2px 8px rgba(99, 107, 47, 0.1);
@@ -924,54 +978,27 @@ html {
     }
 }
 
-/* ============================================
-   PÁGINA OBRIGADO (thanks.html)
-   ============================================ */
-.thanks-container {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 2rem;
-    background-color: var(--bg-color);
-}
-
-.thanks-container h1 {
-    font-size: clamp(3rem, 6vw, 6rem);
-    font-weight: 700;
-    margin-bottom: 2rem;
-}
-
-.thanks-container p {
-    font-size: clamp(1.8rem, 2.5vw, 2.5rem);
-    color: var(--text-muted);
-    margin-bottom: 3rem;
-}
-
 
 /* ============================================
    RESPONSIVE
    ============================================ */
 
 /* Tablet / abaixo de desktop ----------------------------------- */
-@media (max-width: 1024px) {
+@media (max-width: 1180px) {
 
     /* HEADER MOBILE
-       Ordem visual final: logo (esq) | botão WhatsApp (meio) | menu (dir).
-       O justify-content: space-between do .header já distribui os 3 itens. */
+       Ordem visual: logo (esq) | botão WhatsApp | [tema][menu] (dir).
+       O wrapper .header-controls mantém tema e hambúrguer juntos à direita. */
     .menu-toggle {
         display: block;
-        order: 3;
     }
 
-    .logo-link {
-        order: 1;
+    .header-controls {
+        margin-left: 0;
+        margin-right: 0;
     }
 
     .gradient-btn {
-        order: 2;
         font-size: 1.4rem;
         padding: 0.8rem 1.6rem;
     }
@@ -1086,7 +1113,7 @@ html {
     .header {
         padding: 1.5rem 4%;
         height: auto;
-        min-height: 70px;
+        min-height: 62px;
     }
 
     .logo-img {
@@ -1167,4 +1194,241 @@ html {
     .home-img {
         max-width: 240px;
     }
+}
+/* ============================================================
+   MODAL DE CONFIRMAÇÃO DO FORMULÁRIO ("não sou um robô")
+   Popup na própria página — não some até confirmar ou cancelar.
+   ============================================================ */
+.cf-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.cf-modal[hidden] { display: none; }
+.cf-modal.is-open { opacity: 1; }
+
+.cf-modal__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(18, 16, 12, 0.58);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+}
+
+.cf-modal__card {
+    position: relative;
+    width: 100%;
+    max-width: 430px;
+    background: var(--surface);
+    border: 1px solid var(--card-accent);
+    border-radius: 1.6rem;
+    box-shadow: 0 20px 60px rgba(20, 25, 10, 0.30);
+    padding: 2.6rem 2.4rem 2.2rem;
+    transform: translateY(12px) scale(0.98);
+    transition: transform 0.2s ease;
+}
+
+.cf-modal.is-open .cf-modal__card { transform: translateY(0) scale(1); }
+
+.cf-modal__x {
+    position: absolute;
+    top: 1.2rem;
+    right: 1.2rem;
+    width: 3.4rem;
+    height: 3.4rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    border-radius: 50%;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.cf-modal__x:hover { background: var(--second-bg-color); color: var(--main-color); }
+.cf-modal__x .icon { width: 1.8rem; height: 1.8rem; }
+
+.cf-modal__title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--main-color-dark);
+    margin-bottom: 0.6rem;
+}
+
+.cf-modal__desc {
+    font-size: 1.5rem;
+    color: var(--text-muted);
+    margin-bottom: 1.8rem;
+}
+
+/* Checkbox "não sou um robô" */
+.cf-check {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.2rem 1.4rem;
+    border: 2px solid var(--card-accent);
+    border-radius: 1rem;
+    background: var(--bg-color);
+    cursor: pointer;
+    user-select: none;
+    transition: border-color 0.2s ease;
+}
+
+.cf-check:hover { border-color: var(--main-color); }
+.cf-check input { position: absolute; opacity: 0; width: 0; height: 0; }
+
+.cf-check__box {
+    flex-shrink: 0;
+    width: 2.6rem;
+    height: 2.6rem;
+    border: 2px solid var(--main-color);
+    border-radius: 0.6rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: transparent;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.cf-check__box .icon { width: 1.6rem; height: 1.6rem; }
+.cf-check input:checked + .cf-check__box { background: var(--main-color); color: var(--white); }
+.cf-check input:focus-visible + .cf-check__box { box-shadow: 0 0 0 3px rgba(99, 107, 47, 0.30); }
+.cf-check__label { font-size: 1.6rem; font-weight: 500; color: var(--text-color); }
+
+.cf-modal__error {
+    margin-top: 1.2rem;
+    font-size: 1.4rem;
+    color: #c0392b;
+}
+
+.cf-modal__actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.cf-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 2rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    font-family: inherit;
+    border-radius: 2.4rem;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.cf-btn--primary { background: var(--main-color); color: var(--white); box-shadow: var(--shadow-soft); }
+.cf-btn--primary:hover:not(:disabled) { transform: scale(1.04); box-shadow: var(--shadow-strong); }
+.cf-btn--primary:disabled { opacity: 0.5; cursor: not-allowed; }
+.cf-btn--ghost { background: transparent; border-color: var(--card-accent); color: var(--text-muted); }
+.cf-btn--ghost:hover { border-color: var(--main-color); color: var(--main-color); }
+
+/* Popup de agradecimento (sucesso) */
+.cf-modal--success .cf-modal__card { text-align: center; }
+.cf-modal__actions--center { justify-content: center; }
+
+.cf-success__badge {
+    width: 6.4rem;
+    height: 6.4rem;
+    margin: 0 auto 1.4rem;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--main-color);
+    color: var(--white);
+    box-shadow: var(--shadow-soft);
+    transform: scale(0.5);
+    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) 0.06s;
+}
+.cf-modal--success.is-open .cf-success__badge { transform: scale(1); }
+.cf-success__badge .icon { width: 3.2rem; height: 3.2rem; }
+
+/* ============================================================
+   TEMA ESCURO — mantém a tonalidade verde do site
+   ============================================================ */
+[data-theme="dark"] {
+    /* Sistema de superfícies por ELEVAÇÃO (luminosidade), subtom quente neutro.
+       Camadas: seções ~L14 < fundo ~L16 < cards/campos ~L21 < modal ~L25.
+       O verde fica como ACENTO de marca (botões, ícones, bordas, títulos). */
+    --bg-color: #2c2a26;           /* fundo base (home/seções principais) */
+    --second-bg-color: #252320;    /* seções alternadas — camada mais baixa */
+    --card-accent: #515541;        /* borda esverdeada discreta (detalhe) */
+    --text-color: #f1efe6;         /* off-white quente (não branco puro) */
+    --text-muted: #b7b2a6;         /* cinza neutro p/ texto secundário */
+    --main-color: #aebd6a;         /* verde de acento (ícones, links, bordas) */
+    --main-color-dark: #d3e098;
+    --white: #ffffff;
+    --surface: #3a3730;            /* cards/campos — elevados (~5 pts acima do fundo) */
+    --gradient: linear-gradient(270deg, #66742f 10%, #8a9b4f 100%);  /* botões verdes (acento de marca) */
+    --shadow-soft: 0 0 25px rgba(174, 189, 106, 0.16);
+    --shadow-strong: 0 0 28px rgba(174, 189, 106, 0.30);
+}
+
+/* Header, footer e dropdown → translúcidos escuros */
+[data-theme="dark"] .header { background: rgba(44, 42, 38, 0.85); }
+[data-theme="dark"] .footer { background-color: rgba(44, 42, 38, 0.85); }
+
+/* No escuro o campo precisa de cor diferente do fundo (como o branco no claro):
+   isso já vem do --surface aplicado em inputs/cards. Placeholder mais legível: */
+[data-theme="dark"] .form-field input::placeholder,
+[data-theme="dark"] .form-field textarea::placeholder {
+    color: var(--text-muted);
+    opacity: 0.8;
+}
+
+/* Símbolo das áreas de atuação → versão branca no tema escuro */
+[data-theme="dark"] .project-card img {
+    content: url("simbolobranco.png");
+}
+
+/* Logo do header → versão clara (Ativo9.png) no tema escuro */
+[data-theme="dark"] .logo-img {
+    content: url("Ativo9.png");
+}
+
+/* Fundos sólidos verdes com conteúdo branco → tom mais escuro p/ manter contraste */
+[data-theme="dark"] .btn,
+[data-theme="dark"] .cf-btn--primary,
+[data-theme="dark"] .cf-check input:checked + .cf-check__box,
+[data-theme="dark"] .social-icons a:hover,
+[data-theme="dark"] .social-icons a:focus-visible {
+    background-color: #5f6c2c;
+}
+
+/* Texto em gradiente (títulos) precisa de tons claros no escuro */
+[data-theme="dark"] .gradient-text {
+    background-image: linear-gradient(270deg, #c6d68b 10%, #9aab5c 100%);
+}
+
+/* Seções "Como funciona" e "FAQ": tom de card mais refinado no escuro.
+   Volta ao card escuro de antes (texto claro, borda e círculo verdes),
+   só que com um olive um pouco mais quente e elevado do fundo. */
+[data-theme="dark"] .process-steps li,
+[data-theme="dark"] .faq-card {
+    background-color: #4c4f37;
+}
+
+/* Modal/popup: camada mais alta do sistema de elevação (mais claro que os cards) */
+[data-theme="dark"] .cf-modal__card {
+    background-color: #444036;
+}
+
+/* Dropdown do menu mobile no escuro */
+@media (max-width: 1180px) {
+    [data-theme="dark"] .navbar { background: rgba(44, 42, 38, 0.92); }
 }
