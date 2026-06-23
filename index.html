@@ -6,22 +6,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#636b2f">
     <!-- Aplica o tema salvo antes de pintar a página (evita "flash") -->
-    <script>(function(){try{if(localStorage.getItem('theme')==='dark'){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}})();</script>
+    <script>(function () { try { if (localStorage.getItem('theme') === 'dark') { document.documentElement.setAttribute('data-theme', 'dark'); } } catch (e) { } })();</script>
     <meta name="description"
-        content="Luiza Lombard - Advogada Previdenciária. Atendimento humanizado e individualizado. Análise, planejamento previdenciário e orientação responsável antes do pedido ao INSS.">
+        content="Luiza Lombard - Advogada. Atuação em Direito, com atendimento humanizado e individualizado. Orientação clara e responsável, online e presencial.">
 
     <!-- Open Graph -->
-    <meta property="og:title" content="Luiza Lombard - Advocacia Previdenciária">
+    <meta property="og:title" content="Luiza Lombard - Advogada">
     <meta property="og:description"
-        content="Segurança previdenciária começa antes do pedido ao INSS. Atendimento 100% online com análise individualizada.">
+        content="Orientação jurídica clara para proteger seus direitos. Atuação em Direito, com atendimento online e presencial.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://luizalombard.com.br/">
-    <meta property="og:image" content="https://luizalombard.com.br/image.jpeg">
+    <meta property="og:image" content="https://luizalombard.com.br/assets/img/og.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Luiza Lombard - Advogada">
     <meta property="og:locale" content="pt_BR">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Luiza Lombard - Advogada">
+    <meta name="twitter:description"
+        content="Orientação jurídica clara para proteger seus direitos. Atuação em Direito, com atendimento online e presencial.">
+    <meta name="twitter:image" content="https://luizalombard.com.br/assets/img/og.jpg">
 
     <link rel="canonical" href="https://luizalombard.com.br/">
 
-    <title>Luiza Lombard - Advocacia Previdenciária</title>
+    <title>Luiza Lombard - Advogada</title>
 
     <!-- Favicon adaptativo:
          - Browsers modernos escolhem entre as duas opções conforme o tema do usuário.
@@ -29,27 +37,20 @@
              • favicon-on-light.png  → ícone para ser exibido em FUNDO CLARO (use cor escura)
              • favicon-on-dark.png   → ícone para ser exibido em FUNDO ESCURO (use cor clara)
          - A linha sem `media` é fallback para browsers que não entendem a media query. -->
-    <link rel="icon" type="image/png" href="Ativo15.png">
-    <link rel="icon" type="image/png" href="Ativo15.png" media="(prefers-color-scheme: light)">
-    <link rel="icon" type="image/png" href="Ativo9.png" media="(prefers-color-scheme: dark)">
+    <link rel="icon" type="image/png" href="assets/img/Ativo15.png">
+    <link rel="icon" type="image/png" href="assets/img/Ativo15.png" media="(prefers-color-scheme: light)">
+    <link rel="icon" type="image/png" href="assets/img/Ativo9.png" media="(prefers-color-scheme: dark)">
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
+    <!-- Fontes auto-hospedadas: preload só dos pesos críticos da dobra -->
+    <link rel="preload" href="assets/fonts/poppins-800.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/fonts/poppins-400.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/fonts/playfair-800.woff2" as="font" type="font/woff2" crossorigin>
 
     <!-- Styles -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="assets/css/style.css?v=24">
 
-    <!-- Google Ads -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17724271591"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'AW-17724271591');
-    </script>
+    <!-- Google Ads — carregado por script.js SOMENTE após consentimento (LGPD).
+         O ID fica no data-attribute; veja o bloco de consentimento no fim do body. -->
 
     <!-- Dados estruturados (schema.org) — ajudam o Google a entender que
          o site é da advogada "Luiza Lombard" e do que ela trata. -->
@@ -58,22 +59,42 @@
         "@context": "https://schema.org",
         "@type": "Attorney",
         "name": "Luiza Lombard",
-        "alternateName": "Luiza Lombard Advocacia Previdenciária",
-        "description": "Advogada previdenciária com atuação preventiva: análise, planejamento previdenciário e orientação antes do pedido ao INSS. Atendimento 100% online.",
+        "alternateName": "Luiza Lombard Advogada",
+        "description": "Advogada com atuação em Direito Previdenciário e Direito do Consumidor. Orientação, análise de casos e acompanhamento individualizado, com atendimento online e presencial.",
         "url": "https://luizalombard.com.br/",
-        "image": "https://luizalombard.com.br/image.jpeg",
+        "image": "https://luizalombard.com.br/assets/img/image.jpeg",
         "telephone": "+55-31-99812-7273",
         "email": "luizalombard.adv@gmail.com",
         "priceRange": "$$",
         "areaServed": { "@type": "Country", "name": "Brasil" },
-        "knowsAbout": ["Direito Previdenciário", "Aposentadoria", "INSS", "Planejamento Previdenciário", "Benefícios do INSS"],
+        "knowsAbout": ["Direito Previdenciário", "Direito do Consumidor", "Aposentadoria", "INSS", "Benefícios do INSS", "Negativação Indevida", "Cobranças Abusivas"],
         "address": { "@type": "PostalAddress", "addressCountry": "BR", "addressRegion": "MG" },
         "sameAs": ["https://www.instagram.com/luizalombard_advogada"]
+    }
+    </script>
+
+    <!-- Dados estruturados — FAQPage (rich snippet das perguntas frequentes) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            { "@type": "Question", "name": "Não sei se tenho direito a algum benefício. Posso conversar mesmo assim?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Sim. Muitas pessoas chegam exatamente com essa dúvida. A conversa inicial serve para entender sua situação." } },
+            { "@type": "Question", "name": "Preciso já ter todos os documentos?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Não necessariamente. Durante a conversa, você receberá orientação sobre quais documentos podem ser necessários." } },
+            { "@type": "Question", "name": "Meu benefício foi negado. Ainda posso buscar orientação?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Sim. A negativa do INSS não impede a análise do caso e a orientação adequada." } },
+            { "@type": "Question", "name": "O atendimento é online ou presencial?",
+              "acceptedAnswer": { "@type": "Answer", "text": "As duas formas. O atendimento é realizado online para todo o Brasil e também presencialmente, conforme a necessidade de cada caso." } }
+        ]
     }
     </script>
 </head>
 
 <body>
+
+    <a class="skip-link" href="#main-content">Pular para o conteúdo</a>
 
     <!-- ============================================
          SPRITE SVG — ícones reutilizáveis via <use>.
@@ -84,45 +105,85 @@
          ============================================ -->
     <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
         <symbol id="i-list" viewBox="0 0 16 16">
-            <path fill="currentColor" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
+            <path fill="currentColor"
+                d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5" />
         </symbol>
         <symbol id="i-x" viewBox="0 0 16 16">
-            <path fill="currentColor" d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
+            <path fill="currentColor"
+                d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708" />
         </symbol>
         <symbol id="i-check" viewBox="0 0 16 16">
-            <path fill="currentColor" d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0"/>
+            <path fill="currentColor"
+                d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0" />
         </symbol>
         <symbol id="i-whatsapp" viewBox="0 0 16 16">
-            <path fill="currentColor" d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.444-1.073-.612-1.468-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.651 0 .974.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/>
+            <path fill="currentColor"
+                d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.444-1.073-.612-1.468-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.651 0 .974.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232" />
         </symbol>
         <symbol id="i-envelope" viewBox="0 0 24 24">
-            <path fill="currentColor" d="M1.5 8.67v8.58a3 3 0 0 0 3 3h15a3 3 0 0 0 3-3V8.67l-8.928 5.493a3 3 0 0 1-3.144 0L1.5 8.67Z"/>
-            <path fill="currentColor" d="M22.5 6.908V6.75a3 3 0 0 0-3-3h-15a3 3 0 0 0-3 3v.158l9.714 5.978a1.5 1.5 0 0 0 1.572 0L22.5 6.908Z"/>
+            <path fill="currentColor"
+                d="M1.5 8.67v8.58a3 3 0 0 0 3 3h15a3 3 0 0 0 3-3V8.67l-8.928 5.493a3 3 0 0 1-3.144 0L1.5 8.67Z" />
+            <path fill="currentColor"
+                d="M22.5 6.908V6.75a3 3 0 0 0-3-3h-15a3 3 0 0 0-3 3v.158l9.714 5.978a1.5 1.5 0 0 0 1.572 0L22.5 6.908Z" />
         </symbol>
         <symbol id="i-instagram" viewBox="0 0 16 16">
-            <path fill="currentColor" d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.218 4.109 4.109 0 0 0 0-8.218m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334"/>
+            <path fill="currentColor"
+                d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.218 4.109 4.109 0 0 0 0-8.218m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334" />
+        </symbol>
+        <symbol id="i-linkedin" viewBox="0 0 16 16">
+            <path fill="currentColor"
+                d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z" />
         </symbol>
         <symbol id="i-geo" viewBox="0 0 16 16">
-            <path fill="currentColor" fill-rule="evenodd" d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+            <path fill="currentColor" fill-rule="evenodd"
+                d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
         </symbol>
         <symbol id="i-google" viewBox="0 0 48 48">
-            <path fill="#FFC107" d="M43.611 20.083H42V20H24v8h11.303c-1.649 4.657-6.08 8-11.303 8-6.627 0-12-5.373-12-12s5.373-12 12-12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 12.955 4 4 12.955 4 24s8.955 20 20 20 20-8.955 20-20c0-1.341-.138-2.65-.389-3.917z"/>
-            <path fill="#FF3D00" d="m6.306 14.691 6.571 4.819C14.655 15.108 18.961 12 24 12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 16.318 4 9.656 8.337 6.306 14.691z"/>
-            <path fill="#4CAF50" d="M24 44c5.166 0 9.86-1.977 13.409-5.192l-6.19-5.238A11.91 11.91 0 0 1 24 36c-5.202 0-9.619-3.317-11.283-7.946l-6.522 5.025C9.505 39.556 16.227 44 24 44z"/>
-            <path fill="#1976D2" d="M43.611 20.083H42V20H24v8h11.303a12.04 12.04 0 0 1-4.087 5.571l.003-.002 6.19 5.238C36.971 39.205 44 34 44 24c0-1.341-.138-2.65-.389-3.917z"/>
+            <path fill="#FFC107"
+                d="M43.611 20.083H42V20H24v8h11.303c-1.649 4.657-6.08 8-11.303 8-6.627 0-12-5.373-12-12s5.373-12 12-12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 12.955 4 4 12.955 4 24s8.955 20 20 20 20-8.955 20-20c0-1.341-.138-2.65-.389-3.917z" />
+            <path fill="#FF3D00"
+                d="m6.306 14.691 6.571 4.819C14.655 15.108 18.961 12 24 12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 16.318 4 9.656 8.337 6.306 14.691z" />
+            <path fill="#4CAF50"
+                d="M24 44c5.166 0 9.86-1.977 13.409-5.192l-6.19-5.238A11.91 11.91 0 0 1 24 36c-5.202 0-9.619-3.317-11.283-7.946l-6.522 5.025C9.505 39.556 16.227 44 24 44z" />
+            <path fill="#1976D2"
+                d="M43.611 20.083H42V20H24v8h11.303a12.04 12.04 0 0 1-4.087 5.571l.003-.002 6.19 5.238C36.971 39.205 44 34 44 24c0-1.341-.138-2.65-.389-3.917z" />
         </symbol>
         <symbol id="i-sun" viewBox="0 0 16 16">
-            <path fill="currentColor" d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6m0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8M8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0m0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13m8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5M3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8m10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0m-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0m9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707M4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708"/>
+            <path fill="currentColor"
+                d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6m0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8M8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0m0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13m8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5M3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8m10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0m-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0m9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707M4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708" />
         </symbol>
         <symbol id="i-moon" viewBox="0 0 16 16">
-            <path fill="currentColor" d="M6 .278a.77.77 0 0 1 .08.858 7.2 7.2 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277q.792-.001 1.533-.16a.79.79 0 0 1 .81.316.73.73 0 0 1-.031.893A8.35 8.35 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.75.75 0 0 1 6 .278M4.858 1.311A7.27 7.27 0 0 0 1.025 7.71c0 4.02 3.279 7.276 7.319 7.276a7.32 7.32 0 0 0 5.205-2.162q-.506.063-1.029.063c-4.61 0-8.343-3.714-8.343-8.29 0-1.167.242-2.278.681-3.286"/>
-            <path fill="currentColor" d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.73 1.73 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.73 1.73 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.73 1.73 0 0 0 1.097-1.097z"/>
+            <path fill="currentColor"
+                d="M6 .278a.77.77 0 0 1 .08.858 7.2 7.2 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277q.792-.001 1.533-.16a.79.79 0 0 1 .81.316.73.73 0 0 1-.031.893A8.35 8.35 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.75.75 0 0 1 6 .278M4.858 1.311A7.27 7.27 0 0 0 1.025 7.71c0 4.02 3.279 7.276 7.319 7.276a7.32 7.32 0 0 0 5.205-2.162q-.506.063-1.029.063c-4.61 0-8.343-3.714-8.343-8.29 0-1.167.242-2.278.681-3.286" />
+            <path fill="currentColor"
+                d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.73 1.73 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.73 1.73 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.73 1.73 0 0 0 1.097-1.097z" />
+        </symbol>
+        <symbol id="i-scales" viewBox="0 0 64 64">
+            <g fill="currentColor">
+                <circle cx="32" cy="6.5" r="2.6" />
+                <rect x="30.6" y="8" width="2.8" height="42" rx="1.2" />
+                <rect x="9" y="14.4" width="46" height="2.8" rx="1.4" />
+                <circle cx="10.4" cy="15.8" r="2.1" />
+                <circle cx="53.6" cy="15.8" r="2.1" />
+                <path d="M3.4 29.5 Q10.4 41 17.4 29.5 Z" />
+                <path d="M46.6 29.5 Q53.6 41 60.6 29.5 Z" />
+                <path d="M24 50 H40 L43 56 H21 Z" />
+                <rect x="19" y="55.4" width="26" height="3.2" rx="1.4" />
+            </g>
+            <g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+                <path d="M10.4 16.5 6 30 M10.4 16.5 14.8 30" />
+                <path d="M53.6 16.5 49.2 30 M53.6 16.5 58 30" />
+            </g>
+        </symbol>
+        <symbol id="i-chevron" viewBox="0 0 16 16">
+            <path fill="currentColor"
+                d="M3.646 6.146a.5.5 0 0 1 .708 0L8 9.793l3.646-3.647a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 0-.708" />
         </symbol>
     </svg>
 
     <header class="header">
         <a href="#home" class="logo-link" aria-label="Ir para o início">
-            <img src="Ativo15.png" alt="" class="logo-img" width="60" height="64">
+            <img src="assets/img/Ativo15.png" alt="" class="logo-img" width="60" height="64">
             <span class="logo">Luiza Lombard</span>
         </a>
 
@@ -136,128 +197,177 @@
         </nav>
 
         <a href="https://wa.me/5531998127273" class="gradient-btn" target="_blank" rel="noopener">
-            <svg class="icon" aria-hidden="true"><use href="#i-whatsapp"></use></svg>
+            <svg class="icon" aria-hidden="true">
+                <use href="#i-whatsapp"></use>
+            </svg>
             <span>Falar agora</span>
         </a>
 
         <div class="header-controls">
-            <button class="theme-toggle" id="theme-toggle" type="button"
-                aria-label="Alternar tema claro e escuro" title="Alternar tema">
-                <svg class="icon ic-sun"><use href="#i-sun"></use></svg>
-                <svg class="icon ic-moon"><use href="#i-moon"></use></svg>
+            <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Alternar tema claro e escuro"
+                title="Alternar tema">
+                <svg class="icon ic-sun">
+                    <use href="#i-sun"></use>
+                </svg>
+                <svg class="icon ic-moon">
+                    <use href="#i-moon"></use>
+                </svg>
             </button>
-            <button class="menu-toggle" id="menu-icon" aria-label="Abrir menu" aria-expanded="false" aria-controls="navbar">
-                <svg class="icon"><use href="#i-list"></use></svg>
+            <button class="menu-toggle" id="menu-icon" aria-label="Abrir menu" aria-expanded="false"
+                aria-controls="navbar">
+                <span class="mt-bars" aria-hidden="true"><span></span><span></span><span></span></span>
             </button>
         </div>
     </header>
 
-    <main>
+    <main id="main-content">
 
         <!-- HERO -->
         <section class="home" id="home">
             <div class="home-content">
-                <h1><span class="gradient-text">Luiza Lombard</span></h1>
-                <h2 class="role">Advogada Previdenciária</h2>
-                <p class="lead">Segurança previdenciária começa antes do pedido ao INSS</p>
-                <p>
-                    Sou Luiza Lombard, advogada previdenciária, e atuo com foco na advocacia previdenciária
-                    preventiva, orientando pessoas a tomarem decisões seguras e conscientes antes de qualquer
-                    pedido de benefício. Atendimento 100% online, de forma acessível e humanizada.
+                <span class="home-badge">
+                    <svg class="icon" aria-hidden="true">
+                        <use href="#i-scales"></use>
+                    </svg>
+                    Previdenciário <i aria-hidden="true">·</i> Consumidor <i aria-hidden="true">·</i> Humanizado
+                </span>
+
+                <h1 class="home-title">Luiza <span class="gradient-gold">Lombard</span></h1>
+                <p class="home-role">- Advogada -</p>
+
+                <p class="home-sub">
+                    Orientação jurídica clara para proteger seus direitos e trazer mais
+                    segurança ao seu futuro, com atendimento próximo e humanizado.
                 </p>
 
-                <div class="social-icons">
-                    <a href="https://wa.me/5531998127273" target="_blank" rel="noopener" aria-label="WhatsApp">
-                        <svg class="icon"><use href="#i-whatsapp"></use></svg>
+                <div class="home-cta">
+                    <a href="https://wa.me/5531998127273" class="cta cta--primary" target="_blank" rel="noopener">
+                        <svg class="icon" aria-hidden="true">
+                            <use href="#i-whatsapp"></use>
+                        </svg>
+                        <span>Falar agora</span>
                     </a>
-                    <a href="https://www.instagram.com/luizalombard_advogada" target="_blank" rel="noopener"
-                        aria-label="Instagram">
-                        <svg class="icon"><use href="#i-instagram"></use></svg>
+                    <a href="#contact" class="cta cta--ghost">
+                        <span>Entre em contato</span>
+                        <svg class="icon" aria-hidden="true">
+                            <use href="#i-envelope"></use>
+                        </svg>
                     </a>
-                    <a href="https://www.google.com/maps/search/?api=1&amp;query=Ipatinga+MG"
-                        target="_blank" rel="noopener" aria-label="Localização — Ipatinga, MG">
-                        <svg class="icon"><use href="#i-geo"></use></svg>
-                    </a>
+
+                    <div class="home-social">
+                        <a href="https://www.instagram.com/luizalombard_advogada" class="home-social-btn"
+                            target="_blank" rel="noopener" aria-label="Instagram">
+                            <svg class="icon" aria-hidden="true">
+                                <use href="#i-instagram"></use>
+                            </svg>
+                        </a>
+                        <a href="https://www.linkedin.com/in/luizalombard" class="home-social-btn" target="_blank"
+                            rel="noopener" aria-label="LinkedIn">
+                            <svg class="icon" aria-hidden="true">
+                                <use href="#i-linkedin"></use>
+                            </svg>
+                        </a>
+                        <a href="https://www.google.com/maps/search/?api=1&amp;query=Ipatinga+MG"
+                            class="home-social-btn" target="_blank" rel="noopener"
+                            aria-label="Localização — Ipatinga, MG">
+                            <svg class="icon" aria-hidden="true">
+                                <use href="#i-geo"></use>
+                            </svg>
+                        </a>
+                    </div>
                 </div>
 
-                <div class="btn-group">
-                    <a href="#contact" class="btn">
-                        Entre em Contato
-                        <svg class="icon"><use href="#i-envelope"></use></svg>
-                    </a>
-                </div>
+                <ul class="home-trust">
+                    <li>Atendimento online e presencial</li>
+                    <li>Análise individual de cada caso</li>
+                    <li>Sem promessas vazias</li>
+                </ul>
             </div>
 
-            <div class="home-img">
-                <img src="image.jpeg" alt="Luiza Lombard, advogada previdenciária"
-                    width="380" height="500" fetchpriority="high">
+            <div class="home-figure">
+                <span class="home-glow" aria-hidden="true"></span>
+                <svg class="home-wm" aria-hidden="true" focusable="false">
+                    <use href="#i-scales"></use>
+                </svg>
+                <picture>
+                    <source srcset="assets/img/luiza-hero.webp" type="image/webp">
+                    <img src="assets/img/luiza-hero.png" class="home-person" alt="Luiza Lombard, advogada" width="640"
+                        height="750" fetchpriority="high">
+                </picture>
             </div>
         </section>
 
-        <!-- SITUAÇÕES -->
-        <section class="situations" id="situations">
-            <h2 class="heading">Você se identifica com alguma dessas situações?</h2>
-            <h3 class="subheading">Você pode estar passando por uma ou mais dessas dúvidas</h3>
+        <!-- SITUAÇÕES + COMO POSSO AJUDAR (dois blocos lado a lado) -->
+        <section class="duo" id="situations">
+            <div class="duo-block">
+                <h2 class="heading">Você se identifica com alguma dessas situações?</h2>
+                <h3 class="subheading">Você pode estar passando por uma ou mais dessas dúvidas</h3>
+                <ul class="check-list">
+                    <li>Não sabe se tem direito a algum benefício do INSS</li>
+                    <li>Já pensou em pedir aposentadoria, mas não sabe se é o momento certo</li>
+                    <li>Teve um benefício negado e não entende o motivo</li>
+                    <li>Foi negativado(a) ou sofreu uma cobrança que considera indevida</li>
+                    <li>Tem um problema com banco, serviço ou produto e não sabe como agir</li>
+                    <li>Tem dificuldades para entender procedimentos, documentos ou exigências legais</li>
+                </ul>
+            </div>
 
-            <ul class="check-list">
-                <li>Não sabe se tem direito a algum benefício do INSS</li>
-                <li>Já pensou em pedir aposentadoria, mas não sabe se é o momento certo</li>
-                <li>Teve um benefício negado e não entende o motivo</li>
-                <li>Tem medo de fazer algo errado e acabar prejudicando seu pedido</li>
-                <li>Sente falta de uma orientação clara, sem termos complicados</li>
-                <li>Não sabe por onde começar ou quais documentos são realmente necessários</li>
-            </ul>
-        </section>
-
-        <!-- COMO POSSO AJUDAR -->
-        <section class="help">
-            <h2 class="heading">Como posso te ajudar</h2>
-            <p class="section-intro">
-                Minha atuação é baseada em análise individual e responsável de cada caso, sempre com atenção
-                às regras previdenciárias e à realidade de cada pessoa. Você pode contar com:
-            </p>
-
-            <ul class="check-list">
-                <li>Análise cuidadosa da sua situação previdenciária</li>
-                <li>Orientação clara e objetiva, em linguagem fácil de entender</li>
-                <li>Atuação responsável, sem promessas ou atalhos</li>
-                <li>Explicação dos caminhos possíveis, com transparência</li>
-                <li>Acompanhamento técnico e humano em cada etapa</li>
-            </ul>
+            <div class="duo-block">
+                <h2 class="heading">Como posso te ajudar!</h2>
+                <p class="section-intro">
+                    Minha atuação é baseada em análise individual e responsável de cada caso, sempre com atenção
+                    às regras aplicáveis e à realidade de cada pessoa. Você pode contar com:
+                </p>
+                <ul class="check-list">
+                    <li>Análise cuidadosa da sua situação</li>
+                    <li>Orientação clara e objetiva, em linguagem fácil de entender</li>
+                    <li>Atuação responsável, sem promessas ou atalhos</li>
+                    <li>Explicação dos caminhos possíveis, com transparência</li>
+                    <li>Acompanhamento técnico e humano em cada etapa</li>
+                </ul>
+            </div>
         </section>
 
         <!-- ÁREAS DE ATUAÇÃO -->
         <section class="projects" id="projects">
-            <h2 class="heading">Áreas de Atuação – Direito Previdenciário</h2>
+            <i class="sec-wm sec-wm--statue-r" aria-hidden="true"></i>
+            <h2 class="heading">Áreas de Atuação</h2>
             <p class="section-intro">
-                Atuo exclusivamente com Direito Previdenciário, auxiliando em demandas relacionadas ao INSS, como:
+                Atuo com assessoria jurídica em diversas áreas do Direito, auxiliando clientes na busca por soluções
+                seguras e adequadas para suas necessidades, como:
             </p>
 
             <div class="projects-grid">
                 <article class="project-card">
-                    <img src="simbolo.png" alt="" width="80" height="80" loading="lazy">
-                    <h3>Análise Previdenciária</h3>
+                    <svg class="card-symbol" aria-hidden="true">
+                        <use href="#i-scales"></use>
+                    </svg>
+                    <h3>Direito Previdenciário</h3>
                     <p>
-                        Avaliação completa da sua situação para identificar direitos, riscos e possibilidades
-                        antes de qualquer pedido ao INSS.
+                        Aposentadorias, benefícios por incapacidade, BPC/LOAS, planejamento previdenciário
+                        e revisão de benefícios perante o INSS.
                     </p>
                 </article>
 
                 <article class="project-card">
-                    <img src="simbolo.png" alt="" width="80" height="80" loading="lazy">
-                    <h3>Planejamento Previdenciário</h3>
+                    <svg class="card-symbol" aria-hidden="true">
+                        <use href="#i-scales"></use>
+                    </svg>
+                    <h3>Direito do Consumidor</h3>
                     <p>
-                        Orientação para quem deseja se organizar e entender quando e como poderá solicitar a
-                        aposentadoria de forma mais segura.
+                        Negativação indevida, cobranças abusivas, problemas bancários, cancelamento de
+                        serviços e indenizações por danos morais e materiais.
                     </p>
                 </article>
 
                 <article class="project-card">
-                    <img src="simbolo.png" alt="" width="80" height="80" loading="lazy">
-                    <h3>Aposentadoria</h3>
+                    <svg class="card-symbol" aria-hidden="true">
+                        <use href="#i-scales"></use>
+                    </svg>
+                    <h3>Orientação e Análise de Casos</h3>
                     <p>
-                        Análise e orientação sobre as modalidades de aposentadoria existentes e os requisitos
-                        aplicáveis ao seu caso.
+                        Análise individual da sua situação, com orientação clara e estratégica para você
+                        decidir com segurança antes de agir.
                     </p>
                 </article>
             </div>
@@ -265,30 +375,36 @@
 
         <!-- SOBRE -->
         <section class="about" id="about">
-            <div class="about-img">
+            <div class="about-figure">
+                <span class="about-heading-m" aria-hidden="true">Sobre<br><span class="gradient-text">mim</span></span>
                 <picture>
-                    <source srcset="image1.webp" type="image/webp">
-                    <img src="image1.jpeg" alt="Luiza Lombard, advogada previdenciária"
-                        width="800" height="1422" loading="lazy">
+                    <source srcset="assets/img/mulher-sobre.webp" type="image/webp">
+                    <img src="assets/img/mulher-sobre.png" class="about-person" alt="Luiza Lombard, advogada"
+                        width="560" height="892" loading="lazy">
                 </picture>
             </div>
 
             <div class="about-content">
                 <h2 class="heading">Sobre <span class="gradient-text">mim</span></h2>
                 <p>
-                    Sou Luiza Lombard, advogada previdenciária, e atuo com foco na advocacia previdenciária
-                    preventiva. Acredito que a segurança previdenciária começa antes do pedido ao INSS, por meio
-                    de análise adequada, método e orientação responsável.
+                    Sou Luiza Lombard, advogada, e atuo na prestação de assessoria e orientação jurídica em diferentes
+                    áreas do Direito, sempre com foco na prevenção de conflitos, na análise cuidadosa de cada situação e
+                    na busca por soluções seguras e adequadas para cada cliente.
                 </p>
                 <p>
-                    Meu trabalho é pautado em atendimento individualizado, transparência e decisões conscientes,
-                    sempre respeitando a realidade e o momento de cada cliente.
+                    Acredito que decisões bem fundamentadas começam por uma orientação clara, responsável e estratégica.
+                    Por isso, meu trabalho é pautado em atendimento individualizado, transparência e comprometimento,
+                    respeitando a realidade, os objetivos e o momento de cada pessoa.
                 </p>
 
-                <a href="https://wa.me/5531998127273" class="gradient-btn" target="_blank" rel="noopener">
-                    <svg class="icon" aria-hidden="true"><use href="#i-whatsapp"></use></svg>
-                    <span>Falar agora</span>
-                </a>
+                <div class="about-focus">
+                    <span># direito previdenciário</span>
+                    <span># direito do consumidor</span>
+                    <span># aposentadoria</span>
+                    <span># benefícios do INSS</span>
+                    <span># atendimento humanizado</span>
+                    <span># análise individualizada</span>
+                </div>
             </div>
         </section>
 
@@ -301,15 +417,17 @@
                     <div class="review-header">
                         <div class="review-avatar" aria-hidden="true">M</div>
                         <div class="review-author">
-                            <strong>Maria Aparecida</strong>
-                            <span>2 meses atrás</span>
+                            <strong>Laiza Dornelas</strong>
+                            <div class="review-stars" aria-label="5 de 5 estrelas">★★★★★</div>
                         </div>
-                        <svg class="review-google" aria-label="Avaliação no Google" role="img"><use href="#i-google"></use></svg>
+                        <svg class="review-google" aria-label="Avaliação no Google" role="img">
+                            <use href="#i-google"></use>
+                        </svg>
                     </div>
-                    <div class="review-stars" aria-label="5 de 5 estrelas">★★★★★</div>
+
                     <p class="review-text">
-                        Atendimento excelente, muito atenciosa. Tirou todas as minhas dúvidas com clareza
-                        e me orientou em cada etapa do processo.
+                        Profissional super correta e dedicada. Sempre disponível para ajudar, explica tudo sem enrolação
+                        e passa confiança. Recomendo demais!
                     </p>
                 </article>
 
@@ -317,15 +435,17 @@
                     <div class="review-header">
                         <div class="review-avatar" aria-hidden="true">J</div>
                         <div class="review-author">
-                            <strong>José Pereira</strong>
-                            <span>3 meses atrás</span>
+                            <strong>Fernanda Faria</strong>
+                            <div class="review-stars" aria-label="5 de 5 estrelas">★★★★★</div>
                         </div>
-                        <svg class="review-google" aria-label="Avaliação no Google" role="img"><use href="#i-google"></use></svg>
+                        <svg class="review-google" aria-label="Avaliação no Google" role="img">
+                            <use href="#i-google"></use>
+                        </svg>
                     </div>
-                    <div class="review-stars" aria-label="5 de 5 estrelas">★★★★★</div>
+
                     <p class="review-text">
-                        Profissional muito dedicada e séria. Me orientou desde o começo com paciência
-                        e linguagem fácil de entender.
+                        Excelente advogada! Atendimento excelente!
+                        Muito cautelosa e cuidadosa com os processos.
                     </p>
                 </article>
 
@@ -333,15 +453,17 @@
                     <div class="review-header">
                         <div class="review-avatar" aria-hidden="true">A</div>
                         <div class="review-author">
-                            <strong>Ana Costa</strong>
-                            <span>5 meses atrás</span>
+                            <strong>Karen Jully</strong>
+                            <div class="review-stars" aria-label="5 de 5 estrelas">★★★★★</div>
                         </div>
-                        <svg class="review-google" aria-label="Avaliação no Google" role="img"><use href="#i-google"></use></svg>
+                        <svg class="review-google" aria-label="Avaliação no Google" role="img">
+                            <use href="#i-google"></use>
+                        </svg>
                     </div>
-                    <div class="review-stars" aria-label="5 de 5 estrelas">★★★★★</div>
+
                     <p class="review-text">
-                        Recomendo de olhos fechados. Explica tudo com calma e me deixou tranquila
-                        para tomar minhas decisões.
+                        Ótima profissional!
+                        Atenciosa e competente. Esclareceu todas as minhas dúvidas.
                     </p>
                 </article>
 
@@ -349,15 +471,16 @@
                     <div class="review-header">
                         <div class="review-avatar" aria-hidden="true">C</div>
                         <div class="review-author">
-                            <strong>Carlos Souza</strong>
-                            <span>1 mês atrás</span>
+                            <strong>João Santana</strong>
+                            <div class="review-stars" aria-label="5 de 5 estrelas">★★★★★</div>
                         </div>
-                        <svg class="review-google" aria-label="Avaliação no Google" role="img"><use href="#i-google"></use></svg>
+                        <svg class="review-google" aria-label="Avaliação no Google" role="img">
+                            <use href="#i-google"></use>
+                        </svg>
                     </div>
-                    <div class="review-stars" aria-label="5 de 5 estrelas">★★★★★</div>
+
                     <p class="review-text">
-                        Atendimento humanizado e responsável. Senti segurança em cada etapa,
-                        sem promessas vazias. Profissional de confiança.
+                        Ela ajudou minha avó na aposentadoria dela. Recomendo muito.
                     </p>
                 </article>
             </div>
@@ -366,30 +489,74 @@
         <!-- COMO FUNCIONA O ATENDIMENTO -->
         <section class="process">
             <h2 class="heading">Como funciona o atendimento</h2>
-            <p class="section-intro">O atendimento é simples, organizado e totalmente online:</p>
+            <p class="section-intro">O atendimento é simples, organizado e pode ser online ou presencial:</p>
 
             <ol class="process-steps">
-                <li>
-                    <strong>Primeiro contato pelo WhatsApp</strong>
-                    <span>Você entra em contato e explica, de forma breve, sua situação.</span>
+                <li class="process-step">
+                    <div class="step-col">
+                        <button type="button" class="step-head" aria-expanded="true">
+                            <strong>Primeiro contato</strong>
+                            <svg class="step-chevron icon" aria-hidden="true">
+                                <use href="#i-chevron"></use>
+                            </svg>
+                        </button>
+                        <div class="step-body">
+                            <span>Você entra em contato e explica, de forma breve, sua situação.</span>
+                        </div>
+                    </div>
                 </li>
-                <li>
-                    <strong>Conversa inicial</strong>
-                    <span>Uma conversa para compreender melhor o seu caso e suas dúvidas.</span>
+                <li class="process-step">
+                    <div class="step-col">
+                        <button type="button" class="step-head" aria-expanded="true">
+                            <strong>Conversa inicial</strong>
+                            <svg class="step-chevron icon" aria-hidden="true">
+                                <use href="#i-chevron"></use>
+                            </svg>
+                        </button>
+                        <div class="step-body">
+                            <span>Uma conversa para compreender melhor o seu caso e suas dúvidas.</span>
+                        </div>
+                    </div>
                 </li>
-                <li>
-                    <strong>Análise da situação previdenciária</strong>
-                    <span>Avaliação cuidadosa das informações e documentos relevantes.</span>
+                <li class="process-step">
+                    <div class="step-col">
+                        <button type="button" class="step-head" aria-expanded="true">
+                            <strong>Análise do caso</strong>
+                            <svg class="step-chevron icon" aria-hidden="true">
+                                <use href="#i-chevron"></use>
+                            </svg>
+                        </button>
+                        <div class="step-body">
+                            <span>Avaliação cuidadosa das informações e documentos relevantes.</span>
+                        </div>
+                    </div>
                 </li>
-                <li>
-                    <strong>Orientação clara sobre os próximos passos</strong>
-                    <span>Explicação objetiva sobre possibilidades, caminhos e cuidados necessários.</span>
+                <li class="process-step">
+                    <div class="step-col">
+                        <button type="button" class="step-head" aria-expanded="true">
+                            <strong>Direcionamento</strong>
+                            <svg class="step-chevron icon" aria-hidden="true">
+                                <use href="#i-chevron"></use>
+                            </svg>
+                        </button>
+                        <div class="step-body">
+                            <span>Explicação objetiva sobre possibilidades, caminhos e cuidados necessários.</span>
+                        </div>
+                    </div>
                 </li>
             </ol>
         </section>
 
         <!-- FAQ -->
         <section class="faq" id="faq">
+            <div class="faq-deco" aria-hidden="true">
+                <span class="faq-q faq-q--1"></span>
+                <span class="faq-q faq-q--2"></span>
+                <span class="faq-q faq-q--3"></span>
+                <span class="faq-q faq-q--4"></span>
+                <span class="faq-q faq-q--5"></span>
+                <span class="faq-q faq-q--6"></span>
+            </div>
             <h2 class="heading">FAQ – Perguntas Frequentes</h2>
 
             <div class="faq-grid">
@@ -417,32 +584,29 @@
                 </article>
 
                 <article class="faq-card">
-                    <h3>O atendimento é presencial?</h3>
+                    <h3>O atendimento é online ou presencial?</h3>
                     <p>
-                        Não. O atendimento é realizado de forma 100% online, inclusive para clientes de qualquer
-                        região do Brasil.
+                        As duas formas. Atendo online para todo o Brasil e também presencialmente,
+                        conforme a necessidade de cada caso.
                     </p>
                 </article>
             </div>
 
             <p class="faq-cta">
-                Se você tem dúvidas sobre aposentadoria, benefícios do INSS ou sua situação previdenciária,
-                conversar com uma advogada previdenciária pode trazer mais clareza e segurança. Estou à disposição
-                para ouvir seu caso e orientar com responsabilidade.
+                Se você tem dúvidas sobre seus direitos, precisa de orientação jurídica ou está enfrentando uma situação
+                que exige análise profissional, conversar comigo pode trazer mais clareza, segurança e tranquilidade
+                para a tomada de decisões.
             </p>
-
-            <a href="https://wa.me/5531998127273" class="gradient-btn" target="_blank" rel="noopener">
-                <svg class="icon" aria-hidden="true"><use href="#i-whatsapp"></use></svg>
-                <span>Falar agora</span>
-            </a>
         </section>
 
         <!-- CONTATO -->
         <section class="contact" id="contact">
+            <i class="sec-wm sec-wm--statue-l" aria-hidden="true"></i>
+            <i class="sec-wm sec-wm--balance-r" aria-hidden="true"></i>
             <h2 class="heading">Entre em <span class="gradient-text">Contato</span></h2>
             <p class="section-intro">
-                Se você tem dúvidas sobre aposentadoria ou benefícios do INSS e quer entender como está a sua
-                situação previdenciária, entre em contato.
+                Se você tem uma dúvida na área previdenciária ou do consumidor e quer entender melhor a sua
+                situação, entre em contato.
             </p>
 
             <form action="https://formsubmit.co/luizalombard.adv@gmail.com" method="POST" class="contact-form">
@@ -458,9 +622,8 @@
 
                 <div class="form-field">
                     <label for="telefone">Número de Telefone</label>
-                    <input type="tel" id="telefone" name="Telefone" placeholder="(00) 00000-0000"
-                        autocomplete="tel" inputmode="tel" pattern="[0-9()+\-\s]*"
-                        title="Use apenas números (e os sinais + ( ) -)">
+                    <input type="tel" id="telefone" name="Telefone" placeholder="(31) 11234-5678" autocomplete="tel"
+                        inputmode="tel" pattern="[0-9()+\-\s]*" title="Use apenas números (e os sinais + ( ) -)">
                 </div>
 
                 <div class="form-field">
@@ -491,14 +654,18 @@
             <div class="cf-modal__backdrop" data-cf-close></div>
             <div class="cf-modal__card" role="dialog" aria-modal="true" aria-labelledby="cf-title">
                 <button class="cf-modal__x" type="button" data-cf-close aria-label="Fechar">
-                    <svg class="icon"><use href="#i-x"></use></svg>
+                    <svg class="icon">
+                        <use href="#i-x"></use>
+                    </svg>
                 </button>
                 <h3 class="cf-modal__title" id="cf-title">Quase lá</h3>
                 <p class="cf-modal__desc">Confirme que você não é um robô para enviar sua mensagem.</p>
 
                 <label class="cf-check" for="cf-robot">
                     <input type="checkbox" id="cf-robot">
-                    <span class="cf-check__box"><svg class="icon"><use href="#i-check"></use></svg></span>
+                    <span class="cf-check__box"><svg class="icon">
+                            <use href="#i-check"></use>
+                        </svg></span>
                     <span class="cf-check__label">Não sou um robô</span>
                 </label>
 
@@ -520,12 +687,15 @@
             <div class="cf-modal__backdrop" data-cf-success-close></div>
             <div class="cf-modal__card" role="dialog" aria-modal="true" aria-labelledby="cf-success-title">
                 <span class="cf-success__badge" aria-hidden="true">
-                    <svg class="icon"><use href="#i-check"></use></svg>
+                    <svg class="icon">
+                        <use href="#i-check"></use>
+                    </svg>
                 </span>
                 <h3 class="cf-modal__title" id="cf-success-title">Obrigado pelo seu contato!</h3>
                 <p class="cf-modal__desc">Recebi a sua mensagem e retornarei o mais breve possível.</p>
                 <div class="cf-modal__actions cf-modal__actions--center">
-                    <button type="button" class="cf-btn cf-btn--primary" id="cf-success-back" data-cf-success-close>Voltar</button>
+                    <button type="button" class="cf-btn cf-btn--primary" id="cf-success-back"
+                        data-cf-success-close>Voltar</button>
                 </div>
             </div>
         </div>
@@ -535,15 +705,26 @@
     <footer class="footer">
         <div class="social-icons">
             <a href="https://wa.me/5531998127273" target="_blank" rel="noopener" aria-label="WhatsApp">
-                <svg class="icon"><use href="#i-whatsapp"></use></svg>
+                <svg class="icon">
+                    <use href="#i-whatsapp"></use>
+                </svg>
             </a>
             <a href="https://www.instagram.com/luizalombard_advogada" target="_blank" rel="noopener"
                 aria-label="Instagram">
-                <svg class="icon"><use href="#i-instagram"></use></svg>
+                <svg class="icon">
+                    <use href="#i-instagram"></use>
+                </svg>
             </a>
-            <a href="https://www.google.com/maps/search/?api=1&amp;query=Ipatinga+MG"
-                target="_blank" rel="noopener" aria-label="Localização — Ipatinga, MG">
-                <svg class="icon"><use href="#i-geo"></use></svg>
+            <a href="https://www.linkedin.com/in/luizalombard" target="_blank" rel="noopener" aria-label="LinkedIn">
+                <svg class="icon">
+                    <use href="#i-linkedin"></use>
+                </svg>
+            </a>
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=Ipatinga+MG" target="_blank" rel="noopener"
+                aria-label="Localização — Ipatinga, MG">
+                <svg class="icon">
+                    <use href="#i-geo"></use>
+                </svg>
             </a>
         </div>
 
@@ -570,8 +751,30 @@
         <p class="copyright">© 2026 Luiza Lombard – Todos os direitos reservados.</p>
     </footer>
 
-    <script src="script.js" defer></script>
-    <script src="contact-form.js" defer></script>
+    <!-- Barra de progresso de leitura -->
+    <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
+
+    <!-- FAB flutuante de WhatsApp (aparece ao rolar) -->
+    <a class="wa-fab" id="wa-fab" href="https://wa.me/5531998127273" target="_blank" rel="noopener"
+        aria-label="Falar no WhatsApp">
+        <svg class="icon" aria-hidden="true">
+            <use href="#i-whatsapp"></use>
+        </svg>
+    </a>
+
+    <!-- Banner de consentimento (LGPD) — controla o Google Ads -->
+    <div class="cookie-banner" id="cookie-banner" role="dialog" aria-live="polite" aria-label="Aviso de cookies" hidden>
+        <p>Usamos cookies de medição (Google Ads) para entender o alcance do site. Você pode aceitar ou recusar — sua
+            escolha fica salva neste navegador.</p>
+        <div class="cookie-actions">
+            <button type="button" class="cookie-btn cookie-btn--reject" id="cookie-reject">Recusar</button>
+            <button type="button" class="cookie-btn cookie-btn--accept" id="cookie-accept">Aceitar</button>
+        </div>
+    </div>
+
+    <script src="js/script.js?v=24" defer></script>
+    <script src="js/contact-form.js" defer></script>
+    <script src="js/elastic-scroll.js" defer></script>
 </body>
 
 </html>

@@ -1,0 +1,3265 @@
+/* ============================================================
+   FONTES AUTO-HOSPEDADAS — Poppins (woff2, subset latino)
+   Antes via Google Fonts (render-blocking + conexão externa).
+   Agora locais: elimina o round-trip ao Google e o CSS de fontes
+   do caminho crítico. font-display:swap mantém o texto visível.
+   Só os pesos usados: 400 (corpo), 500, 600, 700, 800.
+   ============================================================ */
+@font-face{font-family:'Poppins';font-style:normal;font-weight:400;font-display:swap;src:url('../fonts/poppins-400.woff2') format('woff2');}
+@font-face{font-family:'Poppins';font-style:normal;font-weight:500;font-display:swap;src:url('../fonts/poppins-500.woff2') format('woff2');}
+@font-face{font-family:'Poppins';font-style:normal;font-weight:600;font-display:swap;src:url('../fonts/poppins-600.woff2') format('woff2');}
+@font-face{font-family:'Poppins';font-style:normal;font-weight:700;font-display:swap;src:url('../fonts/poppins-700.woff2') format('woff2');}
+@font-face{font-family:'Poppins';font-style:normal;font-weight:800;font-display:swap;src:url('../fonts/poppins-800.woff2') format('woff2');}
+
+/* Serifada de exibição — usada SÓ no título do hero (look das referências jurídicas).
+   Pesos 700/800, subset latino. Cai em Georgia se o arquivo não carregar. */
+@font-face{font-family:'Playfair Display';font-style:normal;font-weight:700;font-display:swap;src:url('../fonts/playfair-700.woff2') format('woff2');}
+@font-face{font-family:'Playfair Display';font-style:normal;font-weight:800;font-display:swap;src:url('../fonts/playfair-800.woff2') format('woff2');}
+
+/* ============================================
+   LUIZA LOMBARD - ADVOCACIA PREVIDENCIÁRIA
+   Stylesheet
+   ============================================ */
+
+/* ----- Reset & Base ----- */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+html {
+    font-size: 59%;
+    scroll-behavior: smooth;
+    overflow-x: clip;   /* clip não cria scroll-container (evita 2ª barra no overscroll) */
+    /* deslocamento de âncora = altura real do header por breakpoint */
+    scroll-padding-top: var(--header-h);
+    /* remove o realce azul/verde nativo ao tocar (damos feedback :active próprio) */
+    -webkit-tap-highlight-color: transparent;
+    -webkit-text-size-adjust: 100%;
+}
+
+:root {
+    --bg-color: #fcf9eb;
+    --second-bg-color: #f4f1e3;
+    --card-accent: #dbe2b1;
+    --text-color: #1a1a1a;
+    --text-muted: #4a4a4a;
+    --main-color: #636b2f;
+    --main-color-dark: #274703;
+    --white: #ffffff;
+    --surface: #ffffff;
+    --gradient: linear-gradient(270deg, #636b2f 10%, #274703 100%);
+    --shadow-soft: 0 0 25px rgba(99, 107, 47, 0.25);
+    --shadow-strong: 0 0 25px rgba(99, 107, 47, 0.5);
+    --header-h: 88px;   /* usado no scroll-padding das âncoras */
+
+    /* Hero (painel verde "advocacia") + acento dourado.
+       Os verdes do hero e os brilhos das seções mudam com o tema. */
+    /* HERO/SOBRE — tema CLARO: fundo bem claro (gradiente) + texto escuro */
+    --hero-green-1: #eef2e6;
+    --hero-green-2: #dde6d0;
+    --hero-pool: rgba(255, 255, 255, 0.55);
+    --gold: #d9b676;
+    --gold-soft: #e7cf9c;
+    --hero-cream: #2a3220;   /* texto principal do hero (escuro no claro) */
+    --hero-muted: #5a6147;   /* texto secundário */
+    --hero-accent: #2f6b43;  /* acento (nome/cargo) — VERDE no claro */
+    --hero-line: rgba(42, 50, 32, 0.26);     /* bordas (badge, ghost) */
+    --badge-bg: rgba(42, 50, 32, 0.05);
+    --gg-1: #3f7d50;         /* gradiente do "Lombard" (verde, claro) */
+    --gg-2: #235c37;
+
+    /* Iluminação orgânica das seções (radiais + faixa diagonal) — por tema.
+       Referência: o gradiente de luz do hero. */
+    --glow-1: rgba(99, 107, 47, 0.20);   /* poça verde (luz principal) */
+    --glow-2: rgba(217, 182, 118, 0.13); /* dourado (luz secundária) */
+    --sec-streak: rgba(217, 182, 118, 0.07); /* raio de luz diagonal */
+    --wm-tint: #5d6630;                   /* (legado) */
+}
+
+body {
+    background: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+    line-height: 1.6;
+    overflow-x: clip;   /* clip não cria scroll-container (evita 2ª barra no overscroll) */
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    color: inherit;
+}
+
+/* ----- Utility ----- */
+.gradient-text {
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+/* Acento dourado (título do hero) */
+.gradient-gold {
+    background: linear-gradient(180deg, var(--gg-1), var(--gg-2));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+/* ----- Ícones SVG -----
+   Usados via <svg class="icon"><use href="#i-..." /></svg>.
+   Tamanho controlado pelo font-size do pai (1em = tamanho do texto vizinho).
+   Cor controlada pelo color do pai (fill: currentColor herdado dos paths). */
+.icon {
+    width: 1em;
+    height: 1em;
+    display: inline-block;
+    vertical-align: -0.125em;  /* alinha o SVG com o baseline do texto */
+    flex-shrink: 0;
+}
+
+/* ----- Header ----- */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 76px;
+    padding: 0.8rem 5%;
+    background: rgba(248, 245, 231, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    gap: 1rem;
+}
+
+.logo-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+}
+
+.logo-link:hover {
+    transform: scale(1.05);
+}
+
+.logo-img {
+    width: 40px;
+    height: 43px;
+    object-fit: contain;
+}
+
+.logo {
+    font-size: 2.4rem;
+    font-weight: 800;
+    color: var(--text-color);
+}
+
+.menu-toggle {
+    display: none;                 /* desktop: escondido (mostra só ≤1180px) */
+    align-items: center;
+    justify-content: center;
+    width: 4.2rem;
+    height: 4.2rem;
+    background: transparent;
+    border: 2px solid color-mix(in srgb, var(--main-color) 60%, transparent);   /* moldura igual ao botão de tema */
+    border-radius: 0.9rem;
+    color: var(--main-color);
+    cursor: pointer;
+    padding: 0;
+    transition: border-color 0.3s ease, color 0.3s ease,
+                background 0.3s ease, transform 0.3s ease;
+}
+.menu-toggle:hover,
+.menu-toggle:focus-visible {
+    border-color: var(--main-color);
+    background: color-mix(in srgb, var(--main-color) 8%, transparent);
+}
+
+/* Grupo à direita do header: botão de tema + hambúrguer */
+.header-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-shrink: 0;
+    /* mais espaço entre o botão "Falar com a Advogada" e o de tema */
+    margin-left: clamp(1.5rem, 3vw, 3rem);
+    /* empurra o botão bem para a direita, próximo da borda */
+    margin-right: -2.5%;
+}
+
+.theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 4.2rem;
+    height: 4.2rem;
+    background: transparent;
+    border: 2px solid color-mix(in srgb, var(--main-color) 60%, transparent);
+    border-radius: 50%;
+    color: var(--main-color);
+    cursor: pointer;
+    transition: border-color 0.3s ease, color 0.3s ease, background 0.3s ease, transform 0.3s ease;
+}
+
+.theme-toggle:hover,
+.theme-toggle:focus-visible {
+    border-color: var(--main-color);
+    background: var(--second-bg-color);
+    transform: scale(1.06);
+}
+
+.theme-toggle .icon { width: 2rem; height: 2rem; }
+.theme-toggle .ic-sun { display: none; }
+.theme-toggle .ic-moon { display: inline-block; }
+[data-theme="dark"] .theme-toggle .ic-sun { display: inline-block; }
+[data-theme="dark"] .theme-toggle .ic-moon { display: none; }
+
+.navbar {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+.navbar a {
+    display: inline-block;
+    white-space: nowrap;
+    font-size: 1.7rem;
+    font-weight: 500;
+    color: var(--text-color);
+    margin: 0 1.2rem;
+    padding-bottom: 0.3rem;
+    border-bottom: 3px solid transparent;
+    transition: color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+}
+
+.navbar a:hover,
+.navbar a:focus-visible {
+    color: var(--main-color);
+    border-bottom-color: var(--main-color);
+    transform: scale(1.08);
+}
+
+/* Seção ativa (scroll-spy): só muda a cor, sem traço embaixo */
+.navbar a.active {
+    color: var(--main-color);
+}
+
+/* ----- Buttons -----
+   .btn e .gradient-btn compartilham a mesma animação de hover
+   (scale + sombra) para ficarem visualmente consistentes em qualquer lugar.
+
+   IMPORTANTE: os seletores `.is-visible:hover` existem para vencer a
+   especificidade de `.reveal.is-visible { transform: translateY(0) }` aplicado
+   pelo scroll-reveal — sem isso, o transform do hover seria sobrescrito
+   silenciosamente nos botões que entram na viewport via scroll. */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 1.2rem 2.8rem;
+    background-color: var(--main-color);
+    color: var(--white);
+    font-size: 1.6rem;
+    font-weight: 600;
+    font-family: inherit;
+    border: 2px solid transparent;
+    border-radius: 3rem;
+    box-shadow: var(--shadow-soft);
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn:hover,
+.btn:focus-visible,
+.btn.is-visible:hover,
+.btn.is-visible:focus-visible {
+    transform: scale(1.06);
+    box-shadow: var(--shadow-strong);
+}
+
+.gradient-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 1rem 2rem;
+    background: linear-gradient(180deg, var(--gold-soft), var(--gold));
+    color: #2a2410;
+    font-size: 1.6rem;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    border: none;
+    border-radius: 3rem;
+    cursor: pointer;
+    box-shadow: 0 5px 12px rgba(217, 182, 118, 0.14);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    white-space: nowrap;
+}
+
+.gradient-btn:hover,
+.gradient-btn:focus-visible,
+.gradient-btn.is-visible:hover,
+.gradient-btn.is-visible:focus-visible {
+    transform: scale(1.06);
+    box-shadow: 0 7px 16px rgba(217, 182, 118, 0.22);
+}
+
+/* Ícone SVG dentro do .gradient-btn — um pouco maior que o texto,
+   simulando a proporção que a imagem PNG anterior tinha (~22px / 16px). */
+.gradient-btn .icon {
+    width: 1.4em;
+    height: 1.4em;
+}
+
+/* ----- Sections ----- */
+section {
+    padding: clamp(4rem, 8vw, 8rem) clamp(2rem, 10vw, 12%);
+}
+
+.heading {
+    text-align: center;
+    font-size: clamp(2.6rem, 4vw, 4rem);
+    font-weight: 700;
+    margin-bottom: 2rem;
+    line-height: 1.3;
+}
+
+.subheading {
+    text-align: center;
+    font-size: clamp(1.8rem, 2.5vw, 2.4rem);
+    font-weight: 500;
+    margin-bottom: 4rem;
+    color: var(--text-muted);
+}
+
+.section-intro {
+    text-align: center;
+    font-size: clamp(1.5rem, 2vw, 1.9rem);
+    max-width: 800px;
+    margin: 0 auto 4rem;
+    line-height: 1.7;
+    color: var(--text-muted);
+}
+
+/* ----- Hero ----- */
+/* ============================================================
+   HERO — painel verde escuro "advocacia" com a pessoa recortada.
+   A pessoa é um PNG transparente sobre o fundo; por isso a
+   animação de hover acontece SOMENTE nela (e não no bloco todo).
+   ============================================================ */
+.home {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    min-height: min(660px, 86vh);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(2rem, 4vw, 5rem);
+    padding: calc(var(--header-h) + 2.5rem) 7% 0;
+    background-color: var(--hero-green-2);
+}
+
+/* fundo: gradiente verde + leve poça de luz onde fica a pessoa */
+.home::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    background:
+        radial-gradient(120% 90% at 78% 28%, var(--hero-pool), transparent 60%),
+        linear-gradient(135deg, var(--hero-green-1) 0%, var(--hero-green-2) 72%);
+}
+
+/* raio de luz diagonal sutil (eco da foto original) */
+.home::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background: linear-gradient(115deg, transparent 36%, rgba(232, 226, 200, 0.06) 49%, transparent 61%);
+}
+
+/* ---- Conteúdo (esquerda) ---- */
+.home-content {
+    position: relative;
+    z-index: 2;
+    flex: 0 1 600px;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    max-width: 600px;
+    color: var(--hero-cream);
+}
+
+.home-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.7rem 1.4rem;
+    margin-bottom: 2.4rem;
+    font-size: 1.35rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    background: var(--badge-bg);
+    border: 1px solid var(--hero-line);
+    border-radius: 999px;
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+    cursor: default;
+    transition: transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1),
+                border-color 0.35s ease, background 0.35s ease, box-shadow 0.35s ease;
+}
+.home-badge:hover {
+    transform: translateY(-2px);
+    border-color: var(--hero-accent);
+    background: color-mix(in srgb, var(--hero-accent) 12%, transparent);
+    box-shadow: 0 6px 18px color-mix(in srgb, var(--hero-accent) 22%, transparent);
+}
+.home-badge .icon,
+.home-badge i {
+    color: var(--hero-accent);
+    display: inline-block;
+    transition: transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.home-badge .icon { font-size: 1.7rem; }
+.home-badge:hover .icon,
+.home-badge:hover i { transform: rotate(-14deg) scale(1.15); }
+
+@media (prefers-reduced-motion: reduce) {
+    .home-badge, .home-badge:hover,
+    .home-badge .icon, .home-badge i { transition: none; transform: none; }
+}
+
+.home-title {
+    font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+    font-weight: 800;
+    font-size: clamp(4rem, 7vw, 7rem);
+    line-height: 1.04;
+    letter-spacing: -0.01em;
+    margin-bottom: 0.4rem;
+}
+
+.home-role {
+    font-size: clamp(1.7rem, 2.2vw, 2.2rem);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--hero-accent);
+    margin-bottom: 1.6rem;
+}
+
+.home-sub {
+    font-size: clamp(1.5rem, 1.8vw, 1.8rem);
+    line-height: 1.7;
+    color: var(--hero-muted);
+    max-width: 48ch;
+    margin-bottom: 2.6rem;
+}
+
+/* ---- CTAs em pílula ---- */
+.home-cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+    margin-bottom: 2.8rem;
+}
+.cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 1.15rem 2.2rem;
+    font-size: 1.55rem;
+    font-weight: 600;
+    border-radius: 999px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease,
+                background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+.cta .icon { font-size: 1.8rem; }
+.cta--primary {
+    background: linear-gradient(180deg, var(--gold-soft), var(--gold));
+    color: #2a2410;
+    box-shadow: 0 5px 13px rgba(217, 182, 118, 0.16);
+}
+.cta--primary:hover,
+.cta--primary:focus-visible {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 18px rgba(217, 182, 118, 0.24);
+}
+.cta--ghost {
+    color: var(--hero-cream);
+    border: 1.5px solid var(--hero-line);
+}
+.cta--ghost:hover,
+.cta--ghost:focus-visible {
+    transform: translateY(-3px);
+    background: color-mix(in srgb, var(--hero-cream) 8%, transparent);
+    border-color: var(--hero-accent);
+    color: var(--hero-accent);
+}
+
+/* ---- Linha de confiança ---- */
+.home-trust {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.7rem 1.4rem;
+    font-size: 1.25rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--hero-muted);
+}
+.home-trust li {
+    position: relative;
+    padding-left: 1.9rem;
+}
+.home-trust li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 7px;
+    height: 7px;
+    margin-top: -3px;
+    border-radius: 50%;
+    background: var(--hero-accent);
+}
+
+/* ---- Figura (direita): brilho + marca d'água + pessoa ---- */
+.home-figure {
+    position: relative;
+    z-index: 1;
+    flex: 0 0 auto;
+    min-width: 0;
+    align-self: flex-end;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+/* brilho radial dourado atrás da pessoa */
+.home-glow {
+    position: absolute;
+    z-index: 0;
+    left: 50%;
+    top: 42%;
+    width: 80%;
+    aspect-ratio: 1;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, rgba(217, 182, 118, 0.18), rgba(217, 182, 118, 0) 65%);
+    pointer-events: none;
+}
+
+/* balança em marca d'água (assinatura jurídica, bem sutil) */
+.home-wm {
+    position: absolute;
+    z-index: 0;
+    left: 50%;
+    top: 45%;
+    width: 56%;
+    height: auto;
+    transform: translate(-50%, -50%);
+    color: var(--gold);
+    opacity: 0.07;
+    pointer-events: none;
+}
+
+/* a PESSOA recortada — ÚNICO elemento com animação no hover.
+   width/height auto + max-* por viewport: a imagem sempre cabe ao
+   lado do texto, preservando a proporção (nunca distorce). */
+.home-person {
+    position: relative;
+    z-index: 1;
+    width: auto;
+    height: auto;
+    max-height: min(58vh, 500px);
+    max-width: min(42vw, 460px);
+    object-fit: contain;
+    filter: drop-shadow(0 22px 34px rgba(0, 0, 0, 0.45));
+    transform-origin: bottom center;
+    transition: transform 0.55s cubic-bezier(0.2, 0.7, 0.2, 1), filter 0.55s ease;
+    cursor: pointer;
+}
+.home-person:hover {
+    transform: scale(1.04);
+    filter: drop-shadow(0 30px 46px rgba(0, 0, 0, 0.5))
+            drop-shadow(0 0 28px rgba(217, 182, 118, 0.3));
+}
+
+.social-icons {
+    display: flex;
+    gap: 1rem;
+    margin: 2.5rem 0;
+}
+
+.social-icons a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    font-size: 2.4rem;
+    color: var(--main-color);
+    background: transparent;
+    border: 2px solid var(--main-color);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.social-icons a:hover,
+.social-icons a:focus-visible {
+    color: var(--white);
+    background-color: var(--main-color);
+    transform: translateY(-3px) scale(1.1);
+    box-shadow: var(--shadow-soft);
+}
+
+.btn-group {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+/* ----- Situations & Help (listas com checks) ----- */
+.situations {
+    background-color: var(--bg-color);
+}
+
+.help {
+    background-color: var(--second-bg-color);
+}
+
+.check-list {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.check-list li {
+    position: relative;
+    padding-left: 3rem;
+    font-size: clamp(1.5rem, 1.9vw, 1.9rem);
+    line-height: 1.6;
+    color: var(--text-color);
+}
+
+.check-list li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--main-color);
+    font-weight: 700;
+    font-size: 1.8rem;
+}
+
+/* ----- Áreas de Atuação -----
+   Grid explícito: 3 colunas no desktop, 1 coluna em telas menores.
+   Sem layout intermediário "2 em cima + 1 embaixo". */
+.projects {
+    background-color: var(--bg-color);
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.project-card {
+    background-color: var(--bg-color);
+    border: 2px solid var(--main-color);
+    border-radius: 2rem;
+    padding: 3rem 2rem;
+    text-align: center;
+    box-shadow: 0 0 8px rgba(99, 107, 47, 0.15);
+    transition:
+        transform 0.4s ease,
+        box-shadow 0.4s ease,
+        border-color 0.4s ease;
+}
+
+.project-card:hover,
+.project-card.is-visible:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: var(--shadow-strong);
+    border-color: var(--main-color-dark);
+}
+
+.project-card img,
+.project-card .card-symbol {
+    width: 56px;
+    height: 56px;
+    margin: 0 auto 1.5rem;
+    object-fit: contain;
+    color: var(--main-color);   /* o SVG usa currentColor */
+    transition: transform 0.4s ease, color 0.3s ease;
+}
+
+.project-card:hover img,
+.project-card:hover .card-symbol {
+    transform: scale(1.1) rotate(-3deg);
+}
+.project-card:hover .card-symbol { color: var(--main-color-dark); }
+
+.project-card h3 {
+    font-size: clamp(1.8rem, 2.2vw, 2.2rem);
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+    transition: color 0.3s ease;
+}
+
+.project-card:hover h3 {
+    color: var(--main-color-dark);
+}
+
+.project-card p {
+    font-size: clamp(1.4rem, 1.6vw, 1.6rem);
+    line-height: 1.6;
+    color: var(--text-muted);
+}
+
+/* ----- Sobre ----- */
+.about {
+    background-color: var(--second-bg-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(2rem, 8vw, 8rem);
+}
+
+.about-content {
+    max-width: 600px;
+}
+
+.about-content .heading {
+    text-align: left;
+    margin-bottom: 2.5rem;
+}
+
+.about-content p {
+    font-size: clamp(1.5rem, 1.7vw, 1.7rem);
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    color: var(--text-muted);
+}
+
+.about-content .gradient-btn {
+    margin-top: 2rem;
+}
+
+/* ----- Processo (Como funciona o atendimento) ----- */
+.process {
+    background-color: var(--second-bg-color);
+}
+
+.process-steps {
+    list-style: none;
+    max-width: 800px;
+    margin: 0 auto;
+    counter-reset: step;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+.process-steps li {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: 1.8rem;                 /* ESPAÇO entre a bola numerada e o texto */
+    padding: 1.8rem 2rem;
+    background: var(--surface);
+    border: 1px solid color-mix(in srgb, var(--main-color) 22%, transparent);
+    border-radius: 1rem;
+    counter-increment: step;
+    transition: transform 0.25s ease, border-color 0.25s ease,
+                background-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* corpo do passo (título + descrição empilhados) */
+.process-steps .step-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    min-width: 0;
+}
+
+.process-steps li:hover {            /* anima como os cards "Vamos conversar" */
+    transform: translateX(4px);
+    border-color: var(--main-color);
+    background: color-mix(in srgb, var(--card-accent) 45%, var(--surface));
+    box-shadow: 0 8px 22px rgba(99, 107, 47, 0.12);
+}
+
+.process-steps li::before {
+    content: counter(step);
+    flex-shrink: 0;                  /* a bola é o 1º item do flex */
+    width: 40px;
+    height: 40px;
+    background: var(--gradient);
+    color: var(--white);
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.8rem;
+    margin-top: 0.1rem;
+}
+
+.process-steps li strong {
+    display: block;
+    font-size: clamp(1.7rem, 2vw, 2rem);
+    margin-bottom: 0.5rem;
+}
+
+.process-steps li span {
+    font-size: clamp(1.4rem, 1.6vw, 1.6rem);
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
+/* ----- Reviews (Avaliações do Google) -----
+   Grid 2x2 no desktop (alinhado com o FAQ), 1 coluna em telas menores. */
+.reviews {
+    background-color: var(--bg-color);
+}
+
+.reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.review-card {
+    position: relative;
+    background-color: var(--surface);
+    border: 1px solid rgba(99, 107, 47, 0.2);
+    border-radius: 1.5rem;
+    padding: 1.6rem 1.8rem;
+    box-shadow: 0 2px 12px rgba(99, 107, 47, 0.08);
+    transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+}
+
+.review-card:hover,
+.review-card.is-visible:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: var(--shadow-soft);
+    border-color: var(--main-color);
+}
+
+.review-header {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    margin-bottom: 0.9rem;
+}
+
+.review-avatar {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    font-weight: 700;
+    font-size: 1.8rem;
+    font-family: inherit;
+}
+
+/* Tons de avatar variados, mas dentro da paleta do site */
+.review-card:nth-child(1) .review-avatar { background-color: #8b5a3c; }
+.review-card:nth-child(2) .review-avatar { background-color: #4a5224; }
+.review-card:nth-child(3) .review-avatar { background-color: #7d8765; }
+.review-card:nth-child(4) .review-avatar { background-color: #6b5d4f; }
+
+.review-author {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.3;
+}
+
+.review-author strong {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.review-author span {
+    font-size: 1.3rem;
+    color: var(--text-muted);
+    margin-top: 0.2rem;
+}
+
+.review-google {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    width: 22px;
+    height: 22px;
+}
+
+.review-stars {
+    color: #fbbf24;
+    font-size: 1.55rem;
+    letter-spacing: 0.12rem;
+    margin-top: 0.35rem;
+    line-height: 1;
+}
+
+.review-text {
+    font-size: 1.5rem;
+    line-height: 1.6;
+    color: var(--text-color);
+}
+
+
+/* ----- FAQ -----
+   Grid explícito: 2x2 no desktop, 1 coluna em telas menores. */
+.faq {
+    background-color: var(--bg-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.faq-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.faq-card {
+    position: relative;
+    /* superfície "metalizada": reflexo diagonal claro + brilho de canto oliva
+       + base levemente esverdeada (mesma linguagem do card "// em números"). */
+    background:
+        linear-gradient(135deg,
+            rgba(255,255,255,0.60) 0%, rgba(255,255,255,0.18) 22%,
+            transparent 46%, transparent 60%,
+            rgba(255,255,255,0.12) 80%, rgba(255,255,255,0.50) 100%),
+        radial-gradient(120% 80% at 100% 0%, rgba(99,107,47,0.10), transparent 55%),
+        color-mix(in srgb, var(--surface) 62%, var(--card-accent));
+    border: 1px solid color-mix(in srgb, var(--main-color) 50%, transparent);
+    border-radius: 1.4rem;
+    padding: 2.4rem 2.2rem;
+    text-align: left;
+    overflow: hidden;
+    /* bisel: realce claro no topo, sombra na base */
+    box-shadow:
+        0 14px 32px rgba(99,107,47,0.20),
+        inset 0 1px 0 rgba(255,255,255,0.75),
+        inset 0 -1px 0 rgba(39,71,3,0.10);
+    transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+}
+
+.faq-card:hover,
+.faq-card.is-visible:hover {
+    transform: translateY(-6px);
+    box-shadow:
+        0 20px 44px rgba(99,107,47,0.20),
+        inset 0 1px 0 rgba(255,255,255,0.85),
+        inset 0 -1px 0 rgba(39,71,3,0.12);
+    border-color: color-mix(in srgb, var(--main-color) 55%, transparent);
+}
+
+.faq-card h3 {
+    font-size: clamp(1.6rem, 1.9vw, 1.9rem);
+    font-weight: 600;
+    margin-bottom: 1.2rem;
+    color: var(--text-color);
+}
+
+.faq-card p {
+    font-size: clamp(1.4rem, 1.6vw, 1.6rem);
+    line-height: 1.6;
+    color: var(--text-muted);
+}
+
+.faq-cta {
+    font-size: clamp(1.5rem, 1.8vw, 1.8rem);
+    text-align: center;
+    max-width: 900px;
+    margin: 5rem auto 0;
+    line-height: 1.7;
+    color: var(--text-muted);
+}
+
+/* ----- Contato ----- */
+.contact {
+    background-color: var(--second-bg-color);
+}
+
+.contact .section-intro {
+    margin-bottom: 3rem;
+}
+
+.contact-form {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;          /* campos (width:100%) preenchem; botão centraliza */
+    gap: 1.8rem;
+    max-width: 560px;
+    margin: 0 auto;
+    padding: clamp(2.2rem, 4vw, 3.4rem);
+    border-radius: 1.6rem;
+    overflow: hidden;
+    background:
+        linear-gradient(135deg,
+            rgba(255,255,255,0.60) 0%, rgba(255,255,255,0.18) 22%,
+            transparent 46%, transparent 60%,
+            rgba(255,255,255,0.12) 80%, rgba(255,255,255,0.50) 100%),
+        radial-gradient(120% 80% at 100% 0%, rgba(99,107,47,0.10), transparent 55%),
+        color-mix(in srgb, var(--surface) 62%, var(--card-accent));
+    border: 1px solid color-mix(in srgb, var(--main-color) 50%, transparent);
+    box-shadow:
+        0 16px 36px rgba(99,107,47,0.20),
+        inset 0 1px 0 rgba(255,255,255,0.75),
+        inset 0 -1px 0 rgba(39,71,3,0.10);
+}
+
+.form-field {
+    width: 100%;
+}
+
+.form-field label {
+    display: block;
+    margin-bottom: 0.6rem;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+.form-field input,
+.form-field textarea {
+    width: 100%;
+    padding: 1.2rem 1.5rem;
+    font-size: 1.5rem;
+    font-family: inherit;
+    color: var(--text-color);
+    background-color: var(--surface);
+    border: 1px solid rgba(99, 107, 47, 0.3);
+    border-radius: 1rem;
+    box-shadow: 0 2px 8px rgba(99, 107, 47, 0.1);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-field input:focus,
+.form-field textarea:focus {
+    outline: none;
+    border-color: var(--main-color);
+    box-shadow: 0 0 0 3px rgba(99, 107, 47, 0.2);
+}
+
+.form-field textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+.contact-form .btn {
+    margin-top: 1rem;
+    align-self: center;
+}
+
+/* ----- Footer ----- */
+.footer {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 4rem 5% 2rem;
+    text-align: center;
+}
+
+.footer .social-icons {
+    justify-content: center;
+    margin: 0 auto 2rem;
+}
+
+.footer-nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.footer-nav a {
+    font-size: 1.6rem;
+    color: var(--text-color);
+    border-bottom: 3px solid transparent;
+    transition: border-color 0.3s ease;
+}
+
+.footer-nav a:hover,
+.footer-nav a:focus-visible {
+    border-bottom-color: var(--main-color);
+}
+
+.ethical-notice {
+    max-width: 900px;
+    margin: 0 auto 2rem;
+    padding: 2rem;
+    font-size: 1.3rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
+.ethical-notice h3 {
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+}
+
+.copyright {
+    font-size: 1.3rem;
+    color: var(--text-muted);
+    margin-top: 2rem;
+}
+
+/* ----- Scrollbar -----
+   Largura TOTAL fixa em 22px (não muda layout da página).
+   Normal: thumb ~10px visíveis graças à borda transparente.
+   Hover: borda quase desaparece → thumb engrossa para ~20px,
+   bem mais fácil de mirar e arrastar. */
+::-webkit-scrollbar {
+    width: 22px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: var(--bg-color);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--main-color);
+    background-clip: content-box;       /* fundo respeita o padding interno (não invade a borda) */
+    border: 6px solid transparent;      /* borda transparente "encolhe" visualmente o thumb */
+    border-radius: 14px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    border-width: 1px;                  /* borda mínima = thumb bem mais grosso */
+    background-color: var(--main-color-dark);
+}
+
+/* Firefox (não suporta customização avançada — usa scrollbar nativa larga) */
+html {
+    scrollbar-width: auto;
+    scrollbar-color: var(--main-color) var(--bg-color);
+}
+
+/* ============================================
+   ANIMAÇÕES
+   ============================================ */
+
+/* Fade-up — entrada de elementos */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(28px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* ----- Hero: animação de entrada on load ----- */
+.home-content > * {
+    opacity: 0;
+    animation: fadeUp 0.9s ease both;
+}
+
+.home-badge { animation-delay: 0.10s; }
+.home-title { animation-delay: 0.20s; }
+.home-role  { animation-delay: 0.30s; }
+.home-sub   { animation-delay: 0.42s; }
+.home-cta   { animation-delay: 0.54s; }
+.home-trust { animation-delay: 0.66s; }
+
+.home-figure {
+    opacity: 0;
+    animation: fadeIn 1.4s ease 0.3s both;
+}
+
+/* ----- Scroll reveal: elementos marcados via JS ----- */
+.reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ----- Acessibilidade: respeita preferência de movimento reduzido ----- */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    .reveal {
+        opacity: 1;
+        transform: none;
+    }
+
+    /* sem movimento: a pessoa não levanta no hover (evita "pulo" seco) */
+    .home-person:hover {
+        transform: none;
+    }
+}
+
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+/* Tablet / abaixo de desktop ----------------------------------- */
+@media (max-width: 1180px) {
+
+    /* HEADER MOBILE
+       Ordem visual: logo (esq) | botão WhatsApp | [tema][menu] (dir).
+       O wrapper .header-controls mantém tema e hambúrguer juntos à direita. */
+    .menu-toggle {
+        display: inline-flex;
+    }
+
+    .header-controls {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .gradient-btn {
+        font-size: 1.4rem;
+        padding: 0.8rem 1.6rem;
+    }
+
+    /* DROPDOWN do menu mobile.
+       Mesma cor do header (rgba 248,245,231,.85) + blur para combinar visualmente.
+       Animação sutil de abertura: fade + slide-down de 8px usando opacity/visibility/transform
+       (display: flex permanece — assim a transição funciona). */
+    .navbar {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        width: 90%;
+        max-width: 320px;
+        padding: 2rem;
+        background: rgba(248, 245, 231, 0.85);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-bottom-left-radius: 2rem;
+        border-left: 2px solid var(--main-color);
+        border-bottom: 2px solid var(--main-color);
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.5rem;
+
+        /* Estado escondido */
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-8px);
+        transition:
+            opacity 0.28s ease,
+            transform 0.28s ease,
+            visibility 0s linear 0.28s;
+    }
+
+    .navbar.active {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+        transition:
+            opacity 0.28s ease,
+            transform 0.28s ease,
+            visibility 0s linear 0s;
+    }
+
+    .navbar a {
+        font-size: 1.8rem;
+        margin: 0;
+        padding: 0.5rem 0;
+        /* No mobile o link fica alinhado à esquerda — escalar do canto esquerdo
+           evita o texto "andar" durante o hover. */
+        transform-origin: left center;
+    }
+
+    /* Hero empilha vertical em telas médias */
+    .home {
+        flex-direction: column;
+        justify-content: flex-start;
+        padding: calc(var(--header-h) + 3rem) 7% 0;
+        gap: 3rem;
+        min-height: auto;
+        text-align: center;
+    }
+
+    .home-content {
+        flex: 0 1 auto;
+        align-items: center;
+        text-align: center;
+        max-width: 640px;
+    }
+
+    .home-cta,
+    .home-trust {
+        justify-content: center;
+    }
+
+    .home-sub {
+        max-width: 52ch;
+    }
+
+    .home-figure {
+        align-self: center;
+    }
+
+    .home-person {
+        max-height: 56vh;
+        max-width: min(86vw, 440px);
+    }
+
+    /* Sobre empilha vertical (conteúdo em cima, pessoa embaixo encostando na base) */
+    .about {
+        flex-direction: column;
+        text-align: center;
+        padding-bottom: 0;
+    }
+
+    .about-content {
+        align-items: center;
+        text-align: center;
+    }
+
+    .about-content .heading {
+        text-align: center;
+    }
+
+    .about-figure {
+        align-self: center;
+    }
+    .about-person {
+        max-width: min(82vw, 380px);
+        max-height: 52vh;
+    }
+
+    .check-list li {
+        padding-left: 2.5rem;
+    }
+}
+
+/* QUEBRA dos GRIDS: 3 → 1 e 2x2 → 1, sem estados intermediários */
+@media (max-width: 900px) {
+    .projects-grid {
+        grid-template-columns: 1fr;
+        max-width: 500px;
+    }
+
+    /* cards de Áreas de Atuação semitransparentes: deixam ver a estátua atrás */
+    .project-card {
+        background-color: color-mix(in srgb, var(--bg-color) 55%, transparent);
+        -webkit-backdrop-filter: blur(3px);
+        backdrop-filter: blur(3px);
+        border-color: color-mix(in srgb, var(--main-color) 55%, transparent);
+    }
+    [data-theme="dark"] .project-card {
+        background-color: color-mix(in srgb, #2c2a26 50%, transparent);
+    }
+
+    .faq-grid {
+        grid-template-columns: 1fr;
+        max-width: 500px;
+    }
+
+    .reviews-grid {
+        grid-template-columns: 1fr;
+        max-width: 500px;
+    }
+}
+
+/* Mobile -------------------------------------------------- */
+@media (max-width: 767px) {
+    html {
+        font-size: 58%;
+    }
+
+    .header {
+        padding: 1.5rem 4%;
+        height: auto;
+        min-height: 62px;
+    }
+
+    .logo-img {
+        width: 45px;
+        height: 50px;
+    }
+
+    .logo {
+        font-size: 1.8rem;
+    }
+
+    .gradient-btn {
+        font-size: 1.2rem;
+        padding: 0.6rem 1.2rem;
+    }
+
+    section {
+        padding: 4rem 5%;
+    }
+
+    .home {
+        padding-top: calc(var(--header-h) + 2rem);
+    }
+
+    .home-person {
+        max-height: 52vh;
+        max-width: min(84vw, 380px);
+    }
+
+    .cta {
+        font-size: 1.45rem;
+        padding: 1.05rem 1.9rem;
+    }
+
+    .social-icons a {
+        width: 45px;
+        height: 45px;
+        font-size: 2rem;
+    }
+
+    .process-steps li {
+        padding: 1.6rem 1.5rem;
+        gap: 1.3rem;
+    }
+
+    .process-steps li::before {
+        width: 36px;
+        height: 36px;
+        font-size: 1.6rem;
+    }
+
+    .footer {
+        padding: 3rem 5% 2rem;
+    }
+
+    .footer-nav {
+        gap: 1.5rem;
+    }
+}
+
+/* Mobile pequeno ------------------------------------------ */
+@media (max-width: 480px) {
+    html {
+        font-size: 55%;
+    }
+
+    .header {
+        padding: 1rem 3%;
+    }
+
+    .logo {
+        font-size: 1.6rem;
+    }
+
+    /* Em telas bem pequenas o botão fica só com o ícone para não competir com o logo */
+    .gradient-btn span {
+        display: none;
+    }
+
+    .gradient-btn {
+        padding: 0.8rem;
+    }
+
+    .home-person {
+        max-height: 46vh;
+        max-width: 88vw;
+    }
+
+    .home-cta {
+        width: 100%;
+    }
+    .home-cta .cta {
+        flex: 1 1 auto;
+        justify-content: center;
+    }
+}
+/* ============================================================
+   MODAL DE CONFIRMAÇÃO DO FORMULÁRIO ("não sou um robô")
+   Popup na própria página — não some até confirmar ou cancelar.
+   ============================================================ */
+.cf-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.cf-modal[hidden] { display: none; }
+.cf-modal.is-open { opacity: 1; }
+
+.cf-modal__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(18, 16, 12, 0.58);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+}
+
+.cf-modal__card {
+    position: relative;
+    width: 100%;
+    max-width: 430px;
+    background: var(--surface);
+    border: 1px solid var(--card-accent);
+    border-radius: 1.6rem;
+    box-shadow: 0 20px 60px rgba(20, 25, 10, 0.30);
+    padding: 2.6rem 2.4rem 2.2rem;
+    transform: translateY(12px) scale(0.98);
+    transition: transform 0.2s ease;
+}
+
+.cf-modal.is-open .cf-modal__card { transform: translateY(0) scale(1); }
+
+.cf-modal__x {
+    position: absolute;
+    top: 1.2rem;
+    right: 1.2rem;
+    width: 3.4rem;
+    height: 3.4rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    border-radius: 50%;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.cf-modal__x:hover { background: var(--second-bg-color); color: var(--main-color); }
+.cf-modal__x .icon { width: 1.8rem; height: 1.8rem; }
+
+.cf-modal__title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--main-color-dark);
+    margin-bottom: 0.6rem;
+}
+
+.cf-modal__desc {
+    font-size: 1.5rem;
+    color: var(--text-muted);
+    margin-bottom: 1.8rem;
+}
+
+/* Checkbox "não sou um robô" */
+.cf-check {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.2rem 1.4rem;
+    border: 2px solid var(--card-accent);
+    border-radius: 1rem;
+    background: var(--bg-color);
+    cursor: pointer;
+    user-select: none;
+    transition: border-color 0.2s ease;
+}
+
+.cf-check:hover { border-color: var(--main-color); }
+.cf-check input { position: absolute; opacity: 0; width: 0; height: 0; }
+
+.cf-check__box {
+    flex-shrink: 0;
+    width: 2.6rem;
+    height: 2.6rem;
+    border: 2px solid var(--main-color);
+    border-radius: 0.6rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: transparent;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.cf-check__box .icon { width: 1.6rem; height: 1.6rem; }
+.cf-check input:checked + .cf-check__box { background: var(--main-color); color: var(--white); }
+.cf-check input:focus-visible + .cf-check__box { box-shadow: 0 0 0 3px rgba(99, 107, 47, 0.30); }
+.cf-check__label { font-size: 1.6rem; font-weight: 500; color: var(--text-color); }
+
+.cf-modal__error {
+    margin-top: 1.2rem;
+    font-size: 1.4rem;
+    color: #c0392b;
+}
+
+.cf-modal__actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.cf-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 2rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    font-family: inherit;
+    border-radius: 2.4rem;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.cf-btn--primary { background: var(--main-color); color: var(--white); box-shadow: var(--shadow-soft); }
+.cf-btn--primary:hover:not(:disabled) { transform: scale(1.04); box-shadow: var(--shadow-strong); }
+.cf-btn--primary:disabled { opacity: 0.5; cursor: not-allowed; }
+.cf-btn--ghost { background: transparent; border-color: var(--card-accent); color: var(--text-muted); }
+.cf-btn--ghost:hover { border-color: var(--main-color); color: var(--main-color); }
+
+/* Popup de agradecimento (sucesso) */
+.cf-modal--success .cf-modal__card { text-align: center; }
+.cf-modal__actions--center { justify-content: center; }
+
+.cf-success__badge {
+    width: 6.4rem;
+    height: 6.4rem;
+    margin: 0 auto 1.4rem;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--main-color);
+    color: var(--white);
+    box-shadow: var(--shadow-soft);
+    transform: scale(0.5);
+    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) 0.06s;
+}
+.cf-modal--success.is-open .cf-success__badge { transform: scale(1); }
+.cf-success__badge .icon { width: 3.2rem; height: 3.2rem; }
+
+/* ============================================================
+   TEMA ESCURO — mantém a tonalidade verde do site
+   ============================================================ */
+[data-theme="dark"] {
+    /* Sistema de superfícies por ELEVAÇÃO (luminosidade), subtom quente neutro.
+       Camadas: seções ~L14 < fundo ~L16 < cards/campos ~L21 < modal ~L25.
+       O verde fica como ACENTO de marca (botões, ícones, bordas, títulos). */
+    --bg-color: #2c2a26;           /* fundo base (home/seções principais) */
+    --second-bg-color: #252320;    /* seções alternadas — camada mais baixa */
+    --card-accent: #515541;        /* borda esverdeada discreta (detalhe) */
+    --text-color: #f1efe6;         /* off-white quente (não branco puro) */
+    --text-muted: #b7b2a6;         /* cinza neutro p/ texto secundário */
+    --main-color: #aebd6a;         /* verde de acento (ícones, links, bordas) */
+    --main-color-dark: #d3e098;
+    --white: #ffffff;
+    --surface: #3a3730;            /* cards/campos — elevados (~5 pts acima do fundo) */
+    --gradient: linear-gradient(270deg, #66742f 10%, #8a9b4f 100%);  /* botões verdes (acento de marca) */
+    --shadow-soft: 0 0 25px rgba(174, 189, 106, 0.16);
+    --shadow-strong: 0 0 28px rgba(174, 189, 106, 0.30);
+
+    /* Hero mais profundo + brilhos/estátua adaptados ao escuro */
+    --hero-green-1: #14271b;
+    --hero-green-2: #0a130d;
+    --hero-pool: rgba(120, 150, 110, 0.26);
+    --hero-cream: #f6f2e4;
+    --hero-muted: #c7d2bf;
+    --hero-accent: #e7cf9c;
+    --hero-line: rgba(246, 242, 228, 0.35);
+    --badge-bg: rgba(255, 255, 255, 0.06);
+    --gg-1: #e7cf9c;
+    --gg-2: #d9b676;
+    --glow-1: rgba(140, 165, 95, 0.13);
+    --glow-2: rgba(217, 182, 118, 0.08);
+    --sec-streak: rgba(232, 226, 200, 0.05);
+    --wm-tint: #aebd6a;
+}
+
+/* Header, footer e dropdown → translúcidos escuros */
+[data-theme="dark"] .header { background: rgba(44, 42, 38, 0.85); }
+[data-theme="dark"] .footer { background-color: rgba(44, 42, 38, 0.85); }
+
+/* No escuro o campo precisa de cor diferente do fundo (como o branco no claro):
+   isso já vem do --surface aplicado em inputs/cards. Placeholder mais legível: */
+[data-theme="dark"] .form-field input::placeholder,
+[data-theme="dark"] .form-field textarea::placeholder {
+    color: var(--text-muted);
+    opacity: 0.8;
+}
+
+/* Símbolo das áreas de atuação (SVG) → tom claro no tema escuro */
+[data-theme="dark"] .project-card .card-symbol { color: #c6d68b; }
+
+/* Logo do header → versão clara (Ativo9.png) no tema escuro */
+[data-theme="dark"] .logo-img {
+    content: url("../img/Ativo9.png");
+}
+
+/* Fundos sólidos verdes com conteúdo branco → tom mais escuro p/ manter contraste */
+[data-theme="dark"] .btn,
+[data-theme="dark"] .cf-btn--primary,
+[data-theme="dark"] .cf-check input:checked + .cf-check__box,
+[data-theme="dark"] .social-icons a:hover,
+[data-theme="dark"] .social-icons a:focus-visible {
+    background-color: #5f6c2c;
+}
+
+/* Texto em gradiente (títulos) precisa de tons claros no escuro */
+[data-theme="dark"] .gradient-text {
+    background-image: linear-gradient(270deg, #c6d68b 10%, #9aab5c 100%);
+}
+
+/* Seções "Como funciona" e "FAQ": tom de card mais refinado no escuro.
+   Volta ao card escuro de antes (texto claro, borda e círculo verdes),
+   só que com um olive um pouco mais quente e elevado do fundo. */
+[data-theme="dark"] .process-steps li,
+[data-theme="dark"] .faq-card {
+    background-color: #4c4f37;
+}
+
+/* Modal/popup: camada mais alta do sistema de elevação (mais claro que os cards) */
+[data-theme="dark"] .cf-modal__card {
+    background-color: #444036;
+}
+
+/* Dropdown do menu mobile no escuro */
+@media (max-width: 1180px) {
+    [data-theme="dark"] .navbar { background: rgba(44, 42, 38, 0.92); }
+}
+
+/* ============================================================
+   MELHORIAS — feedback de toque, FAB, progresso, skip-link,
+   banner LGPD e overscroll elástico (adicionado ao final).
+   ============================================================ */
+
+/* ----- Feedback de toque (:active) — substitui o highlight nativo removido ----- */
+.btn:active, .btn.is-visible:active,
+.gradient-btn:active, .gradient-btn.is-visible:active,
+.cf-btn:active { transform: scale(0.96); }
+.navbar a:active, .footer-nav a:active { opacity: 0.55; }
+.social-icons a:active { transform: scale(0.9); }
+.theme-toggle:active, .menu-toggle:active { transform: scale(0.88); }
+.project-card:active, .faq-card:active, .review-card:active { transform: translateY(-4px) scale(0.99); }
+.logo-link:active { transform: scale(0.97); }
+
+/* alvos de toque confortáveis no header e no menu (mín. ~44px) */
+.theme-toggle {
+    min-width: 44px;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+/* hambúrguer: mantém display:none no desktop (base); só ganha área de toque.
+   O display:inline-flex é aplicado apenas no @media (max-width:1180px). */
+.menu-toggle {
+    min-width: 44px;
+    min-height: 44px;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ----- Símbolo SVG dos cards de atuação ----- */
+.card-symbol { display: block; }
+
+/* ----- Skip-link (pular para o conteúdo) — acessibilidade de teclado ----- */
+.skip-link {
+    position: absolute;
+    left: 1rem;
+    top: -100px;
+    z-index: 3000;
+    background: var(--main-color-dark);
+    color: #fff;
+    padding: 0.9rem 1.4rem;
+    border-radius: 0 0 0.8rem 0.8rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    transition: top 0.25s ease;
+}
+.skip-link:focus-visible { top: 0; outline: 2px solid #fff; outline-offset: 2px; }
+
+/* ----- Barra de progresso de leitura (topo) ----- */
+.scroll-progress {
+    position: fixed;
+    top: 0; left: 0;
+    height: 3px;
+    width: 100%;
+    transform: scaleX(0);
+    transform-origin: 0 50%;
+    background: var(--gradient);
+    z-index: 1500;
+    pointer-events: none;
+}
+
+/* ----- FAB flutuante de WhatsApp ----- */
+.wa-fab {
+    position: fixed;
+    right: clamp(1rem, 3vw, 2rem);
+    bottom: clamp(1rem, 3vw, 2rem);
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #25d366;
+    color: #fff;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+    z-index: 1400;
+    /* escondido até rolar (controlado por .is-visible via JS) */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(12px) scale(0.9);
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0s linear 0.3s;
+}
+.wa-fab.is-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0s linear 0s;
+}
+.wa-fab .icon { width: 28px; height: 28px; }
+.wa-fab:hover, .wa-fab:focus-visible { transform: translateY(-2px) scale(1.06); box-shadow: 0 10px 26px rgba(0,0,0,0.32); }
+.wa-fab:active { transform: scale(0.92); }
+/* pulso discreto p/ chamar atenção (desligado em prefers-reduced-motion) */
+.wa-fab::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5);
+    animation: waPulse 2.4s ease-out infinite;
+}
+@keyframes waPulse {
+    0%   { box-shadow: 0 0 0 0 rgba(37,211,102,0.45); }
+    70%  { box-shadow: 0 0 0 14px rgba(37,211,102,0); }
+    100% { box-shadow: 0 0 0 0 rgba(37,211,102,0); }
+}
+
+/* ----- Banner de consentimento (LGPD) ----- */
+.cookie-banner {
+    position: fixed;
+    left: 50%;
+    bottom: 1.2rem;
+    transform: translateX(-50%) translateY(160%);
+    width: min(680px, calc(100% - 2rem));
+    background: var(--surface);
+    color: var(--text-color);
+    border: 1px solid rgba(99,107,47,0.25);
+    border-radius: 1.4rem;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.18);
+    padding: 1.6rem 1.8rem;
+    z-index: 2500;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem 1.4rem;
+    transition: transform 0.4s cubic-bezier(.22,.61,.36,1);
+}
+.cookie-banner.is-visible { transform: translateX(-50%) translateY(0); }
+.cookie-banner p { font-size: 1.35rem; line-height: 1.5; color: var(--text-muted); flex: 1 1 280px; margin: 0; }
+.cookie-banner a { color: var(--main-color); text-decoration: underline; }
+.cookie-actions { display: flex; gap: 0.8rem; flex-wrap: wrap; }
+.cookie-btn {
+    font: inherit;
+    font-size: 1.35rem;
+    font-weight: 600;
+    padding: 0.7rem 1.4rem;
+    border-radius: 2rem;
+    border: 2px solid var(--main-color);
+    cursor: pointer;
+    background: transparent;
+    color: var(--main-color);
+    transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+.cookie-btn--accept { background: var(--main-color); color: #fff; }
+.cookie-btn:hover, .cookie-btn:focus-visible { transform: translateY(-1px); }
+.cookie-btn:active { transform: scale(0.96); }
+[data-theme="dark"] .cookie-banner { background: #444036; border-color: rgba(198,214,139,0.2); }
+
+/* ----- Overscroll elástico (discreto) ----- */
+.elastic-wrap { will-change: auto; }
+
+/* ----- Ajustes de --header-h por breakpoint (âncoras) ----- */
+@media (max-width: 767px) {
+    :root { --header-h: 74px; }
+}
+@media (max-width: 480px) {
+    :root { --header-h: 70px; }
+}
+
+/* ----- Acessibilidade: desliga pulso/efeitos em movimento reduzido ----- */
+@media (prefers-reduced-motion: reduce) {
+    .wa-fab::after { animation: none; }
+    .scroll-progress { transition: none; }
+}
+
+
+/* ============================================================
+   AJUSTES v3 — hambúrguer animado, divisórias de seção,
+   fio metálico dos cards e variantes no tema escuro.
+   ============================================================ */
+
+/* ----- Hambúrguer animado (3 barras → X), igual ao outro site ----- */
+.menu-toggle .mt-bars {
+    position: relative;
+    width: 22px;
+    height: 16px;
+}
+/* barras centralizadas; posicionadas e animadas SÓ por transform (fluido) */
+.menu-toggle .mt-bars span {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    margin-top: -1.25px;
+    width: 100%;
+    height: 2.5px;
+    border-radius: 2px;
+    background: currentColor;
+    transition: transform 0.34s cubic-bezier(.4, 0, .2, 1), opacity 0.18s ease;
+}
+.menu-toggle .mt-bars span:nth-child(1) { transform: translateY(-6.5px); }
+.menu-toggle .mt-bars span:nth-child(2) { transform: translateY(0); }
+.menu-toggle .mt-bars span:nth-child(3) { transform: translateY(6.5px); }
+.menu-toggle[aria-expanded="true"] .mt-bars span:nth-child(1) { transform: translateY(0) rotate(45deg); }
+.menu-toggle[aria-expanded="true"] .mt-bars span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.menu-toggle[aria-expanded="true"] .mt-bars span:nth-child(3) { transform: translateY(0) rotate(-45deg); }
+
+/* ----- Divisória orgânica entre seções -----
+   Fio que esmaece nas pontas (não é uma linha reta de ponta a ponta) +
+   um pequeno losango central. Tira o aspecto de blocos muito retos. */
+main > section:not(#home) { position: relative; }
+main > section:not(#home)::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(94%, 1200px);
+    height: 2px;
+    background: linear-gradient(90deg,
+        transparent,
+        color-mix(in srgb, var(--main-color) 46%, transparent) 16%,
+        color-mix(in srgb, var(--main-color) 46%, transparent) 84%,
+        transparent);
+    pointer-events: none;
+}
+main > section:not(#home)::after {
+    content: "";
+    position: absolute;
+    top: -9px;
+    left: 50%;
+    width: 18px;
+    height: 18px;
+    transform: translateX(-50%) rotate(45deg);
+    background: var(--main-color);
+    border-radius: 3px;
+    opacity: 0.72;
+    box-shadow:
+        0 0 0 6px color-mix(in srgb, var(--main-color) 14%, transparent),
+        0 0 18px color-mix(in srgb, var(--main-color) 32%, transparent);
+    pointer-events: none;
+}
+
+/* ----- Fio de luz no topo dos cards metalizados (toque \"premium\") ----- */
+.faq-card::before,
+.contact-form::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+        transparent,
+        color-mix(in srgb, var(--main-color) 45%, transparent) 25%,
+        color-mix(in srgb, var(--main-color) 45%, transparent) 75%,
+        transparent);
+    pointer-events: none;
+}
+
+/* ----- Tema escuro: cards metalizados (FAQ + form) ----- */
+[data-theme="dark"] .faq-card,
+[data-theme="dark"] .contact-form {
+    background:
+        linear-gradient(135deg,
+            rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.02) 22%,
+            transparent 46%, transparent 60%,
+            rgba(255,255,255,0.015) 80%, rgba(255,255,255,0.06) 100%),
+        radial-gradient(120% 80% at 100% 0%, rgba(174,189,106,0.10), transparent 55%),
+        #44473a;
+    border-color: rgba(174,189,106,0.20);
+    box-shadow:
+        0 14px 34px rgba(0,0,0,0.30),
+        inset 0 1px 0 rgba(255,255,255,0.08),
+        inset 0 -1px 0 rgba(0,0,0,0.28);
+}
+
+
+/* ============================================================
+   AJUSTES v4 — chips do "Sobre", wallpaper da Justiça.
+   ============================================================ */
+
+/* ----- Chips "# ..." do Sobre mim (no lugar do botão) ----- */
+.about-focus {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin-top: 2.2rem;
+}
+.about-focus span {
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: var(--main-color-dark);
+    padding: 0.6rem 1.2rem;
+    border: 1px solid color-mix(in srgb, var(--main-color) 38%, transparent);
+    border-radius: 0.8rem;
+    background: color-mix(in srgb, var(--main-color) 8%, transparent);
+    transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+.about-focus span:hover {
+    transform: translateY(-2px);
+    border-color: var(--main-color);
+    background: color-mix(in srgb, var(--main-color) 15%, transparent);
+}
+/* no mobile o Sobre fica centralizado → centraliza os chips também */
+@media (max-width: 1180px) {
+    .about-focus { justify-content: center; }
+}
+
+/* (wallpapers migrados p/ o sistema .sec-wm — ver fim do arquivo) */
+
+
+/* ============================================================
+   AJUSTES v5 — FAQ mais escuro + wallpapers temáticos por seção.
+   ============================================================ */
+
+/* ----- FAQ cards um pouco mais escuros (contraste/legibilidade no claro) ----- */
+.faq-card {
+    background:
+        linear-gradient(135deg,
+            rgba(255,255,255,0.30) 0%, rgba(255,255,255,0.08) 24%,
+            transparent 48%, transparent 62%,
+            rgba(255,255,255,0.05) 82%, rgba(255,255,255,0.22) 100%),
+        radial-gradient(120% 80% at 100% 0%, rgba(99,107,47,0.18), transparent 55%),
+        color-mix(in srgb, var(--card-accent) 82%, var(--surface));
+    border-color: color-mix(in srgb, var(--main-color) 62%, transparent);
+}
+
+/* ----- Wallpapers temáticos por seção -----
+   Cada seção ganha um elemento .sec-wm (atrás do conteúdo, z-index:-1).
+   A ilustração (oliva, com gradiente e fade próprio) é posicionada numa
+   lateral e ainda recebe uma máscara que a esvanece em direção ao texto. */
+.projects, .about, .faq, .contact { isolation: isolate; }
+.sec-wm {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-repeat: no-repeat;
+    pointer-events: none;
+    opacity: 0.42;
+}
+/* lado direito: estátua (webp transparente já suavizado) esmaecendo para o texto */
+.sec-wm--statue-r {
+    background-image: url('../img/justica.webp');
+    background-position: right -5% center;
+    background-size: auto 88%;
+    -webkit-mask-image: linear-gradient(to left, #000 0%, transparent 58%);
+            mask-image: linear-gradient(to left, #000 0%, transparent 58%);
+}
+.sec-wm--statue-l {
+    background-image: url('../img/justica.webp');
+    background-position: left -5% center;
+    background-size: auto 88%;
+    -webkit-mask-image: linear-gradient(to right, #000 0%, transparent 58%);
+            mask-image: linear-gradient(to right, #000 0%, transparent 58%);
+}
+.sec-wm--scales {
+    background-image: url('../img/wm-scales.svg');
+    background-position: right -3% center;
+    background-size: auto 62%;
+    opacity: 0.36;
+    -webkit-mask-image: linear-gradient(to left, #000 0%, transparent 46%);
+            mask-image: linear-gradient(to left, #000 0%, transparent 46%);
+}
+.sec-wm--question {
+    background-image: url('../img/wm-question.svg');
+    background-position: right 3% bottom 6%;
+    background-size: auto 56%;
+    -webkit-mask-image: linear-gradient(to bottom left, #000 6%, transparent 62%);
+            mask-image: linear-gradient(to bottom left, #000 6%, transparent 62%);
+}
+
+/* MOBILE: wallpapers continuam visíveis — menores, num canto inferior, suaves */
+@media (max-width: 900px) {
+    .sec-wm { opacity: 0.22; background-size: auto 44% !important; }
+    .sec-wm--statue-r, .sec-wm--scales, .sec-wm--question {
+        background-position: right -6% bottom -2% !important;
+        -webkit-mask-image: linear-gradient(to top left, #000 16%, transparent 72%);
+                mask-image: linear-gradient(to top left, #000 16%, transparent 72%);
+    }
+    .sec-wm--statue-l {
+        background-position: left -6% bottom -2% !important;
+        -webkit-mask-image: linear-gradient(to top right, #000 16%, transparent 72%);
+                mask-image: linear-gradient(to top right, #000 16%, transparent 72%);
+    }
+}
+
+/* escuro: realça levemente a estátua (verde fica visível no fundo escuro) */
+[data-theme="dark"] .sec-wm { opacity: 0.34; }
+[data-theme="dark"] .sec-wm--statue-r,
+[data-theme="dark"] .sec-wm--statue-l { filter: brightness(1.5) saturate(0.95); }
+
+
+/* ----- Sobre mim: ver bloco "SOBRE = gêmeo do home" no fim do arquivo ----- */
+
+
+/* ============================================================
+   v6 — FUNDOS ORGÂNICOS POR SEÇÃO (acompanham tema claro/escuro)
+   Cada seção ganha duas radiais sutis (oliva + dourado) sobre a
+   base do tema, dando profundidade/iluminação sem "achatar".
+   ============================================================ */
+.duo,
+.projects,
+.reviews,
+.faq {
+    background:
+        linear-gradient(120deg, transparent 38%, var(--sec-streak) 50%, transparent 62%),
+        radial-gradient(125% 100% at 82% -12%, var(--glow-1), transparent 62%),
+        radial-gradient(95% 85% at -8% 112%, var(--glow-2), transparent 58%),
+        var(--bg-color);
+}
+
+.help,
+.process,
+.contact {
+    background:
+        linear-gradient(-120deg, transparent 38%, var(--sec-streak) 50%, transparent 62%),
+        radial-gradient(125% 100% at 18% -12%, var(--glow-1), transparent 62%),
+        radial-gradient(95% 85% at 108% 112%, var(--glow-2), transparent 58%),
+        var(--second-bg-color);
+}
+
+
+/* ============================================================
+   v7 — "SOBRE MIM" = GÊMEO DO HOME
+   Painel verde iluminado (mesmo gradiente do hero), texto creme/dourado
+   à esquerda e a pessoa recortada à direita encostando na base.
+   ============================================================ */
+.about {
+    position: relative;
+    isolation: isolate;
+    overflow: visible;   /* deixa o losango do divisor aparecer inteiro no topo */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(2rem, 5vw, 6rem);
+    padding: clamp(4rem, 7vw, 7rem) 7% 0;   /* sem bottom: a pessoa encosta na base */
+    background:
+        radial-gradient(120% 90% at 22% 28%, var(--hero-pool), transparent 60%),
+        linear-gradient(225deg, var(--hero-green-1) 0%, var(--hero-green-2) 72%);
+}
+/* raio de luz diagonal (igual ao home) */
+.about::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background: linear-gradient(245deg, transparent 36%, rgba(232, 226, 200, 0.06) 49%, transparent 61%);
+}
+
+/* texto em creme/dourado sobre o verde */
+.about-content {
+    position: relative;
+    z-index: 2;
+    flex: 0 1 600px;
+    min-width: 0;
+    max-width: 600px;
+    color: var(--hero-cream);
+}
+.about-content .heading {
+    text-align: left;
+    color: var(--hero-cream);
+    margin-bottom: 2rem;
+}
+.about-content .gradient-text {
+    background: none;
+    -webkit-text-fill-color: var(--hero-accent);
+    color: var(--hero-accent);
+}
+.about-content p {
+    color: var(--hero-muted);
+}
+/* chips translúcidos (adaptam ao tema) */
+.about-focus span {
+    color: var(--hero-cream);
+    border-color: var(--hero-line);
+    background: color-mix(in srgb, var(--hero-cream) 6%, transparent);
+}
+.about-focus span:hover {
+    border-color: var(--hero-accent);
+    background: color-mix(in srgb, var(--hero-cream) 12%, transparent);
+}
+
+/* figura (direita): brilho + pessoa encostando na base, anima sem deixar vão */
+.about-figure {
+    position: relative;
+    z-index: 1;
+    flex: 0 0 auto;
+    align-self: flex-end;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    background: none;
+    box-shadow: none;
+    border-radius: 0;
+    overflow: visible;
+    width: auto;
+    aspect-ratio: auto;
+}
+.about-figure::before {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    left: 50%;
+    top: 42%;
+    width: 82%;
+    aspect-ratio: 1;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, rgba(217, 182, 118, 0.18), rgba(217, 182, 118, 0) 65%);
+    pointer-events: none;
+}
+.about-person {
+    position: relative;
+    z-index: 1;
+    width: auto;
+    height: auto;
+    max-height: min(52vh, 470px);
+    max-width: min(40vw, 440px);
+    object-fit: contain;
+    display: block;
+    filter: drop-shadow(0 22px 34px rgba(0, 0, 0, 0.45));
+    transform-origin: bottom center;
+    transition: transform 0.55s cubic-bezier(0.2, 0.7, 0.2, 1), filter 0.55s ease;
+    cursor: pointer;
+}
+/* escala a partir da base → cresce sem abrir vão embaixo */
+.about-figure:hover .about-person {
+    transform: scale(1.035);
+    filter: drop-shadow(0 30px 46px rgba(0, 0, 0, 0.5))
+            drop-shadow(0 0 26px rgba(217, 182, 118, 0.3));
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .about-figure:hover .about-person { transform: none; }
+}
+
+
+/* ============================================================
+   v8 — TEMA ESCURO: demais seções no padrão do home/sobre,
+   alternando o lado da luz a cada seção (mesmas cores/intensidade).
+   ============================================================ */
+[data-theme="dark"] .projects,
+[data-theme="dark"] .reviews,
+[data-theme="dark"] .faq {
+    background:
+        radial-gradient(120% 90% at 80% 22%, var(--hero-pool), transparent 60%),
+        linear-gradient(135deg, var(--hero-green-1) 0%, var(--hero-green-2) 74%);
+}
+[data-theme="dark"] .duo,
+[data-theme="dark"] .process,
+[data-theme="dark"] .contact {
+    background:
+        radial-gradient(120% 90% at 20% 22%, var(--hero-pool), transparent 60%),
+        linear-gradient(225deg, var(--hero-green-1) 0%, var(--hero-green-2) 74%);
+}
+
+
+/* ============================================================
+   v8 — SEÇÃO DUPLA: "situações" + "como posso ajudar" lado a lado,
+   cada uma num bloco, fonte reduzida.
+   ============================================================ */
+.duo {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(1.6rem, 2.6vw, 2.8rem);
+    align-items: stretch;
+}
+.duo-block {
+    padding: clamp(2rem, 3vw, 3rem);
+    border-radius: 1.6rem;
+    background: color-mix(in srgb, var(--card-accent) 80%, var(--surface));
+    border: 1px solid color-mix(in srgb, var(--main-color) 30%, transparent);
+    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.08);
+}
+.duo .heading {
+    text-align: left;
+    font-size: clamp(1.9rem, 2.3vw, 2.3rem);
+    margin-bottom: 1rem;
+    line-height: 1.25;
+}
+.duo .subheading {
+    text-align: left;
+    font-size: clamp(1.35rem, 1.7vw, 1.6rem);
+    margin-bottom: 1.8rem;
+}
+.duo .section-intro {
+    text-align: left;
+    font-size: clamp(1.3rem, 1.5vw, 1.5rem);
+    max-width: none;
+    margin: 0 0 1.8rem;
+}
+.duo .check-list {
+    max-width: none;
+    margin: 0;
+    gap: 1rem;
+}
+.duo .check-list li {
+    font-size: clamp(1.3rem, 1.45vw, 1.5rem);
+    padding-left: 2.5rem;
+}
+.duo .check-list li::before { font-size: 1.5rem; top: 0.1rem; }
+
+/* tema escuro: blocos como cartões metalizados sobre o verde */
+[data-theme="dark"] .duo-block {
+    background:
+        linear-gradient(135deg,
+            rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 30%,
+            transparent 55%, rgba(255,255,255,0.04) 100%),
+        #3f4234;
+    border-color: rgba(174,189,106,0.20);
+    box-shadow: 0 14px 34px rgba(0,0,0,0.30), inset 0 1px 0 rgba(255,255,255,0.07);
+}
+
+@media (max-width: 860px) {
+    .duo { grid-template-columns: 1fr; }
+}
+
+
+/* ============================================================
+   v9 — FAQ: várias interrogações decorativas (posições/rotações/tamanhos
+   variados), no lugar da marca d'água única.
+   ============================================================ */
+.faq-deco {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+}
+.faq-q {
+    position: absolute;
+    background: url('../img/faq-q.webp') center/contain no-repeat;
+    /* proporção ~0.667 (347x520) */
+}
+.faq-q--1 { width: 92px;  height: 138px; top: 6%;  left: 3%;  transform: rotate(-18deg); opacity: 0.13; }
+.faq-q--2 { width: 66px;  height: 99px;  top: 11%; left: 87%; transform: rotate(16deg);  opacity: 0.10; }
+.faq-q--3 { width: 54px;  height: 81px;  top: 68%; left: 7%;  transform: rotate(25deg);  opacity: 0.09; }
+.faq-q--4 { width: 110px; height: 165px; top: 58%; left: 84%; transform: rotate(-12deg); opacity: 0.11; }
+.faq-q--5 { width: 46px;  height: 69px;  top: 40%; left: 49%; transform: rotate(8deg);   opacity: 0.06; }
+.faq-q--6 { width: 60px;  height: 90px;  top: 84%; left: 46%; transform: rotate(-7deg);  opacity: 0.07; }
+
+@media (max-width: 767px) {
+    /* no mobile reduz a quantidade/tamanho p/ não poluir */
+    .faq-q--2, .faq-q--5, .faq-q--6 { display: none; }
+    .faq-q--1 { width: 64px; height: 96px; }
+    .faq-q--4 { width: 74px; height: 111px; }
+}
+
+
+/* ============================================================
+   v10 — Botões sociais no hero, balança no contato, FAQ translúcido
+   ============================================================ */
+
+/* --- 3 botões sociais ao lado de "Entre em contato" --- */
+.home-cta { align-items: center; }
+.home-social { display: flex; gap: 0.7rem; align-items: center; }
+.home-social-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    border: 1.5px solid var(--hero-line);
+    color: var(--hero-cream);
+    transition: transform 0.3s ease, border-color 0.3s ease,
+                background 0.3s ease, color 0.3s ease;
+}
+.home-social-btn .icon { font-size: 1.9rem; }
+.home-social-btn:hover,
+.home-social-btn:focus-visible {
+    transform: translateY(-3px);
+    border-color: var(--hero-accent);
+    background: color-mix(in srgb, var(--hero-cream) 8%, transparent);
+    color: var(--hero-accent);
+}
+/* retraído/mobile: os 3 vão para baixo dos 2 botões, centralizados */
+@media (max-width: 1180px) {
+    .home-social {
+        flex-basis: 100%;
+        justify-content: center;
+        margin-top: 0.4rem;
+    }
+}
+
+/* --- Balança à direita do formulário de contato (igual à estátua, mas à direita) --- */
+.sec-wm--balance-r {
+    background-image: url('../img/balanca.webp');
+    background-position: right -3% center;
+    background-size: auto 78%;
+    -webkit-mask-image: linear-gradient(to left, #000 0%, transparent 55%);
+            mask-image: linear-gradient(to left, #000 0%, transparent 55%);
+}
+[data-theme="dark"] .sec-wm--balance-r { filter: brightness(1.5) saturate(0.95); }
+@media (max-width: 900px) {
+    .sec-wm--balance-r { display: none; }   /* não aparece no mobile */
+}
+
+/* --- FAQ: cards um pouco transparentes (deixam ver as interrogações atrás) --- */
+.faq-card {
+    background-color: color-mix(in srgb, var(--card-accent) 58%, transparent);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+}
+[data-theme="dark"] .faq-card {
+    background-color: color-mix(in srgb, #44473a 56%, transparent);
+}
+
+
+/* ============================================================
+   v11 — AJUSTES SOLICITADOS (jun/2026)
+   1) marcas d'água sem "fugir" em telas largas (projetos + contato)
+   2) marcas d'água do contato ocultas só no mobile
+   3) FAQ mais transparente
+   4) logo menor no mobile
+   5) grades de Avaliações e FAQ sempre 2x2 (inclusive mobile)
+   6) "Como funciona": acordeão 2x2 ao retrair a tela
+   7) hover nos dois cards do bloco "duo"
+   8) "Sobre mim": título ao lado da foto + desvanecer da base no mobile
+   ============================================================ */
+
+/* ---- (1) limite de deslocamento das marcas d'água em telas largas ----
+   A camada deixa de colar nas bordas do viewport e passa a ficar numa
+   faixa central de largura máxima, flanqueando os cards / o formulário. */
+.projects { --wm-band: 1320px; }
+.contact  { --wm-band: 1240px; }
+@media (min-width: 901px) {
+    .projects .sec-wm,
+    .contact .sec-wm {
+        left: 50%;
+        right: auto;
+        width: min(100%, var(--wm-band));
+        transform: translateX(-50%);
+    }
+}
+
+/* ---- (2) no mobile, contato sem imagens de fundo ---- */
+@media (max-width: 767px) {
+    .contact .sec-wm { display: none !important; }
+}
+
+/* ---- (3) FAQ mais transparente (deixa ver as interrogações atrás) ---- */
+.faq-card { background-color: color-mix(in srgb, var(--card-accent) 30%, transparent); }
+[data-theme="dark"] .faq-card { background-color: color-mix(in srgb, #44473a 32%, transparent); }
+
+/* ---- (4) logo do cabeçalho menor no mobile ---- */
+@media (max-width: 767px) { .logo-img { width: 30px; height: 34px; } }
+@media (max-width: 480px) { .logo-img { width: 27px; height: 30px; } }
+
+/* ---- (5) Avaliações e FAQ: 2x2 em qualquer largura ---- */
+@media (max-width: 900px) {
+    .reviews-grid,
+    .faq-grid {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 620px;
+        gap: clamp(1rem, 2.4vw, 2rem);
+    }
+}
+@media (max-width: 480px) {
+    .reviews-grid, .faq-grid { gap: 0.85rem; }
+    .review-card { padding: 1.2rem 1.1rem; }
+    .faq-card { padding: 1.5rem 1.2rem; }
+    .review-google { top: 0.9rem; right: 0.9rem; width: 17px; height: 17px; }
+    .review-header { gap: 0.7rem; margin-bottom: 0.7rem; }
+    .review-avatar { width: 34px; height: 34px; font-size: 1.35rem; }
+    .review-author strong { font-size: 1.25rem; }
+    .review-author span { font-size: 1.1rem; }
+    .review-stars { font-size: 1.3rem; margin-top: 0.25rem; }
+}
+
+/* ---- (6) "COMO FUNCIONA" — base (desktop = como já era) ---- */
+.step-col {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    min-width: 0;
+    flex: 1;
+}
+.step-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: none;
+    font: inherit;
+    color: inherit;
+    text-align: left;
+    cursor: default;           /* no desktop não é clicável */
+}
+.step-head strong { flex: 1; margin-bottom: 0 !important; }
+.step-chevron { display: none; }   /* seta só aparece ao retrair */
+
+/* ---- (6) "COMO FUNCIONA" — retraído/mobile: grade 2x2 + acordeão ---- */
+@media (max-width: 900px) {
+    .process-steps {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.4rem;
+        max-width: 600px;
+    }
+    .process-step {
+        position: relative;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.7rem;
+        padding: 1.5rem 1.4rem 2.9rem;     /* espaço para a seta no canto */
+    }
+    .process-steps li:hover { transform: none; }   /* sem o deslize lateral do desktop */
+    .process-step .step-col { width: 100%; }
+    .step-head { cursor: pointer; padding-right: 2.4rem; }
+    .step-head strong { font-size: clamp(1.45rem, 3.4vw, 1.75rem); }
+
+    .step-chevron {
+        display: block;
+        position: absolute;
+        right: 1rem;
+        bottom: 0.9rem;
+        width: 1.8rem;
+        height: 1.8rem;
+        color: var(--main-color);
+        transform: rotate(-45deg);          /* aponta para a diagonal inferior direita */
+        transition: transform 0.3s ease;
+    }
+    .process-step.is-open .step-chevron { transform: rotate(135deg); }
+
+    .process-step .step-body {
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        margin-top: 0;
+        transition: max-height 0.35s ease, opacity 0.3s ease, margin-top 0.35s ease;
+    }
+    .process-step.is-open .step-body {
+        max-height: 260px;
+        opacity: 1;
+        margin-top: 0.4rem;
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    .process-step .step-body,
+    .step-chevron { transition: none; }
+}
+
+/* ---- (7) hover nos cards "duo" (situações / como ajudo) ---- */
+.duo-block {
+    transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+}
+.duo-block:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 34px rgba(99, 107, 47, 0.16);
+    border-color: color-mix(in srgb, var(--main-color) 60%, transparent);
+}
+[data-theme="dark"] .duo-block:hover {
+    box-shadow: 0 18px 38px rgba(0, 0, 0, 0.34), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    border-color: rgba(174, 189, 106, 0.42);
+}
+@media (prefers-reduced-motion: reduce) {
+    .duo-block { transition: none; }
+    .duo-block:hover { transform: none; }
+}
+
+/* ---- (8) "SOBRE MIM" no mobile: título ao lado da foto + base desvanecida ---- */
+.about-heading-m { display: none; }
+@media (max-width: 900px) {
+    .about-figure {
+        flex-direction: row;
+        align-items: flex-end;
+        justify-content: center;
+        gap: clamp(1rem, 3.5vw, 2.2rem);
+        width: 100%;
+    }
+    .about-heading-m {
+        display: block;
+        align-self: center;
+        flex: 0 0 auto;
+        text-align: right;
+        font-weight: 800;
+        line-height: 1.02;
+        font-size: clamp(3rem, 12vw, 5.2rem);
+        color: var(--hero-cream);
+    }
+    .about-heading-m .gradient-text {
+        background: none;
+        -webkit-text-fill-color: var(--hero-accent);
+        color: var(--hero-accent);
+    }
+    /* esconde o título real visualmente, mantendo-o para leitores de tela */
+    .about-content .heading {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+        white-space: nowrap;
+        border: 0;
+    }
+    /* foto menor p/ caber ao lado do título + desvanece na base (tira a "linha solta") */
+    .about-person {
+        max-width: min(52vw, 280px);
+        -webkit-mask-image: linear-gradient(to bottom, #000 66%, transparent 100%);
+                mask-image: linear-gradient(to bottom, #000 66%, transparent 100%);
+    }
+}
+
+
+/* ============================================================
+   v12 — REFINAMENTOS (jun/2026, 2ª rodada)
+   a) rodapé com o MESMO design dos botões do home (tamanho mantido)
+   b) "Sobre mim": sem linhas/sombra nas laterais + desvanecer da base
+      mais curto e mais forte
+   c) "Como funciona": card inteiro clicável, número à frente do título,
+      seta para baixo, animação mais fluida com delay
+   d) home + "Como funciona" sem encostar nas bordas em telas pequenas
+   e) avaliações: nome quebra antes do ícone do Google
+   ============================================================ */
+
+/* ---- (a) RODAPÉ = design dos botões do home, tamanho do rodapé ---- */
+.footer .social-icons a {
+    border-width: 1.5px;
+    border-color: var(--hero-line);
+    color: var(--hero-cream);
+    background: transparent;
+    transition: transform 0.3s ease, border-color 0.3s ease,
+                background 0.3s ease, color 0.3s ease;
+}
+.footer .social-icons a .icon { font-size: 2rem; }   /* proporção do home (1.9rem/46px) no tamanho 50px */
+.footer .social-icons a:hover,
+.footer .social-icons a:focus-visible {
+    transform: translateY(-3px);
+    border-color: var(--hero-accent);
+    background: color-mix(in srgb, var(--hero-cream) 8%, transparent);
+    color: var(--hero-accent);
+    box-shadow: none;
+}
+/* anula o "preenchimento" antigo do tema escuro só no rodapé */
+[data-theme="dark"] .footer .social-icons a:hover,
+[data-theme="dark"] .footer .social-icons a:focus-visible {
+    background: color-mix(in srgb, var(--hero-cream) 10%, transparent);
+    color: var(--hero-accent);
+}
+
+/* ---- (b) "SOBRE MIM": tira sombras/linhas laterais e encurta o fade da base ---- */
+@media (max-width: 900px) {
+    .about-person {
+        filter: none;                      /* a sombra é que criava as "linhas" borradas nas laterais/topo */
+        /* desvanecer da base curto e forte (só os ~13% finais) */
+        -webkit-mask-image: linear-gradient(to bottom, #000 87%, transparent 100%);
+                mask-image: linear-gradient(to bottom, #000 87%, transparent 100%);
+    }
+}
+
+/* ---- (c) "COMO FUNCIONA": acordeão retraído reescrito ---- */
+@media (max-width: 900px) {
+    .process-steps {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.2rem;
+        max-width: 600px;
+    }
+    .process-steps li:hover { transform: none; }
+
+    .process-step {
+        position: relative;
+        display: block;                    /* nº vira "float" dentro do título */
+        min-width: 0;                      /* permite encolher na grade (evita estouro) */
+        padding: 1.5rem 1.4rem 2.9rem;
+    }
+    .process-steps li::before { display: none; }   /* esconde a bola flex do desktop */
+    .process-step .step-col { width: 100%; }
+
+    .step-head {
+        display: block;
+        width: 100%;
+        position: static;
+        cursor: pointer;
+    }
+    /* card INTEIRO clicável: o botão cobre todo o cartão */
+    .step-head::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+    }
+    .step-head strong {
+        display: block;
+        margin: 0;
+        font-size: clamp(1.45rem, 3.4vw, 1.75rem);
+        line-height: 1.3;
+        overflow-wrap: break-word;
+    }
+    /* número à FRENTE do título; ao quebrar, o texto desce à esquerda (sob o número) */
+    .step-head strong::before {
+        content: counter(step);
+        float: left;
+        width: 32px;
+        height: 32px;
+        margin: 0 0.9rem 0.2rem 0;
+        background: var(--gradient);
+        color: var(--white);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 1.55rem;
+    }
+
+    .step-chevron {
+        display: block;
+        position: absolute;
+        right: 1rem;
+        bottom: 0.9rem;
+        width: 1.7rem;
+        height: 1.7rem;
+        color: var(--main-color);
+        transform: none;                   /* aponta para BAIXO */
+        transition: transform 0.45s cubic-bezier(0.22, 0.61, 0.36, 1);
+        z-index: 3;                        /* acima da camada clicável */
+    }
+    .process-step.is-open .step-chevron { transform: rotate(180deg); }
+
+    /* abre/fecha mais fluido, com leve atraso no texto */
+    .process-step .step-body {
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        margin-top: 0;
+        clear: both;                       /* corpo abaixo do número flutuante */
+        transition:
+            max-height 0.5s cubic-bezier(0.22, 0.61, 0.36, 1),
+            opacity 0.4s ease 0.1s,
+            margin-top 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
+    }
+    .process-step.is-open .step-body {
+        max-height: 320px;
+        opacity: 1;
+        margin-top: 0.55rem;
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    .process-step .step-body,
+    .step-chevron { transition: none; }
+}
+
+/* ---- (d) telas pequenas: home e "Como funciona" sem encostar nas bordas ---- */
+@media (max-width: 480px) {
+    .home {
+        padding-left: 7.5%;
+        padding-right: 7.5%;
+    }
+    .home-title { font-size: clamp(3.4rem, 11vw, 4.4rem); }
+    .home-badge { flex-wrap: wrap; justify-content: center; font-size: 1.15rem; }
+    .home-sub { font-size: 1.45rem; }
+
+    .process { padding-left: 6%; padding-right: 6%; }
+    .process-steps { gap: 1rem; }
+    .step-head strong { font-size: clamp(1.35rem, 4vw, 1.6rem); }
+    .step-head strong::before { width: 30px; height: 30px; font-size: 1.45rem; margin-right: 0.8rem; }
+}
+
+/* ---- (e) avaliações: reserva espaço p/ o "G" do Google (nome quebra antes) ---- */
+.review-header { padding-right: 2.6rem; }
+
+
+/* ============================================================
+   v13 — REFINAMENTOS (jun/2026, 3ª rodada)
+   - "Sobre mim": fade da base mais forte (some a linha) + hover não
+     reintroduz sombra/linha no mobile/retraído
+   - "Como funciona": cards abrem INDIVIDUALMENTE (grade não estica a
+     linha) e animação bem fluida via grid-template-rows
+   - chips #hashtag lado a lado e centralizados em telas pequenas
+   ============================================================ */
+
+/* ---- "SOBRE MIM": fade mais forte + hover neutro no mobile ---- */
+@media (max-width: 900px) {
+    .about-person {
+        filter: none;
+        /* totalmente transparente já em ~90% → a linha da base some de vez */
+        -webkit-mask-image: linear-gradient(to bottom, #000 80%, transparent 91%);
+                mask-image: linear-gradient(to bottom, #000 80%, transparent 91%);
+    }
+    /* ao passar o mouse não volta a sombra nem amplia (era isso que revelava a linha) */
+    .about-figure:hover .about-person {
+        transform: none;
+        filter: none;
+    }
+}
+
+/* ---- "COMO FUNCIONA": abertura individual + fluida ---- */
+@media (max-width: 900px) {
+    /* a grade NÃO estica os cards da mesma linha → cada um abre sozinho */
+    .process-steps { align-items: start; }
+
+    /* contém o número flutuante dentro do cabeçalho (sem precisar de clear) */
+    .step-head { display: flow-root; }
+
+    /* animação fluida de verdade: grid-template-rows 0fr → 1fr (vai até a
+       altura real do conteúdo, sem "max-height" estourado que trava o efeito) */
+    .process-step .step-body {
+        display: grid;
+        grid-template-rows: 0fr;
+        max-height: none;          /* anula a abordagem antiga */
+        opacity: 0;
+        margin-top: 0;
+        overflow: clip;
+        clear: none;
+        transition:
+            grid-template-rows 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+            opacity 0.32s ease 0.06s,
+            margin-top 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .process-step.is-open .step-body {
+        grid-template-rows: 1fr;
+        opacity: 1;
+        margin-top: 0.55rem;
+    }
+    .process-step .step-body > * {
+        overflow: hidden;
+        min-height: 0;
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    .process-step .step-body { transition: none; }
+}
+
+/* ---- chips #hashtag: lado a lado e centralizados em telas pequenas ---- */
+@media (max-width: 767px) {
+    .about-focus { gap: 0.55rem; justify-content: center; }
+    .about-focus span { font-size: 1.25rem; padding: 0.5rem 0.95rem; border-radius: 0.7rem; }
+}
+@media (max-width: 480px) {
+    .about-focus { gap: 0.45rem; }
+    .about-focus span { font-size: 1.1rem; padding: 0.42rem 0.8rem; }
+}
+
+
+/* ============================================================
+   v14 — REFINAMENTOS (jun/2026, 4ª rodada)
+   - "Como funciona": cards iguais por linha (min-height) + fonte menor
+     SEM quebrar palavra; abertura continua individual
+   - "Sobre mim": menos espaço para a próxima seção no mobile;
+     fade da base melhor; animação da imagem de volta no mobile (SEM glow)
+   - "mim" e "Contato" com o mesmo gradiente do "Lombard" do home
+   - botão "Enviar mensagem" no estilo do "Falar agora" (pílula dourada)
+   ============================================================ */
+
+/* ---- "COMO FUNCIONA": tamanhos iguais + sem quebra de palavra ---- */
+@media (max-width: 900px) {
+    .process-steps { align-items: start; }   /* mantém abertura individual */
+    .process-step { min-height: 9rem; }       /* iguala os recolhidos (esq = dir) */
+    .step-head strong {
+        overflow-wrap: normal;                /* não quebra no meio da palavra */
+        word-break: keep-all;
+        hyphens: none;
+        font-size: clamp(1.2rem, 3vw, 1.5rem);
+        line-height: 1.28;
+    }
+}
+@media (max-width: 480px) {
+    .process-step { min-height: 8.5rem; }
+    .step-head strong { font-size: clamp(1.1rem, 3.4vw, 1.4rem); }
+    .step-head strong::before { width: 28px; height: 28px; font-size: 1.4rem; margin-right: 0.7rem; }
+}
+
+/* ---- "SOBRE MIM": espaçamento, fade e animação (tudo só no mobile) ---- */
+@media (max-width: 900px) {
+    /* menos vão até a próxima seção */
+    .about { gap: clamp(1rem, 3vw, 2rem); justify-content: flex-start; }
+    .about-person { max-height: min(46vh, 360px); }
+
+    /* fade da base mais suave e que some de vez */
+    .about-person {
+        filter: none;
+        -webkit-mask-image: linear-gradient(to bottom, #000 74%, transparent 93%);
+                mask-image: linear-gradient(to bottom, #000 74%, transparent 93%);
+    }
+    /* animação de volta no mobile: SÓ a ampliação, sem glow/sombra */
+    .about-figure:hover .about-person {
+        transform: scale(1.03);
+        filter: none;
+    }
+}
+
+/* ---- "mim" e "Contato" com o gradiente do "Lombard" (home) ---- */
+.about-content .heading .gradient-text,
+.about-heading-m .gradient-text,
+.contact .heading .gradient-text {
+    background: linear-gradient(180deg, var(--gg-1), var(--gg-2));
+    -webkit-background-clip: text;
+            background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+}
+
+/* ---- botão "Enviar mensagem" = estilo do "Falar agora" (pílula dourada) ---- */
+.contact-form .btn {
+    background: linear-gradient(180deg, var(--gold-soft), var(--gold));
+    color: #2a2410;
+    border: none;
+    box-shadow: 0 5px 13px rgba(217, 182, 118, 0.16);
+}
+.contact-form .btn:hover,
+.contact-form .btn:focus-visible,
+.contact-form .btn.is-visible:hover,
+.contact-form .btn.is-visible:focus-visible {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 18px rgba(217, 182, 118, 0.24);
+}
+[data-theme="dark"] .contact-form .btn {
+    background: linear-gradient(180deg, var(--gold-soft), var(--gold));
+    color: #2a2410;
+}
+
+
+/* ============================================================
+   v15 — CORREÇÕES (jun/2026, 5ª rodada) — verificadas em render
+   - about: flex-basis 600px virava ALTURA no mobile (vão de ~219px
+     abaixo dos chips). Corrigido com flex:0 1 auto.
+   - "Como funciona": número vira inline-block → palavra longa
+     ("Direcionamento") desce pra linha de baixo em vez de vazar;
+     cards da mesma linha com altura igual.
+   ============================================================ */
+@media (max-width: 900px) {
+    /* corrige o vão abaixo dos chips no "Sobre mim" */
+    .about-content { flex: 0 1 auto; }
+
+    /* número à frente do título, mas SEM float (não deixa a palavra vazar) */
+    .process-step .step-head strong::before {
+        float: none;
+        display: inline-block;
+        vertical-align: middle;
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        text-align: center;
+        margin: 0 0.7rem 0.2rem 0;
+    }
+    .process-step .step-head strong { display: block; }
+    .process-step { min-height: 10rem; }   /* iguala os cards da linha */
+}
+@media (max-width: 480px) {
+    .process-step .step-head strong::before { width: 28px; height: 28px; line-height: 28px; font-size: 1.4rem; }
+    .process-step { min-height: 9.5rem; }
+}
+
+
+/* ============================================================
+   v16 — fonte do título do passo (corrige especificidade)
+   `.process-steps li strong` (0,1,2) vencia `.step-head strong` (0,1,1),
+   então a redução de fonte não aplicava e a palavra vazava.
+   Usamos `.process-step .step-head strong` (0,2,1) para vencer.
+   ============================================================ */
+@media (max-width: 900px) {
+    .process-step .step-head strong {
+        font-size: clamp(1.2rem, 3vw, 1.5rem);
+        line-height: 1.3;
+        overflow-wrap: normal;
+        word-break: keep-all;
+        hyphens: none;
+    }
+}
+@media (max-width: 480px) {
+    .process-step .step-head strong { font-size: clamp(1.05rem, 3.2vw, 1.3rem); }
+}
+
+
+/* ============================================================
+   v17 — sombra/glow do "Falar agora" + botões dos modais dourados
+   ============================================================ */
+/* "Falar agora" (home): tema CLARO ganha sombra suave de profundidade;
+   tema ESCURO mantém o brilho/glow dourado (o "oposto"). */
+.cta--primary:hover,
+.cta--primary:focus-visible {
+    transform: translateY(-3px);
+    box-shadow: 0 9px 20px rgba(94, 76, 30, 0.26), 0 2px 6px rgba(0, 0, 0, 0.12);
+}
+[data-theme="dark"] .cta--primary:hover,
+[data-theme="dark"] .cta--primary:focus-visible {
+    box-shadow: 0 0 24px rgba(231, 207, 156, 0.45), 0 8px 18px rgba(217, 182, 118, 0.22);
+}
+
+/* Botões "Enviar mensagem" e "Voltar" dos modais = mesma cara do botão do form */
+.cf-btn--primary {
+    background: linear-gradient(180deg, var(--gold-soft), var(--gold));
+    color: #2a2410;
+    box-shadow: 0 5px 13px rgba(217, 182, 118, 0.16);
+}
+.cf-btn--primary:hover:not(:disabled) {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 18px rgba(217, 182, 118, 0.24);
+}
+.cf-btn--primary:disabled { opacity: 0.5; cursor: not-allowed; }
+[data-theme="dark"] .cf-btn--primary {
+    background: linear-gradient(180deg, var(--gold-soft), var(--gold));
+    color: #2a2410;
+}
+
+
+/* ============================================================
+   v18 — distância moderada no "Sobre mim" + alinhamento bolha/título
+   ============================================================ */
+@media (max-width: 900px) {
+    /* (1) devolve uma distância MODERADA até a próxima seção (não os 219px) */
+    .about { padding-bottom: clamp(2.5rem, 7vw, 4.5rem); }
+
+    /* (2) bolha do número centralizada com o título (sem "escadinha") */
+    .process-step .step-head { display: flex; align-items: center; gap: 0.7rem; }
+    .process-step .step-head strong::before { content: none; display: none; }   /* remove bolha antiga (inline) */
+    .process-step .step-head::before {
+        content: counter(step);
+        flex: 0 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: var(--gradient);
+        color: var(--white);
+        font-weight: 700;
+        font-size: 1.5rem;
+        line-height: 1;
+    }
+    .process-step .step-head strong {
+        min-width: 0;                 /* deixa encolher na grade (sem estourar) */
+        display: block;
+        font-size: clamp(1.05rem, 3vw, 1.4rem);
+    }
+}
+@media (max-width: 480px) {
+    .process-step .step-head::before { width: 28px; height: 28px; font-size: 1.4rem; }
+    .process-step .step-head strong {
+        font-size: clamp(0.82rem, 2.45vw, 1.15rem);
+        overflow-wrap: normal;
+        word-break: keep-all;
+    }
+}
+
+
+/* ============================================================
+   v19 — "Sobre mim": distância moderada (clara) + bolha do número
+          alinhada ao topo do título nos cards (mobile)
+   ============================================================ */
+@media (max-width: 900px) {
+    /* distância moderada e visível até a próxima seção (bem menos que antes) */
+    .about { padding-bottom: clamp(3rem, 8vw, 4.5rem); }
+
+    /* número alinhado ao topo, nivelado com a 1ª linha do título */
+    .process-step .step-head { align-items: flex-start; }
+    .process-step .step-head::before { margin-top: 1px; }
+}
+
+
+/* ============================================================
+   v20 — cards "Como funciona": título centralizado verticalmente
+          com o número + card fechado mais baixo (mobile)
+   ============================================================ */
+@media (max-width: 900px) {
+    /* a grade iguala os pares sozinha -> dispensa o min-height alto */
+    .process-steps { align-items: stretch; }
+    .process-step { min-height: 0; padding: 1.3rem 1.4rem 2.5rem; }
+    /* número e título centralizados verticalmente */
+    .process-step .step-head { align-items: center; }
+    .process-step .step-head::before { margin-top: 0; }
+}
+
+
+/* ============================================================
+   v21 — abrir um card NÃO estica o card do lado (mobile)
+          (mantém fechados iguais/compactos; só o aberto cresce)
+   ============================================================ */
+@media (max-width: 900px) {
+    .process-steps { align-items: start; }
+}
+
+
+/* ============================================================
+   v22 — (a) cards "Áreas de Atuação" menores no mobile
+          (b) Avaliações Google: "ler mais/ler menos" com animação
+              fluida; cada card independente (não estica o vizinho)
+   ============================================================ */
+/* (a) Áreas de Atuação menores no celular */
+@media (max-width: 768px) {
+    .projects-grid { gap: 1.4rem; max-width: 360px; }
+    .project-card { padding: 1.7rem 1.5rem; border-radius: 1.4rem; }
+    .project-card img,
+    .project-card .card-symbol { width: 40px; height: 40px; margin: 0 auto 0.85rem; }
+    .project-card h3 { font-size: 1.65rem; margin-bottom: 0.5rem; }
+    .project-card p { font-size: 1.3rem; line-height: 1.5; }
+}
+
+/* (b) Avaliações: ler mais / ler menos */
+@media (max-width: 900px) {
+    /* abrir um card NÃO estica o do lado (igual "Como funciona") */
+    .reviews-grid { align-items: start; }
+
+    /* card inteiro clicável quando há "ler mais" */
+    .review-card.rt-on { cursor: pointer; }
+
+    .review-text {
+        overflow: hidden;
+        transition: max-height 0.45s cubic-bezier(0.22, 0.61, 0.36, 1);
+    }
+    .review-toggle {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        margin-top: 0.75rem;
+        padding: 0;
+        background: none;
+        border: 0;
+        font-family: inherit;
+        font-size: 1.35rem;
+        font-weight: 600;
+        line-height: 1;
+        color: var(--main-color);
+        cursor: pointer;
+    }
+    [data-theme="dark"] .review-toggle { color: #c6d68b; }
+    .review-toggle:hover .rt-label { text-decoration: underline; }
+    .review-toggle .rt-chev {
+        width: 1.25rem;
+        height: 1.25rem;
+        flex-shrink: 0;
+        transition: transform 0.35s ease;
+    }
+    .review-card.is-expanded .review-toggle .rt-chev { transform: rotate(180deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+    .review-text { transition: none; }
+    .review-toggle .rt-chev { transition: none; }
+}
+
+
+/* ============================================================
+   v23 — avaliações: fade (desaparecimento suave) na 3ª linha do
+          comentário recolhido; some com transição ao expandir
+   ============================================================ */
+@media (max-width: 900px) {
+    .review-card.rt-on .review-text { position: relative; }
+    .review-card.rt-on .review-text::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 1.7em;                 /* ~1 linha: esmaece a 3ª linha */
+        background: linear-gradient(to bottom, transparent, var(--surface));
+        pointer-events: none;
+        opacity: 1;
+        transition: opacity 0.4s ease;
+    }
+    .review-card.rt-on.is-expanded .review-text::after { opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .review-card.rt-on .review-text::after { transition: none; }
+}
+
+
+/* ============================================================
+   v24 — "Como funciona": fonte do título maior + bola do número
+          menor; remove o padding-right ocioso (a seta agora fica
+          embaixo), liberando largura p/ menos quebras de linha
+   ============================================================ */
+@media (max-width: 900px) {
+    .process-step .step-head {
+        gap: 0.5rem;
+        padding-right: 0;                 /* a seta está no canto inferior, não à direita */
+    }
+    .process-step .step-head::before {
+        width: 24px; height: 24px;
+        font-size: 1.3rem;
+    }
+    .process-step .step-head strong {
+        font-size: clamp(1.05rem, 3.05vw, 1.45rem);   /* maior que antes */
+        line-height: 1.25;
+        overflow-wrap: break-word;        /* evita estouro em telas bem estreitas */
+        word-break: normal;
+    }
+}
+@media (max-width: 480px) {
+    .process-step .step-head::before {
+        width: 22px; height: 22px;
+        font-size: 1.25rem;
+    }
+}

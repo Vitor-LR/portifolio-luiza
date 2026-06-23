@@ -15,15 +15,22 @@
     var form = document.querySelector('.contact-form');
     var modal = document.getElementById('cf-modal');
 
-    // Telefone: aceita só números e os sinais + ( ) - e espaço
+    // Telefone: máscara no padrão brasileiro -> (31) 11234-5678
     var phone = document.getElementById('telefone');
     if (phone) {
+        function maskBR(value) {
+            var d = value.replace(/\D/g, '').slice(0, 11);   // só dígitos, máx. 11
+            if (!d) return '';
+            if (d.length <= 2)  return '(' + d;
+            if (d.length <= 6)  return '(' + d.slice(0, 2) + ') ' + d.slice(2);
+            if (d.length <= 10) return '(' + d.slice(0, 2) + ') ' + d.slice(2, 6) + '-' + d.slice(6);
+            return '(' + d.slice(0, 2) + ') ' + d.slice(2, 7) + '-' + d.slice(7);   // 11 dígitos
+        }
         phone.addEventListener('input', function () {
-            var clean = phone.value.replace(/[^0-9()+\-\s]/g, '');
-            if (clean !== phone.value) {
-                var pos = phone.selectionStart - (phone.value.length - clean.length);
-                phone.value = clean;
-                try { phone.setSelectionRange(pos, pos); } catch (e) {}
+            var atEnd = phone.selectionStart === phone.value.length;
+            phone.value = maskBR(phone.value);
+            if (atEnd) {
+                try { phone.setSelectionRange(phone.value.length, phone.value.length); } catch (e) {}
             }
         });
     }
