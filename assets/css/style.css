@@ -1087,6 +1087,37 @@ section {
     box-shadow: 0 0 0 3px rgba(99, 107, 47, 0.2);
 }
 
+/* ============================================================
+   PREENCHIMENTO AUTOMÁTICO (autofill)
+   O navegador pinta um fundo claro/azulado nos campos
+   autopreenchidos e ignora background-color. O box-shadow interno
+   recobre esse fundo com a cor do tema; a transition longa impede
+   o flash. text-fill-color mantém o texto na cor certa.
+   ============================================================ */
+.form-field input:-webkit-autofill,
+.form-field input:-webkit-autofill:hover,
+.form-field input:-webkit-autofill:focus,
+.form-field input:-webkit-autofill:active,
+.form-field textarea:-webkit-autofill,
+.form-field textarea:-webkit-autofill:hover,
+.form-field textarea:-webkit-autofill:focus {
+    -webkit-text-fill-color: var(--text-color);
+    -webkit-box-shadow: 0 0 0 1000px #ffffff inset;   /* = --surface no tema claro */
+    caret-color: var(--text-color);
+    transition: background-color 9999s ease-out 0s;
+}
+
+/* tema escuro: o campo é o --surface escuro (#3a3730) */
+[data-theme="dark"] .form-field input:-webkit-autofill,
+[data-theme="dark"] .form-field input:-webkit-autofill:hover,
+[data-theme="dark"] .form-field input:-webkit-autofill:focus,
+[data-theme="dark"] .form-field input:-webkit-autofill:active,
+[data-theme="dark"] .form-field textarea:-webkit-autofill,
+[data-theme="dark"] .form-field textarea:-webkit-autofill:hover,
+[data-theme="dark"] .form-field textarea:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0 1000px #3a3730 inset;
+}
+
 .form-field textarea {
     min-height: 150px;
     resize: vertical;
